@@ -1,0 +1,12 @@
+:root {
+  --accessibility-primary-color: dodgerblue;
+  --accessibility-primary-contrast: white;
+  --accessibility-primary-text-contrast: white;
+
+  --accessibility-primary-bg-color: aliceblue;
+  --accessibility-secondary-bg-color: lightgray;
+  --accessibility-tertiary-bg-color: white;
+  
+  --accessibility-focus-color: black;
+  --accessibility-selected-color: lightblue;
+}

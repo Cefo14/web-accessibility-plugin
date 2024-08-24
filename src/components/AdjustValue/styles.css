@@ -1,0 +1,32 @@
+.AdjustValue__root {
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  place-items: center;
+  justify-content: space-between;
+}
+
+.AdjustValue__button {
+  all: unset;
+  border-radius: 50%;
+  width: 3em;
+  height: 3em;
+  background-color: var(--accessibility-secondary-bg-color);
+  display: flex;
+  place-content: center;
+  place-items: center;
+  cursor: pointer;
+}
+
+.AdjustValue__button:focus {
+  outline: 1px solid var(--accessibility-focus-color);
+}
+
+.AdjustValue__button:hover {
+  opacity: 0.8;
+}
+
+
+.AdjustValue__value {
+  font-size: 1.75em;
+} 

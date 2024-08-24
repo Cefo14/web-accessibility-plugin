@@ -1,0 +1,12 @@
+.TitleWithIcon__root {
+  margin: 0;
+  place-items: center;
+  display: inline-flex;
+  gap: 0.5em;
+  font-weight: bold;
+}
+
+.TitleWithIcon__root > svg {
+  width: 1.75em;
+  height: 1.75em;
+}

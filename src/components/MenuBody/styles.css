@@ -1,0 +1,7 @@
+.MenuBody__root {
+  overflow: scroll;
+  padding: 1em 0.5em;
+  display: grid;
+  gap: 1em;
+  max-height: calc(100vh - 5em);
+}

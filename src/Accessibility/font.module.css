@@ -1,0 +1,26 @@
+.highlightTitle h1:not(:global(.Accessibility__root) h1),
+.highlightTitle h2:not(:global(.Accessibility__root) h2),
+.highlightTitle h3:not(:global(.Accessibility__root) h3),
+.highlightTitle h4:not(:global(.Accessibility__root) h4),
+.highlightTitle h5:not(:global(.Accessibility__root) h4),
+.highlightTitle h6:not(:global(.Accessibility__root) h6)
+{
+  outline: 2px solid #c44601 !important;
+  outline-offset: 1px !important;
+}
+
+.highlightLink a:not(:global(.Accessibility__root) a) {
+  outline: 2px solid #0073e6 !important;
+  outline-offset: 1px !important;
+}
+
+.incrementLetterSpacing:not(:global(.Accessibility__root) *) {
+  letter-spacing: 2px !important;
+}
+.incrementFontWeight:not(:global(.Accessibility__root) *) {
+  font-weight: bold !important;
+}
+
+.incrementLineHeight:not(:global(.Accessibility__root) *) {
+  line-height: 3 !important;
+}

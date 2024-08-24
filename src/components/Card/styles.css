@@ -1,0 +1,7 @@
+.Card__root {
+  background-color: var(--accessibility-tertiary-bg-color);
+  padding: 1em;
+  border-radius: 8px;
+  display: grid;
+  gap: 1em;
+}

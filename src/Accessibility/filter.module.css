@@ -1,0 +1,47 @@
+.hightContrast {
+  filter: contrast(125%) !important;
+}
+
+.lowConstrast {
+  filter: contrast(50%) !important;
+}
+
+.hightSaturation {
+  filter: saturate(200%) !important;
+}
+
+.darkMode {
+  background-color: lavender !important;
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+.darkMode img {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+/* Daltonism */
+
+.protanopia {
+  /* filter: grayscale(100%) contrast(125%) sepia(80%) saturate(300%) hue-rotate(-20deg); */
+  filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(-30deg) saturate(150%);
+}
+
+.deuteranopia {
+  /* filter: grayscale(100%) contrast(90%) sepia(100%) saturate(300%) hue-rotate(-30deg); */
+  filter: brightness(120%) contrast(110%) sepia(50%) hue-rotate(-90deg) saturate(150%);
+}
+
+.tritanopia {
+  /* filter: grayscale(100%) contrast(100%) sepia(100%) saturate(300%) hue-rotate(90deg); */
+  filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(90deg) saturate(150%);
+}
+
+.achromatopsia {
+  /* filter: grayscale(100%); */
+  filter: brightness(110%) contrast(120%) grayscale(100%);;
+}
+
+.achromatomaly {
+  /* filter: grayscale(50%); */
+  filter: brightness(110%) contrast(110%) saturate(70%);
+}

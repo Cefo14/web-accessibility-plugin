@@ -1,0 +1,23 @@
+.Menu__root {
+  position: fixed;
+  left: 0;
+  top: 0px;
+  z-index: 500000;
+  opacity: 1;
+  overflow: hidden;
+  background-color: var(--accessibility-primary-bg-color);
+  width: 480px;
+  line-height: 1;
+  height: 100vh;
+  letter-spacing: 0.015em;
+}
+
+.Menu__root--hidde {
+  display: none;
+}
+
+@media only screen and (max-width: 512px) {
+  .Menu__root {
+      width: 100%;
+  }
+}

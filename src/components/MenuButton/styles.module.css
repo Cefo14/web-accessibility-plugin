@@ -1,0 +1,37 @@
+.root {
+  all: unset;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  gap: 1em;
+
+  background-color: var(--accessibility-tertiary-bg-color);
+  border-radius: 16px;
+
+  padding: 1em;
+  max-width: 8em;
+  height: 5em;
+
+  font-weight: bold;
+  text-align: center;
+  font-size: 1em;
+
+  cursor: pointer;
+}
+
+.root:focus {
+  outline: solid 1px var(--accessibility-focus-color);
+}
+
+.root:hover {
+  opacity: 0.8;
+}
+
+.root > svg {
+  width: 2em;
+  height: 2em;
+}
+
+.rootActive {
+  background-color: var(--accessibility-selected-color);
+}

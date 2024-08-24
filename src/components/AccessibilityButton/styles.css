@@ -1,0 +1,24 @@
+.AccessibilityButton__root {
+  all: unset;
+  position: fixed;
+  bottom: 1%;
+  left: 1%;
+
+  background-color: var(--accessibility-primary-color);
+  outline: 4px solid var(--accessibility-primary-color);
+  border: 2px solid var(--accessibility-primary-contrast);
+  border-radius: 50%;
+
+  width: 2.5em;
+  height: 2.5em;
+  padding: 8px;
+  display: flex;
+  place-content: center;
+  place-items: center;
+
+  cursor: pointer;
+}
+
+.AccessibilityButton__root:focus {
+  outline: 4px solid var(--accessibility-focus-color);
+}
