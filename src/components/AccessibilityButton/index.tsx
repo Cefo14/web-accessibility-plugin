@@ -3,9 +3,9 @@ import clsx from 'clsx';
 
 import { type ButtonProps } from '@/types/ButtonProps';
 
-import { ReactComponent as AccessibilityIcon } from '@/assets/accessibility-svgrepo-com.svg';
+import AccessibilityIcon from '@/assets/accessibility-svgrepo-com.svg?react';
 
-import * as styles from './styles.module.css';
+import styles from './styles.module.css';
 
 type AccessibilityButtonProps = ButtonProps;
 

@@ -1,5 +1,5 @@
-import * as fontStyles from '@/Accessibility/font.module.css';
-import * as filterStyles from '@/Accessibility/filter.module.css';
+import fontStyles from '@/Accessibility/font.module.css';
+import filterStyles from '@/Accessibility/filter.module.css';
 
 const FONT_CLASS_NAMES = {
   highlightTitles: fontStyles.highlightTitle,

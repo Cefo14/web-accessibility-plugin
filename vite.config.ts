@@ -1,0 +1,22 @@
+import path from 'path';
+
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import svgr from "vite-plugin-svgr";
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    react(),
+    svgr(),
+  ],
+  resolve: {
+    alias: {
+    "@": path.resolve(__dirname, "./src"),
+    react: 'preact/compat',
+    'react-dom/test-utils': 'preact/test-utils',
+    'react-dom': 'preact/compat',
+    'react/jsx-runtime': 'preact/jsx-runtime'
+  },
+},
+})

@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { type DivProps } from '@/types/DivProps';
 import { type OnClickButton } from '@/types/OnClickButton';
 
-import { ReactComponent as ResetIcon } from '@/assets/reset-svgrepo-com.svg';
-import { ReactComponent as CloseIcon } from '@/assets/close-bold-svgrepo-com.svg';
+import ResetIcon from '@/assets/reset-svgrepo-com.svg?react';
+import CloseIcon from '@/assets/close-bold-svgrepo-com.svg?react';
 
-import * as styles from './styles.module.css';
+import styles from './styles.module.css';
 
 interface MenuHeaderProps extends DivProps {
   $titleId?: string;

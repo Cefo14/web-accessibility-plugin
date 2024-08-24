@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { type DivProps } from '@/types/DivProps';
 import { type OnClickButton } from '@/types/OnClickButton';
 
-import { ReactComponent as MinusIcon } from '@/assets/minus-svgrepo-com.svg';
-import { ReactComponent as PlusIcon } from '@/assets/plus-svgrepo-com.svg';
+import MinusIcon from '@/assets/minus-svgrepo-com.svg?react';
+import PlusIcon from '@/assets/plus-svgrepo-com.svg?react';
 
-import * as styles from './styles.module.css';
+import styles from './styles.module.css';
 
 interface AdjustValueProps extends DivProps {
   $onDecrement?: OnClickButton;

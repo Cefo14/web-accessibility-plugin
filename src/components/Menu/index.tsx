@@ -3,7 +3,7 @@ import { clsx } from 'clsx';
 
 import { type DivProps } from '@/types/DivProps';
 
-import * as styles from './styles.module.css';
+import styles from './styles.module.css';
 
 interface MenuProps extends DivProps {
   $isOpen?: boolean

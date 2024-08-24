@@ -1,7 +1,7 @@
 import { type HTMLAttributes, memo } from 'react';
 import clsx from 'clsx';
 
-import * as styles from './styles.module.css';
+import styles from './styles.module.css';
 
 interface TitleProps extends HTMLAttributes<HTMLHeadElement> {
   $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
