@@ -5,7 +5,7 @@
   place-items: center;
   gap: 1em;
 
-  background-color: var(--accessibility-tertiary-bg-color);
+  background-color: var(--accessibility-secondary-background);
   border-radius: 16px;
 
   padding: 1em;
@@ -20,7 +20,7 @@
 }
 
 .root:focus {
-  outline: solid 1px var(--accessibility-focus-color);
+  outline: solid 1px var(--accessibility-focus);
 }
 
 .root:hover {
@@ -33,5 +33,5 @@
 }
 
 .rootActive {
-  background-color: var(--accessibility-selected-color);
+  background-color: var(--accessibility-selected);
 }

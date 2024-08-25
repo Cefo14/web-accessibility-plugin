@@ -1,5 +1,5 @@
 .root {
-  background-color: var(--accessibility-tertiary-bg-color);
+  background-color: var(--accessibility-secondary-background);
   padding: 1em;
   border-radius: 8px;
   display: grid;

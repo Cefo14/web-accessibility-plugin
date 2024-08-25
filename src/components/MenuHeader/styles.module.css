@@ -1,5 +1,5 @@
 .root {
-  background-color: var(--accessibility-primary-color);
+  background-color: var(--accessibility-primary);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,7 +8,7 @@
 }
 
 .title {
-  color: var(--accessibility-primary-text-contrast);
+  color: var(--accessibility-primary-text);
   margin: 0;
 }
 
@@ -20,7 +20,7 @@
 .button {
   all: unset;
   padding: 5px;
-  background-color: var(--accessibility-primary-contrast);
+  background-color: var(--accessibility-primary-background);
   cursor: pointer;
   border-radius: 50%;
   width: 2em;
@@ -31,7 +31,7 @@
 }
 
 .button:focus {
-  outline: 1px solid var(--accessibility-focus-color);
+  outline: 1px solid var(--accessibility-focus);
 }
 
 .button:hover {

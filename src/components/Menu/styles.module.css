@@ -3,10 +3,9 @@
   left: 0;
   top: 0px;
   z-index: 500000;
-  box-shadow: 0px 0px 20px var(--accessibility-focus-color);
   opacity: 1;
   overflow: hidden;
-  background-color: var(--accessibility-primary-bg-color);
+  background-color: var(--accessibility-secondary);
   width: 480px;
   line-height: 1;
   height: 100%;

@@ -1,12 +1,13 @@
 :root {
-  --accessibility-primary-color: dodgerblue;
-  --accessibility-primary-contrast: white;
-  --accessibility-primary-text-contrast: white;
+  --accessibility-primary: #1d4289;
+  --accessibility-primary-border: #FFFFFF;
+  --accessibility-primary-text: #FFFFFF;
+  --accessibility-primary-background: #FFFFFF;
 
-  --accessibility-primary-bg-color: aliceblue;
-  --accessibility-secondary-bg-color: lightgray;
-  --accessibility-tertiary-bg-color: white;
-  
-  --accessibility-focus-color: black;
-  --accessibility-selected-color: lightblue;
+  --accessibility-secondary: #F5F5F5;
+  --accessibility-secondary-text: #333333;
+  --accessibility-secondary-background: #FFFFFF;
+
+  --accessibility-focus: black;
+  --accessibility-selected: lightblue;
 }

@@ -4,9 +4,9 @@
   bottom: 1vh;
   left: 1vh;
 
-  background-color: var(--accessibility-primary-color);
-  outline: 4px solid var(--accessibility-primary-color);
-  border: 2px solid var(--accessibility-primary-contrast);
+  background-color: var(--accessibility-primary);
+  outline: 4px solid var(--accessibility-primary);
+  border: 2px solid var(--accessibility-primary-border);
   border-radius: 50%;
 
   width: 2.5em;
@@ -20,5 +20,5 @@
 }
 
 .root:focus {
-  outline: 4px solid var(--accessibility-focus-color);
+  outline: 4px solid var(--accessibility-focus);
 }
