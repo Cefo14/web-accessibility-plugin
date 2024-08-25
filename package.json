@@ -28,6 +28,7 @@
     "commit": "cz",
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:preact": "tsc -b && vite build --config vite.production.config.ts",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -45,6 +46,7 @@
     "sanitize.css": "13.0.0",
     "typescript": "5.5.4",
     "vite": "5.4.2",
+    "vite-plugin-css-injected-by-js": "3.5.1",
     "vite-plugin-svgr": "4.2.0"
   },
   "devDependencies": {
