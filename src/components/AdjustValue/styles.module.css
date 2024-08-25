@@ -11,7 +11,7 @@
   border-radius: 50%;
   width: 2em;
   height: 2em;
-  background-color: var(--accessibility-secondary-background);
+  background-color: var(--accessibility-tertiary-contrast);
   display: flex;
   place-content: center;
   place-items: center;

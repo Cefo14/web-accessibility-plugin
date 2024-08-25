@@ -11,7 +11,7 @@ import Card from '@/components/Card';
 import TitleWithIcon from '@/components/TitleWithIcon';
 import AdjustValue from '@/components/AdjustValue';
 import MenuButton from '@/components/MenuButton';
-import MenuButtonGroup from '@/components/MenuButtonGroup';
+import AutoGrid from '@/components/AutoGrid';
 
 import FontIcon from '@/assets/font-svgrepo-com.svg?react';
 import FontSizeIcon from '@/assets/font-size-svgrepo-com.svg?react';
@@ -112,7 +112,7 @@ const Accessibility = () => {
             />
           </Card>
 
-          <MenuButtonGroup>
+          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="9em">
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
               $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
@@ -161,7 +161,7 @@ const Accessibility = () => {
               <BoldIcon />
               Font Weight
             </MenuButton>
-          </MenuButtonGroup>
+          </AutoGrid>
 
           <Card>
             <TitleWithIcon $as="h3">
@@ -170,7 +170,7 @@ const Accessibility = () => {
             </TitleWithIcon>
           </Card>
 
-          <MenuButtonGroup>
+          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="9em">
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.hightContrast}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightContrast)}
@@ -243,7 +243,7 @@ const Accessibility = () => {
               <PieChartTwotone25Icon />
               Achromatomaly
             </MenuButton>
-          </MenuButtonGroup>
+          </AutoGrid>
         </MenuBody>
       </Menu>
     </section>

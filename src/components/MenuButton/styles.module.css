@@ -5,7 +5,7 @@
   place-items: center;
   gap: 1em;
 
-  background-color: var(--accessibility-secondary-background);
+  background-color: var(--accessibility-tertiary);
   border-radius: 16px;
 
   padding: 1em;

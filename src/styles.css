@@ -1,13 +1,15 @@
 :root {
   --accessibility-primary: #1d4289;
-  --accessibility-primary-border: #FFFFFF;
+  --accessibility-primary-contrast: #FFFFFF;
   --accessibility-primary-text: #FFFFFF;
-  --accessibility-primary-background: #FFFFFF;
 
   --accessibility-secondary: #F5F5F5;
   --accessibility-secondary-text: #333333;
-  --accessibility-secondary-background: #FFFFFF;
+
+  --accessibility-tertiary: #FFFFFF;
+  --accessibility-tertiary-contrast: #d3d3d3;
+  --accessibility-tertiary-text: #212121;
 
   --accessibility-focus: black;
-  --accessibility-selected: lightblue;
+  --accessibility-selected: #b3c7f7;
 }
