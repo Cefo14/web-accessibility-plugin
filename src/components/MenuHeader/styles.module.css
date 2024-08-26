@@ -17,16 +17,19 @@
 }
 
 .button {
-  all: unset;
-  padding: 5px;
-  background-color: var(--accessibility-primary-contrast);
-  cursor: pointer;
-  border-radius: 50%;
-  width: 2em;
-  height: 2em;
   display: flex;
   place-items: center;
   place-content: center;
+
+  width: 2.5em;
+  height: 2.5em;
+
+  background-color: var(--accessibility-primary-contrast);
+  border-radius: 50%;
+  border: none;
+  outline: none;
+
+  cursor: pointer;
 }
 
 .button:focus {

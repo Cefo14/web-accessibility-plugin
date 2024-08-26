@@ -2,6 +2,4 @@
   background-color: var(--accessibility-tertiary);
   padding: 1em;
   border-radius: 8px;
-  display: grid;
-  gap: 1em;
 }

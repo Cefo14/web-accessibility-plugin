@@ -8,7 +8,7 @@ const textElements = TextElements.instance;
 
 const PERCENTAGE_STEP = 10;
 
-export const useFontSizeAccessibility = () => {
+export const useFontSize = () => {
   const [fontSizePercentage, setfontSizePercentage] = useState(100);
 
   const decrementFontSizePercentage = useCallback(() => {

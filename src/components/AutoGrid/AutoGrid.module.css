@@ -3,6 +3,6 @@
 }
 
 .root > * {
-  max-width: initial;
-  width: initial;
+  max-width: initial !important;
+  width: initial !important;
 }

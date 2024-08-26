@@ -28,9 +28,9 @@ const MenuHeader = ({
     {...props}
     className={clsx(styles.root, className)}
   >
-    <h2 id={$titleId} className={styles.title}>
+    <h4 id={$titleId} className={styles.title}>
       { $title }
-    </h2>
+    </h4>
     <div className={styles.actions}>
       <button
         type="button"

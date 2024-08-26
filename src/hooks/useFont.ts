@@ -4,7 +4,7 @@ import { type MouseEventButton } from '@/types/MouseEventButton';
 
 import { ACCESSIBILITY_CLASS_NAMES, type AccessibilityClassNamesKeys } from '@/constants/AccessibilityClassNames';
 
-export const useFontAccessibility = () => {
+export const useFont = () => {
   const [activeClassNames, setActiveClassNames] = useState<Set<string>>(new Set());
 
   const toggleActiveClassNames = useCallback((name: string) => {

@@ -8,10 +8,10 @@ import Menu from '@/components/Menu';
 import MenuHeader from '@/components/MenuHeader';
 import MenuBody from '@/components/MenuBody';
 import Card from '@/components/Card';
-import TitleWithIcon from '@/components/TitleWithIcon';
-import AdjustValue from '@/components/AdjustValue';
-import MenuButton from '@/components/MenuButton';
 import AutoGrid from '@/components/AutoGrid';
+import TitleWithIcon from '@/components/TitleWithIcon';
+import MenuButton from '@/components/MenuButton';
+import AdjustButton from '@/components/AdjustButton';
 
 import FontIcon from '@/assets/font-svgrepo-com.svg?react';
 import FontSizeIcon from '@/assets/font-size-svgrepo-com.svg?react';
@@ -31,11 +31,9 @@ import PieChartTwotone50Icon from '@/assets/pie-chart-twotone-50-svgrepo-com.svg
 import PieChartTwotone25Icon from '@/assets/pie-chart-twotone-25-svgrepo-com.svg?react';
 
 import { useOpen } from '@/hooks/useOpen';
-import { useFontSizeAccessibility } from '@/hooks/useFontSizeAccessibility';
-import { useFontAccessibility } from '@/hooks/useFontAccessibility';
+import { useFontSize } from '@/hooks/useFontSize';
+import { useFont } from '@/hooks/useFont';
 import { useColorFilter } from '@/hooks/useColorFilter';
-
-import './styles.css';
 
 const OPEN_MENU_ID =  'open-menu-button';
 const MODAL_ID =  'open-menu-button';
@@ -48,13 +46,13 @@ const Accessibility = () => {
     decrementFontSizePercentage,
     incrementFontSizePercentage,
     resetFontSize
-  } = useFontSizeAccessibility();
+  } = useFontSize();
 
   const {
     toggleFontClassName,
     hasActiveFontClassName,
     resetFontClassNames
-  } = useFontAccessibility();
+  } = useFont();
 
   const {
     toggleColorFilter,
@@ -94,44 +92,23 @@ const Accessibility = () => {
         />
         <MenuBody aria-label="body">
           <Card>
-            <TitleWithIcon $as="h3">
+            <TitleWithIcon $as="h5">
               <FontIcon />
               Font Adjustments
             </TitleWithIcon>
           </Card>
 
-          <Card>
-            <TitleWithIcon $as="h3">
-              <FontSizeIcon />
-              Modify Font Size
-            </TitleWithIcon>
-            <AdjustValue
-              $value={fontSizePercentage}
+          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
+            <AdjustButton
+              $value={`${fontSizePercentage}%`}
               $onDecrement={decrementFontSizePercentage}
               $onIncrement={incrementFontSizePercentage}
-            />
-          </Card>
-
-          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="9em">
-            <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
-              onClick={toggleFontClassName}
             >
-              <TitleIcon />
-              Highlight Title
-            </MenuButton>
-
-            <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightLinks}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
-              onClick={toggleFontClassName}
-            >
-              <LinkIcon />
-              Highlight Links
-            </MenuButton>
+              <TitleWithIcon $as='h6'>
+                <FontSizeIcon />
+                Font Size
+              </TitleWithIcon>
+            </AdjustButton>
 
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.incrementLetterSpacing}
@@ -164,7 +141,36 @@ const Accessibility = () => {
           </AutoGrid>
 
           <Card>
-            <TitleWithIcon $as="h3">
+            <TitleWithIcon $as="h5">
+              <FontIcon />
+              Highlight Text
+            </TitleWithIcon>
+          </Card>
+
+          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
+            <MenuButton
+              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
+              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
+              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
+              onClick={toggleFontClassName}
+            >
+              <TitleIcon />
+              Highlight Title
+            </MenuButton>
+
+            <MenuButton
+              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightLinks}
+              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
+              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
+              onClick={toggleFontClassName}
+            >
+              <LinkIcon />
+              Highlight Links
+            </MenuButton>
+          </AutoGrid>
+
+          <Card>
+            <TitleWithIcon $as="h5">
               <ColorFilterIcon />
               Color Filters
             </TitleWithIcon>
