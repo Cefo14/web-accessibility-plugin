@@ -31,7 +31,7 @@ import PieChartTwotone50Icon from '@/assets/pie-chart-twotone-50-svgrepo-com.svg
 import PieChartTwotone25Icon from '@/assets/pie-chart-twotone-25-svgrepo-com.svg?react';
 
 import { useOpen } from '@/hooks/useOpen';
-import { useFontSize } from '@/hooks/useFontSize';
+import { useModifyFontSize } from '@/hooks/useModifyFontSize';
 import { useFont } from '@/hooks/useFont';
 import { useColorFilter } from '@/hooks/useColorFilter';
 
@@ -46,7 +46,7 @@ const Accessibility = () => {
     decrementFontSizePercentage,
     incrementFontSizePercentage,
     resetFontSize
-  } = useFontSize();
+  } = useModifyFontSize();
 
   const {
     toggleFontClassName,
