@@ -34,6 +34,9 @@ import { useOpen } from '@/hooks/useOpen';
 import { useModifyFontSize } from '@/hooks/useModifyFontSize';
 import { useFont } from '@/hooks/useFont';
 import { useColorFilter } from '@/hooks/useColorFilter';
+import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
+import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
+import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 
 const OPEN_MENU_ID =  'open-menu-button';
 const MODAL_ID =  'open-menu-button';
@@ -41,6 +44,13 @@ const MODAL_TITLE_ID =  'menu-title';
 
 const Accessibility = () => {
   const { isOpen, open, close } = useOpen();
+
+  const {
+    toggleFontClassName,
+    hasActiveFontClassName,
+    resetFontClassNames
+  } = useFont();
+
   const {
     fontSizePercentage,
     decrementFontSizePercentage,
@@ -49,10 +59,25 @@ const Accessibility = () => {
   } = useModifyFontSize();
 
   const {
-    toggleFontClassName,
-    hasActiveFontClassName,
-    resetFontClassNames
-  } = useFont();
+    letterSpacing,
+    decrementLetterSpacing,
+    incrementLetterSpacing,
+    resetLetterSpacing,
+  } = useModifyLetterSpacing();
+
+  const {
+    lineHeightPercentage,
+    decrementLineHeightPercentage,
+    incrementLineHeightPercentage,
+    resetLineHeight,
+  } = useModifyLineHeight();
+
+  const {
+    fontWeight,
+    decrementFontWeight,
+    incrementFontWeight,
+    resetFontWeight,
+  } = useModifyFontWeight();
 
   const {
     toggleColorFilter,
@@ -64,7 +89,9 @@ const Accessibility = () => {
     resetFontSize();
     resetFontClassNames();
     resetColorFilter();
-  }, [resetFontSize, resetFontClassNames, resetColorFilter]);
+    resetLetterSpacing();
+    resetLineHeight();
+  }, [resetFontSize, resetFontClassNames, resetColorFilter, resetLetterSpacing, resetLineHeight, resetFontWeight]);
 
   return (
     <section id={GLOBALS.ACCESSIBILITY_ID} className="Accessibility__root">
@@ -103,41 +130,29 @@ const Accessibility = () => {
               $value={`${fontSizePercentage}%`}
               $onDecrement={decrementFontSizePercentage}
               $onIncrement={incrementFontSizePercentage}
-            >
-              <TitleWithIcon $as='h6'>
-                <FontSizeIcon />
-                Font Size
-              </TitleWithIcon>
-            </AdjustButton>
+              $title='Font Size'
+            />
 
-            <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.incrementLetterSpacing}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.incrementLetterSpacing)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.incrementLetterSpacing)}
-              onClick={toggleFontClassName}
-            >
-              <LetterSpacingIcon />
-              Letter Spacing
-            </MenuButton>
-            <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.incrementLineHeight}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.incrementLineHeight)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.incrementLineHeight)}
-              onClick={toggleFontClassName}
-            >
-              <LineHeightIcon />
-              Line Height
-            </MenuButton>
+            <AdjustButton
+              $value={letterSpacing}
+              $onDecrement={decrementLetterSpacing}
+              $onIncrement={incrementLetterSpacing}
+              $title='Letter Spacing'
+            />
 
-            <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.incrementFontWeight}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.incrementFontWeight)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.incrementFontWeight)}
-              onClick={toggleFontClassName}
-            >
-              <BoldIcon />
-              Font Weight
-            </MenuButton>
+            <AdjustButton
+              $value={`${lineHeightPercentage}%`}
+              $onDecrement={decrementLineHeightPercentage}
+              $onIncrement={incrementLineHeightPercentage}
+              $title='Line Height'
+            />
+
+            <AdjustButton
+              $value={fontWeight}
+              $onDecrement={decrementFontWeight}
+              $onIncrement={incrementFontWeight}
+              $title='Font Weight'
+            />
           </AutoGrid>
 
           <Card>

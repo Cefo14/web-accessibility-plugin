@@ -14,13 +14,14 @@ interface AdjustButtonProps extends DivProps {
   $onDecrement?: OnClickButton;
   $onIncrement?: OnClickButton;
   $value?: number | string;
+  $title?: string;
 }
 
 const AdjustButton = ({
   $onIncrement,
   $onDecrement,
   $value,
-  children,
+  $title,
   className,
   ...props
 }: AdjustButtonProps) => (
@@ -42,7 +43,9 @@ const AdjustButton = ({
         <PlusIcon />
       </button>
     </div>
-    { children }
+    <h6 className={styles.title}>
+      { $title }
+    </h6>
   </Card>
 );
 

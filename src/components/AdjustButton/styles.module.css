@@ -1,12 +1,9 @@
 .root {
   display: grid;
-  place-content: center;
-  place-items: center;
   gap: 0.5em;
 
   border-radius: 16px;
 
-  font-size: 1.2em;
   font-weight: 700;
 }
 
@@ -14,6 +11,7 @@
   display: flex;
   gap: 0.5em;
   place-items: center;
+  justify-content: space-evenly;
 }
 
 .button {
@@ -31,4 +29,9 @@
 .button > svg {
   height: 1.7em;
   width: 1.7em;
+}
+
+.title {
+  margin: 0;
+  text-align: center;
 }
