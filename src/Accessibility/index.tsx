@@ -52,14 +52,14 @@ const Accessibility = () => {
   } = useFont();
 
   const {
-    fontSizePercentage,
+    fontSizeStep,
     decrementFontSizePercentage,
     incrementFontSizePercentage,
     resetFontSize
   } = useModifyFontSize();
 
   const {
-    letterSpacing,
+    letterSpacingStep,
     decrementLetterSpacing,
     incrementLetterSpacing,
     resetLetterSpacing,
@@ -91,6 +91,7 @@ const Accessibility = () => {
     resetColorFilter();
     resetLetterSpacing();
     resetLineHeight();
+    resetFontWeight();
   }, [resetFontSize, resetFontClassNames, resetColorFilter, resetLetterSpacing, resetLineHeight, resetFontWeight]);
 
   return (
@@ -127,14 +128,14 @@ const Accessibility = () => {
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
             <AdjustButton
-              $value={`${fontSizePercentage}%`}
+              $value={`${fontSizeStep}x`}
               $onDecrement={decrementFontSizePercentage}
               $onIncrement={incrementFontSizePercentage}
               $title='Font Size'
             />
 
             <AdjustButton
-              $value={letterSpacing}
+              $value={`${letterSpacingStep}x`}
               $onDecrement={decrementLetterSpacing}
               $onIncrement={incrementLetterSpacing}
               $title='Letter Spacing'

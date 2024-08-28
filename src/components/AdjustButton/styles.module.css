@@ -1,37 +1,42 @@
+
 .root {
   display: grid;
-  gap: 0.5em;
-
-  border-radius: 16px;
-
-  font-weight: 700;
+  gap: 1em;
 }
 
-.buttonContainer {
+.actionContainer {
+  position: relative;
   display: flex;
-  gap: 0.5em;
   place-items: center;
-  justify-content: space-evenly;
 }
 
 .button {
-  border-radius: 50%;
+  padding: 0;
   border: none;
-  outline: none;
-  width: 2.5em;
-  height: 2.5em;
+  flex: 1 auto;
+  height: 3em;
 }
 
-.button:focus {
-  outline: 1px solid var(--accessibility-focus);
+.buttonMinus {
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
 }
 
-.button > svg {
-  height: 1.7em;
-  width: 1.7em;
+.buttonPlus {
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.value {
+  margin: 0;
+  flex: 1 50%;
+  height: 100%;
+  display: grid;
+  place-content: center;
+  border: solid 1px #e9e9ed;
 }
 
 .title {
-  margin: 0;
+  margin: 0px;
   text-align: center;
 }

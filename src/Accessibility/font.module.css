@@ -2,7 +2,7 @@
 .highlightTitle h2:not(:global(.Accessibility__root) h2),
 .highlightTitle h3:not(:global(.Accessibility__root) h3),
 .highlightTitle h4:not(:global(.Accessibility__root) h4),
-.highlightTitle h5:not(:global(.Accessibility__root) h4),
+.highlightTitle h5:not(:global(.Accessibility__root) h5),
 .highlightTitle h6:not(:global(.Accessibility__root) h6)
 {
   outline: 2px solid #c44601 !important;

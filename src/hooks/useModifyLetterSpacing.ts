@@ -7,11 +7,12 @@ import { useDidUpdate } from './useDidUpdate';
 
 const textElements = TextElements.instance;
 
-const initial = { min: 0, max: 20, step: 0.5, initialValue: 0 }
+const initial = { min: 0, max: 20, step: 2, initialValue: 0 }
 
 export const useModifyLetterSpacing = () => {
   const {
     value,
+    stepIndex,
     increment,
     decrement,
     reset,
@@ -27,6 +28,7 @@ export const useModifyLetterSpacing = () => {
 
   return {
     letterSpacing: value,
+    letterSpacingStep: stepIndex,
     decrementLetterSpacing: decrement,
     incrementLetterSpacing: increment,
     resetLetterSpacing: reset

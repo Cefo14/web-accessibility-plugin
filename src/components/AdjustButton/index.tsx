@@ -25,27 +25,27 @@ const AdjustButton = ({
   className,
   ...props
 }: AdjustButtonProps) => (
-  <Card
-    {...props}
-    className={clsx(
-      styles.root,
-      className,
-    )}
-  >
-    <div className={styles.buttonContainer}>
-      <button type="button" className={styles.button} onClick={$onDecrement}>
-        <MinusIcon />
+  <Card className={clsx(styles.root, className)} {...props}>
+    <div className={styles.actionContainer}>
+      <button
+        type="button"
+        className={clsx(styles.button, styles.buttonMinus)}
+        onClick={$onDecrement}
+      >
+        <MinusIcon width={24} height={24} />
       </button>
-      <span>
-        { $value }
-      </span>
-      <button type="button" className={styles.button} onClick={$onIncrement}>
-        <PlusIcon />
+      <strong className={styles.value}>
+        {$value}
+      </strong>
+      <button
+        type="button"
+        className={clsx(styles.button, styles.buttonPlus)}
+        onClick={$onIncrement}
+      >
+        <PlusIcon width={24} height={24} />
       </button>
     </div>
-    <h6 className={styles.title}>
-      { $title }
-    </h6>
+    <h6 className={styles.title}>{$title}</h6>
   </Card>
 );
 

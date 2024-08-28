@@ -14,6 +14,7 @@ const initial = { min: 50, max: 200, step: 10, initialValue: 100 }
 export const useModifyFontSize = () => {
   const {
     value,
+    stepIndex,
     increment,
     decrement,
     reset,
@@ -30,6 +31,7 @@ export const useModifyFontSize = () => {
 
   return {
     fontSizePercentage: value,
+    fontSizeStep: stepIndex,
     decrementFontSizePercentage: decrement,
     incrementFontSizePercentage: increment,
     resetFontSize: reset
