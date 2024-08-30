@@ -1,18 +1,18 @@
 
 import { TextElements } from '@/helpers/TextElements';
 import { getOriginalPropertyValue } from '@/helpers/getOriginalPropertyValue';
+import { removeLetters } from '@/helpers/removeLetters';
 
 import { useSteper } from './useSteper';
 import { useDidUpdate } from './useDidUpdate';
 
 const textElements = TextElements.instance;
 
-const initial = { min: 0, max: 20, step: 2, initialValue: 0 }
+const initial = { min: -10, max: 10, step: 1, initialValue: 0 }
 
 export const useModifyLetterSpacing = () => {
   const {
     value,
-    stepIndex,
     increment,
     decrement,
     reset,
@@ -21,16 +21,18 @@ export const useModifyLetterSpacing = () => {
   useDidUpdate(() => {
     textElements.elements.forEach((element) => {
       const originalValue = getOriginalPropertyValue(element, 'letterSpacing');
-      if (value <= 0) element.style.letterSpacing = originalValue;
-      else element.style.letterSpacing = `${value}px`;
+      const parsedValue = originalValue === 'normal' ? 1 : parseFloat(removeLetters(originalValue));
+      const newValue = parsedValue + value;
+      element.style.letterSpacing = `${newValue}px`;
     });
   }, [value]);
 
   return {
-    letterSpacing: value,
-    letterSpacingStep: stepIndex,
-    decrementLetterSpacing: decrement,
-    incrementLetterSpacing: increment,
-    resetLetterSpacing: reset
+    min: initial.min,
+    max: initial.max,
+    now: value,
+    increment,
+    decrement,
+    reset,
   };
 };

@@ -32,7 +32,7 @@ export const useSteper = ({ min, max, step, initialValue, presition = 2 }: useSt
 
   return {
     value,
-    stepIndex: toFixed((value - initialValue)/step, 0),
+    step: toFixed((value - initialValue)/step, 0),
     decrement,
     increment,
     reset,

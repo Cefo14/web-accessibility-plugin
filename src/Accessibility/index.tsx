@@ -23,7 +23,7 @@ import BoldIcon from '@/assets/bold-svgrepo-com.svg?react';
 import ColorFilterIcon from '@/assets/color-filter-svgrepo-com.svg?react';
 import ContrastIcon from '@/assets/contrast-svgrepo-com.svg?react';
 import SunIcon from '@/assets/sun-svgrepo-com.svg?react';
-import MoonIcon from '@/assets/moon-svgrepo-com.svg?react';
+import InvertColorsIcon from '@/assets/invert-color-svgrepo-com.svg?react';
 import RedSquareIcon from '@/assets/red-square-svgrepo-com.svg?react';
 import GreenSquareIcon from '@/assets/green-square-svgrepo-com.svg?react';
 import BlueSquareIcon from '@/assets/blue-square-svgrepo-com.svg?react';
@@ -46,38 +46,46 @@ const Accessibility = () => {
   const { isOpen, open, close } = useOpen();
 
   const {
+    min: minFontSizeValue,
+    max: maxFontSizeValue,
+    now: nowFontSizeValue,
+    decrement: decrementFontSizePercentage,
+    increment: incrementFontSizePercentage,
+    reset: resetFontSize
+  } = useModifyFontSize();
+
+  const {
+    min: minLetterSpacingValue,
+    max: maxLetterSpacingValue,
+    now: nowLetterSpacingValue,
+    decrement: decrementLetterSpacing,
+    increment: incrementLetterSpacing,
+    reset: resetLetterSpacing,
+  } = useModifyLetterSpacing();
+
+  const {
+    min: minLineHeightValue,
+    max: maxLineHeightValue,
+    now: nowLineHeightValue,
+    decrement: decrementLineHeightPercentage,
+    increment: incrementLineHeightPercentage,
+    reset: resetLineHeight,
+  } = useModifyLineHeight();
+
+  const {
+    min: minFontWeightValue,
+    max: maxFontWeightValue,
+    now: nowFontWeightValue,
+    decrement: decrementFontWeight,
+    increment: incrementFontWeight,
+    reset: resetFontWeight,
+  } = useModifyFontWeight();
+
+  const {
     toggleFontClassName,
     hasActiveFontClassName,
     resetFontClassNames
   } = useFont();
-
-  const {
-    fontSizeStep,
-    decrementFontSizePercentage,
-    incrementFontSizePercentage,
-    resetFontSize
-  } = useModifyFontSize();
-
-  const {
-    letterSpacingStep,
-    decrementLetterSpacing,
-    incrementLetterSpacing,
-    resetLetterSpacing,
-  } = useModifyLetterSpacing();
-
-  const {
-    lineHeightPercentage,
-    decrementLineHeightPercentage,
-    incrementLineHeightPercentage,
-    resetLineHeight,
-  } = useModifyLineHeight();
-
-  const {
-    fontWeight,
-    decrementFontWeight,
-    incrementFontWeight,
-    resetFontWeight,
-  } = useModifyFontWeight();
 
   const {
     toggleColorFilter,
@@ -87,25 +95,32 @@ const Accessibility = () => {
 
   const reset = useCallback(() => {
     resetFontSize();
-    resetFontClassNames();
-    resetColorFilter();
     resetLetterSpacing();
     resetLineHeight();
     resetFontWeight();
+    resetFontClassNames();
+    resetColorFilter();
   }, [resetFontSize, resetFontClassNames, resetColorFilter, resetLetterSpacing, resetLineHeight, resetFontWeight]);
+
+  if(!isOpen) {
+    return (
+      <section id={GLOBALS.ACCESSIBILITY_ID} className="Accessibility__root">
+        <AccessibilityButton
+          id={OPEN_MENU_ID}
+          title="Open Accessibility Menu"
+          aria-label="Open Accessibility Menu"
+          aria-controls={MODAL_ID}
+          aria-hidden={isOpen}
+          aria-expanded={isOpen}
+          aria-haspopup="menu"
+          onClick={open}
+        />
+      </section>
+    );
+  }
 
   return (
     <section id={GLOBALS.ACCESSIBILITY_ID} className="Accessibility__root">
-      <AccessibilityButton
-        id={OPEN_MENU_ID}
-        title="Open Accessibility Menu"
-        aria-label="Open Accessibility Menu"
-        aria-controls={MODAL_ID}
-        aria-hidden={isOpen}
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
-        onClick={open}
-      />
       <Menu
         $isOpen={isOpen}
         id={MODAL_ID}
@@ -122,38 +137,66 @@ const Accessibility = () => {
           <Card>
             <TitleWithIcon $as="h5">
               <FontIcon />
-              Font Adjustments
+              Text Adjustments
             </TitleWithIcon>
           </Card>
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
             <AdjustButton
-              $value={`${fontSizeStep}x`}
+              $min={minFontSizeValue}
+              $max={maxFontSizeValue}
+              $now={nowFontSizeValue}
+              $value={`${nowFontSizeValue}x`}
+              $id="font-size"
               $onDecrement={decrementFontSizePercentage}
               $onIncrement={incrementFontSizePercentage}
-              $title='Font Size'
-            />
+              aria-description="Adjust the text size."
+            >
+              <FontSizeIcon width={24} height={24} />
+              Text Size
+            </AdjustButton>
 
             <AdjustButton
-              $value={`${letterSpacingStep}x`}
+              $min={minLetterSpacingValue}
+              $max={maxLetterSpacingValue}
+              $now={nowLetterSpacingValue}
+              $value={`${nowLetterSpacingValue}x`}
+              $id="letter-spacing"
               $onDecrement={decrementLetterSpacing}
               $onIncrement={incrementLetterSpacing}
-              $title='Letter Spacing'
-            />
+              aria-description="Adjust the letter spacing."
+            >
+              <LetterSpacingIcon width={24} height={24} />
+              Text Space
+            </AdjustButton>
 
             <AdjustButton
-              $value={`${lineHeightPercentage}%`}
+              $min={minLineHeightValue}
+              $max={maxLineHeightValue}
+              $now={nowLineHeightValue}
+              $value={`${nowLineHeightValue}x`}
+              $id="text-height"
               $onDecrement={decrementLineHeightPercentage}
               $onIncrement={incrementLineHeightPercentage}
-              $title='Line Height'
-            />
+              aria-description="Adjust the line height."
+            >
+              <LineHeightIcon width={24} height={24} />
+              Text Height
+            </AdjustButton>
 
             <AdjustButton
-              $value={fontWeight}
+              $min={minFontWeightValue}
+              $max={maxFontWeightValue}
+              $now={nowFontWeightValue}
+              $value={`${nowFontWeightValue}x`}
+              $id="text-weight"
               $onDecrement={decrementFontWeight}
               $onIncrement={incrementFontWeight}
-              $title='Font Weight'
-            />
+              aria-description="Adjust the text weight."
+            >
+              <BoldIcon width={24} height={24} />
+              Text Weight
+            </AdjustButton>
           </AutoGrid>
 
           <Card>
@@ -167,7 +210,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
               $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
               onClick={toggleFontClassName}
             >
               <TitleIcon />
@@ -177,7 +219,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightLinks}
               $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
-              aria-checked={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
               onClick={toggleFontClassName}
             >
               <LinkIcon />
@@ -196,7 +237,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.hightContrast}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightContrast)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightContrast)}
               onClick={toggleColorFilter}
             >
               <ContrastIcon />
@@ -205,25 +245,22 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.hightSaturation}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightSaturation)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightSaturation)}
               onClick={toggleColorFilter}
             >
               <SunIcon />
               High Saturation
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.darkMode}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.darkMode)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.darkMode)}
+              name={ACCESSIBILITY_CLASS_NAMES_KEYS.invertColors}
+              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.invertColors)}
               onClick={toggleColorFilter}
             >
-              <MoonIcon />
-              Dark Mode
+              <InvertColorsIcon />
+              Invert Colors
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.protanopia}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.protanopia)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.protanopia)}
               onClick={toggleColorFilter}
             >
               <RedSquareIcon />
@@ -232,7 +269,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.deuteranopia}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.deuteranopia)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.deuteranopia)}
               onClick={toggleColorFilter}
             >
               <GreenSquareIcon />
@@ -241,7 +277,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.tritanopia}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.tritanopia)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.tritanopia)}
               onClick={toggleColorFilter}
             >
               <BlueSquareIcon />
@@ -250,7 +285,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.achromatopsia}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.achromatopsia)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.achromatopsia)}
               onClick={toggleColorFilter}
             >
               <PieChartTwotone50Icon />
@@ -259,7 +293,6 @@ const Accessibility = () => {
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.achromatomaly}
               $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.achromatomaly)}
-              aria-checked={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.achromatomaly)}
               onClick={toggleColorFilter}
             >
               <PieChartTwotone25Icon />

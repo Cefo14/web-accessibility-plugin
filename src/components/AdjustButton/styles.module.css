@@ -38,5 +38,9 @@
 
 .title {
   margin: 0px;
-  text-align: center;
+  display: flex;
+  place-content: center;
+  place-items: center;
+  gap: 0.5em;
+
 }

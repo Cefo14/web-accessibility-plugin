@@ -1,17 +1,16 @@
 .root {
-  all: unset;
   position: fixed;
   bottom: 1vh;
-  left: 1vh;
+  right: 1vh;
 
   background-color: var(--accessibility-primary);
   outline: 4px solid var(--accessibility-primary);
   border: 2px solid var(--accessibility-primary-contrast);
   border-radius: 50%;
 
-  width: 2.5em;
-  height: 2.5em;
-  padding: 8px;
+  width: 4em;
+  height: 4em;
+
   display: flex;
   place-content: center;
   place-items: center;

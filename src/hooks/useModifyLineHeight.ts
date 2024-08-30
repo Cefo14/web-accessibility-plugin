@@ -9,7 +9,7 @@ import { removeLetters } from '@/helpers/removeLetters';
 
 const textElements = TextElements.instance;
 
-const initial = { min: 50, max: 200, step: 10, initialValue: 100 }
+const initial = { min: -10, max: 10, step: 1, initialValue: 0 }
 
 export const useModifyLineHeight = () => {
   const {
@@ -23,15 +23,17 @@ export const useModifyLineHeight = () => {
     textElements.elements.forEach((element) => {
       const originalValue = getOriginalPropertyValue(element, 'lineHeight');
       const parsedValue = parseFloat(removeLetters(originalValue));
-      const newValue = parsedValue * value / 100;
+      const newValue = parsedValue * (1 + value / 10);
       element.style.lineHeight = `${toFixed(newValue, 2)}px`;
     });
   }, [value]);
 
   return {
-    lineHeightPercentage: value,
-    decrementLineHeightPercentage: decrement,
-    incrementLineHeightPercentage: increment,
-    resetLineHeight: reset
+    min: initial.min,
+    max: initial.max,
+    now: value,
+    increment,
+    decrement,
+    reset,
   };
 };

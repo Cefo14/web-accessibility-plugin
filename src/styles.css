@@ -3,15 +3,15 @@
   --accessibility-primary-contrast: #FFFFFF;
   --accessibility-primary-text: #FFFFFF;
 
-  --accessibility-secondary: #F5F5F5;
-  --accessibility-secondary-text: #333333;
+  --accessibility-secondary: #e7e7e7;
+  --accessibility-secondary-text: #FFFFFF;
 
   --accessibility-tertiary: #FFFFFF;
   --accessibility-tertiary-contrast: #d3d3d3;
   --accessibility-tertiary-text: #212121;
 
   --accessibility-focus: black;
-  --accessibility-selected: #b3c7f7;
+  --accessibility-selected: #99CCFF;
 
   --accessibility-breakpoint-xs: 575px;
   --accessibility-breakpoint-sm: 576px;

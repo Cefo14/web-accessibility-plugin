@@ -23,8 +23,6 @@ const Menu = ({
         { [styles.rootHidde]: !$isOpen },
         className
       )}
-      role="menu"
-      aria-modal="true"
       aria-hidden={!$isOpen}
     >
       { children }

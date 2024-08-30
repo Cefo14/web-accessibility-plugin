@@ -12,7 +12,7 @@ const FONT_CLASS_NAMES = {
 const FILTER_CLASS_NAMES = {
   hightContrast: filterStyles.hightContrast,
   hightSaturation: filterStyles.hightSaturation,
-  darkMode: filterStyles.darkMode,
+  invertColors: filterStyles.invertColors,
   protanopia: filterStyles.protanopia,
   deuteranopia: filterStyles.deuteranopia,
   tritanopia: filterStyles.tritanopia,

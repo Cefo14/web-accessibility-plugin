@@ -10,11 +10,11 @@
   filter: saturate(200%) !important;
 }
 
-.darkMode {
+.invertColors {
   filter: invert(1) hue-rotate(180deg) !important;
 }
 
-.darkMode img {
+.invertColors img {
   filter: invert(1) hue-rotate(180deg) !important;
 }
 

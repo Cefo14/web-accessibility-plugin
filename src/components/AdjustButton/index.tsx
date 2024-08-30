@@ -11,26 +11,38 @@ import styles from './styles.module.css';
 import Card from '../Card';
 
 interface AdjustButtonProps extends DivProps {
+  $min?: number;
+  $max?: number;
+  $now?: number;
+  $value?: number | string;
   $onDecrement?: OnClickButton;
   $onIncrement?: OnClickButton;
-  $value?: number | string;
-  $title?: string;
+  $id?: string;
 }
 
 const AdjustButton = ({
+  $min,
+  $max,
+  $now,
+  $value,
+  $id,
   $onIncrement,
   $onDecrement,
-  $value,
-  $title,
   className,
+  children,
   ...props
 }: AdjustButtonProps) => (
-  <Card className={clsx(styles.root, className)} {...props}>
+  <Card
+    className={clsx(styles.root, className)}
+    aria-labelledby={$id}
+    {...props}>
     <div className={styles.actionContainer}>
       <button
         type="button"
         className={clsx(styles.button, styles.buttonMinus)}
         onClick={$onDecrement}
+        disabled={$now === $min}
+        aria-label="Decrement value"
       >
         <MinusIcon width={24} height={24} />
       </button>
@@ -41,11 +53,15 @@ const AdjustButton = ({
         type="button"
         className={clsx(styles.button, styles.buttonPlus)}
         onClick={$onIncrement}
+        disabled={$now === $max}
+        aria-label="Increment value"
       >
         <PlusIcon width={24} height={24} />
       </button>
     </div>
-    <h6 className={styles.title}>{$title}</h6>
+    <h6 id={$id} className={styles.title}>
+      {children}
+    </h6>
   </Card>
 );
 
