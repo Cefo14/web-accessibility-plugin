@@ -32,7 +32,7 @@ import PieChartTwotone25Icon from '@/assets/pie-chart-twotone-25-svgrepo-com.svg
 
 import { useOpen } from '@/hooks/useOpen';
 import { useModifyFontSize } from '@/hooks/useModifyFontSize';
-import { useFont } from '@/hooks/useFont';
+import { useHighlights } from '@/hooks/useHighlights';
 import { useColorFilter } from '@/hooks/useColorFilter';
 import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
 import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
@@ -82,10 +82,10 @@ const Accessibility = () => {
   } = useModifyFontWeight();
 
   const {
-    toggleFontClassName,
-    hasActiveFontClassName,
-    resetFontClassNames
-  } = useFont();
+    togglHighlight,
+    isActiveHighlight,
+    resetHighlights
+  } = useHighlights();
 
   const {
     toggleColorFilter,
@@ -98,9 +98,9 @@ const Accessibility = () => {
     resetLetterSpacing();
     resetLineHeight();
     resetFontWeight();
-    resetFontClassNames();
+    resetHighlights();
     resetColorFilter();
-  }, [resetFontSize, resetFontClassNames, resetColorFilter, resetLetterSpacing, resetLineHeight, resetFontWeight]);
+  }, [resetFontSize, resetLetterSpacing, resetLineHeight, resetFontWeight, resetHighlights, resetColorFilter]);
 
   if(!isOpen) {
     return (
@@ -209,8 +209,8 @@ const Accessibility = () => {
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
-              onClick={toggleFontClassName}
+              $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
+              onClick={togglHighlight}
             >
               <TitleIcon />
               Highlight Title
@@ -218,8 +218,8 @@ const Accessibility = () => {
 
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightLinks}
-              $active={hasActiveFontClassName(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
-              onClick={toggleFontClassName}
+              $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
+              onClick={togglHighlight}
             >
               <LinkIcon />
               Highlight Links

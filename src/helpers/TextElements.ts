@@ -136,7 +136,7 @@ export class TextElements {
 
   private refreshElements () {
     const nodes = new Set(this.nodes);
-    this.getExcludeNodes().map((node) => {
+    this.getExcludeNodes().forEach((node) => {
       nodes.delete(node);
     });
     this.currentElements = Array
