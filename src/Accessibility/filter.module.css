@@ -21,26 +21,21 @@
 /* Daltonism */
 
 .protanopia {
-  /* filter: grayscale(100%) contrast(125%) sepia(80%) saturate(300%) hue-rotate(-20deg); */
   filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(-30deg) saturate(150%);
 }
 
 .deuteranopia {
-  /* filter: grayscale(100%) contrast(90%) sepia(100%) saturate(300%) hue-rotate(-30deg); */
-  filter: brightness(120%) contrast(110%) sepia(50%) hue-rotate(-90deg) saturate(150%);
+  filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(-30deg) saturate(120%);
 }
 
 .tritanopia {
-  /* filter: grayscale(100%) contrast(100%) sepia(100%) saturate(300%) hue-rotate(90deg); */
-  filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(90deg) saturate(150%);
+  filter: brightness(130%) contrast(115%) sepia(80%) hue-rotate(60deg) saturate(140%);
 }
 
 .achromatopsia {
-  /* filter: grayscale(100%); */
-  filter: brightness(110%) contrast(120%) grayscale(100%);;
+  filter: brightness(115%) contrast(125%) grayscale(90%);
 }
 
 .achromatomaly {
-  /* filter: grayscale(50%); */
-  filter: brightness(110%) contrast(110%) saturate(70%);
+  filter: brightness(115%) contrast(120%) saturate(80%);
 }

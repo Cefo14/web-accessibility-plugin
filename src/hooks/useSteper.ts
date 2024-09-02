@@ -17,14 +17,14 @@ export const useSteper = ({ min, max, step, initialValue, presition = 2 }: useSt
     if (currentValue <= min) currentValue = min;
     else currentValue -= step;
     setValue(toFixed(currentValue, presition));
-  }, [min, step, value]);
+  }, [min, step, value, presition]);
 
   const increment = useCallback(() => {
     let currentValue = value;
     if (currentValue >= max) currentValue = max;
     else currentValue += step;
     setValue(toFixed(currentValue, presition));
-  }, [max, step, value]);
+  }, [max, step, value, presition]);
 
   const reset = useCallback(() => {
     setValue(initialValue);

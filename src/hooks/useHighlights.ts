@@ -25,6 +25,7 @@ export const useHighlights = () => {
     const className: string = ACCESSIBILITY_CLASS_NAMES[name as AccessibilityClassNamesKeys];
     document.body.classList.toggle(className);
     toggleActiveHighlight(className);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const isActiveHighlight = (name: string) => activeHighlights.has(name);

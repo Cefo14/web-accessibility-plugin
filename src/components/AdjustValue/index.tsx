@@ -15,6 +15,9 @@ interface AdjustValueProps extends DivProps {
   $value?: number;
 }
 
+/**
+ * @deprecated Use `AdjustButton` instead of this component
+ */
 const AdjustValue = ({
   $onDecrement,
   $onIncrement,

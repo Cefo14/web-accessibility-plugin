@@ -24,13 +24,13 @@
     "vite"
   ],
   "scripts": {
-    "prepare": "husky",
-    "commit": "cz",
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:preact": "tsc -b && vite build --config vite.production.config.ts",
-    "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky",
+    "commit": "cz",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.1",
@@ -52,6 +52,7 @@
   "devDependencies": {
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
+    "@eslint/compat": "1.1.1",
     "@eslint/js": "9.8.0",
     "@types/eslint": "9.6.0",
     "@types/node": "22.1.0",
