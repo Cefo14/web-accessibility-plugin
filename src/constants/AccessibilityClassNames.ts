@@ -1,12 +1,10 @@
-import fontStyles from '@/Accessibility/font.module.css';
+import highlightClassNames from '@/Accessibility/highlights.module.css';
 import filterStyles from '@/Accessibility/filter.module.css';
 
-const FONT_CLASS_NAMES = {
-  highlightTitles: fontStyles.highlightTitle,
-  highlightLinks: fontStyles.highlightLink,
-  incrementLetterSpacing: fontStyles.incrementLetterSpacing,
-  incrementLineHeight: fontStyles.incrementLineHeight,
-  incrementFontWeight: fontStyles.incrementFontWeight
+const HIGHLIGHTS_NAMES = {
+  highlightTitles: highlightClassNames.highlightTitle,
+  highlightLinks: highlightClassNames.highlightLink,
+  highlightCursor: highlightClassNames.highlightCursor,
 } as const;
 
 const FILTER_CLASS_NAMES = {
@@ -21,8 +19,8 @@ const FILTER_CLASS_NAMES = {
 } as const;
 
 export const ACCESSIBILITY_CLASS_NAMES = {
-  ...FONT_CLASS_NAMES,
-  ...FILTER_CLASS_NAMES
+  ...HIGHLIGHTS_NAMES,
+  ...FILTER_CLASS_NAMES,
 } as const;
 
 export const ACCESSIBILITY_CLASS_NAMES_KEYS = Object

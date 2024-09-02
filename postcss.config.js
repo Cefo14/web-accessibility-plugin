@@ -1,11 +1,10 @@
-/** @type {import('postcss-load-config').Config} */
-const config = {
-  plugins: [
-    // require('postcss-flexbugs-fixes'),
-    // require('postcss-preset-env'),
-    // require('postcss-discard-comments'),
-    // require('cssnano')
-  ]
-}
-
-module.exports = config
+/** @return {import('postcss-load-config').Config} */
+module.exports = ({ env }) => ({
+  plugins: {
+    "postcss-url": { url: 'inline' },
+    "postcss-discard-comments": {},
+    "postcss-flexbugs-fixes": {},
+    "postcss-preset-env": {},
+    cssnano: env === 'production' ? {} : false,
+  },
+});

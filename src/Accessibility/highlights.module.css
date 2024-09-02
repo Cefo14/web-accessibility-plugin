@@ -1,3 +1,4 @@
+
 .highlightTitle h1:not(:global(.Accessibility__root) h1),
 .highlightTitle h2:not(:global(.Accessibility__root) h2),
 .highlightTitle h3:not(:global(.Accessibility__root) h3),
@@ -14,13 +15,6 @@
   outline-offset: 1px !important;
 }
 
-.incrementLetterSpacing:not(:global(.Accessibility__root) *) {
-  letter-spacing: 2px !important;
-}
-.incrementFontWeight:not(:global(.Accessibility__root) *) {
-  font-weight: bold !important;
-}
-
-.incrementLineHeight:not(:global(.Accessibility__root) *) {
-  line-height: 3 !important;
+.highlightCursor * {
+  cursor: url('../assets/cursor-svgrepo-com.svg'), auto !important;
 }

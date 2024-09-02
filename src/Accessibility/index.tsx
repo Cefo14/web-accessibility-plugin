@@ -29,6 +29,8 @@ import GreenSquareIcon from '@/assets/green-square-svgrepo-com.svg?react';
 import BlueSquareIcon from '@/assets/blue-square-svgrepo-com.svg?react';
 import PieChartTwotone50Icon from '@/assets/pie-chart-twotone-50-svgrepo-com.svg?react';
 import PieChartTwotone25Icon from '@/assets/pie-chart-twotone-25-svgrepo-com.svg?react';
+import CursorIcon from '@/assets/cursor-svgrepo-com.svg?react';
+import UnderLineIcon from '@/assets/underline-svgrepo-com.svg?react';
 
 import { useOpen } from '@/hooks/useOpen';
 import { useModifyFontSize } from '@/hooks/useModifyFontSize';
@@ -201,12 +203,12 @@ const Accessibility = () => {
 
           <Card>
             <TitleWithIcon $as="h5">
-              <FontIcon />
-              Highlight Text
+              <UnderLineIcon />
+              Highlights
             </TitleWithIcon>
           </Card>
 
-          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
+          <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="8em">
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
               $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
@@ -223,6 +225,15 @@ const Accessibility = () => {
             >
               <LinkIcon />
               Highlight Links
+            </MenuButton>
+
+            <MenuButton
+              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightCursor}
+              $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightCursor)}
+              onClick={togglHighlight}
+            >
+              <CursorIcon />
+              Highlight Cursor
             </MenuButton>
           </AutoGrid>
 

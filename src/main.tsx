@@ -7,11 +7,13 @@ import './styles.css';
 import App from './Accessibility';
 
 class Accessibility {
-  render(container: HTMLElement) {
-    if (!container) {
-      throw new Error('Container is required');
-    }
-    const root = createRoot(container);
+  private container: HTMLElement;
+  constructor(container: HTMLElement) {
+    if (!container) throw new Error('Container is required');
+    this.container = container;
+  }
+  render() {
+    const root = createRoot(this.container);
     root.render(
       <StrictMode>
         <App />
