@@ -39,6 +39,7 @@ import { useColorFilter } from '@/hooks/useColorFilter';
 import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
 import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
 import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
+import { useTranslate } from '@/hooks/useTranslate';
 
 const OPEN_MENU_ID =  'open-menu-button';
 const MODAL_ID =  'open-menu-button';
@@ -104,13 +105,17 @@ const Accessibility = () => {
     resetColorFilter();
   }, [resetFontSize, resetLetterSpacing, resetLineHeight, resetFontWeight, resetHighlights, resetColorFilter]);
 
+  const {
+    t
+  }= useTranslate();
+
   if(!isOpen) {
     return (
       <section id={GLOBALS.ACCESSIBILITY_ID} className="Accessibility__root">
         <AccessibilityButton
           id={OPEN_MENU_ID}
-          title="Open Accessibility Menu"
-          aria-label="Open Accessibility Menu"
+          title={t('OPEN_MENU')}
+          aria-label={t('OPEN_MENU')}
           aria-controls={MODAL_ID}
           aria-hidden={isOpen}
           aria-expanded={isOpen}
@@ -129,7 +134,7 @@ const Accessibility = () => {
         aria-labelledby={MODAL_TITLE_ID}
       >
         <MenuHeader
-          $title="Accessibility Menu"
+          $title={t('TITLE')}
           $onClose={close}
           $onReset={reset}
           $titleId={MODAL_TITLE_ID}
@@ -139,7 +144,7 @@ const Accessibility = () => {
           <Card>
             <TitleWithIcon $as="h5">
               <FontIcon />
-              Text Adjustments
+              {t('TEXT_ADJUSTMENTS')}
             </TitleWithIcon>
           </Card>
 
@@ -155,7 +160,7 @@ const Accessibility = () => {
               aria-description="Adjust the text size."
             >
               <FontSizeIcon width={24} height={24} />
-              Text Size
+              {t('TEXT_SIZE')}
             </AdjustButton>
 
             <AdjustButton
@@ -169,7 +174,7 @@ const Accessibility = () => {
               aria-description="Adjust the letter spacing."
             >
               <LetterSpacingIcon width={24} height={24} />
-              Text Space
+              {t('TEXT_SPACE')}
             </AdjustButton>
 
             <AdjustButton
@@ -183,7 +188,7 @@ const Accessibility = () => {
               aria-description="Adjust the line height."
             >
               <LineHeightIcon width={24} height={24} />
-              Text Height
+              {t('TEXT_HEIGHT')}
             </AdjustButton>
 
             <AdjustButton
@@ -197,14 +202,14 @@ const Accessibility = () => {
               aria-description="Adjust the text weight."
             >
               <BoldIcon width={24} height={24} />
-              Text Weight
+              {t('TEXT_WEIGHT')}
             </AdjustButton>
           </AutoGrid>
 
           <Card>
             <TitleWithIcon $as="h5">
               <UnderLineIcon />
-              Highlights
+              {t('HIGHLIGHTS')}
             </TitleWithIcon>
           </Card>
 
@@ -215,7 +220,7 @@ const Accessibility = () => {
               onClick={togglHighlight}
             >
               <TitleIcon />
-              Highlight Title
+              {t('HIGHLIGHT_TITLES')}
             </MenuButton>
 
             <MenuButton
@@ -224,7 +229,7 @@ const Accessibility = () => {
               onClick={togglHighlight}
             >
               <LinkIcon />
-              Highlight Links
+              {t('HIGHLIGHT_LINKS')}
             </MenuButton>
 
             <MenuButton
@@ -233,14 +238,14 @@ const Accessibility = () => {
               onClick={togglHighlight}
             >
               <CursorIcon />
-              Highlight Cursor
+              {t('HIGHLIGHT_CURSOR')}
             </MenuButton>
           </AutoGrid>
 
           <Card>
             <TitleWithIcon $as="h5">
               <ColorFilterIcon />
-              Color Filters
+              {t('COLOR_FILTERS')}
             </TitleWithIcon>
           </Card>
 
@@ -251,7 +256,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <ContrastIcon />
-              High Contrast
+              {t('HIGH_CONTRAST')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.hightSaturation}
@@ -259,7 +264,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <SunIcon />
-              High Saturation
+              {t('HIGH_SATURATION')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.invertColors}
@@ -267,7 +272,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <InvertColorsIcon />
-              Invert Colors
+              {t('INVERT_COLORS')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.protanopia}
@@ -275,7 +280,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <RedSquareIcon />
-              Protanopia
+              {t('PROTANOPIA')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.deuteranopia}
@@ -283,7 +288,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <GreenSquareIcon />
-              Deuteranopia
+              {t('DEUTERANOPIA')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.tritanopia}
@@ -291,7 +296,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <BlueSquareIcon />
-              Tritanopia
+              {t('TRITANOPIA')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.achromatopsia}
@@ -299,7 +304,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <PieChartTwotone50Icon />
-              Achromatopsia
+              {t('ACHROMATOPSIA')}
             </MenuButton>
             <MenuButton
               name={ACCESSIBILITY_CLASS_NAMES_KEYS.achromatomaly}
@@ -307,7 +312,7 @@ const Accessibility = () => {
               onClick={toggleColorFilter}
             >
               <PieChartTwotone25Icon />
-              Achromatomaly
+              {t('ACHROMATOMALY')}
             </MenuButton>
           </AutoGrid>
         </MenuBody>
