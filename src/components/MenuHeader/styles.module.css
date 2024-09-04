@@ -24,18 +24,8 @@
   width: 2.5em;
   height: 2.5em;
 
-  background-color: var(--accessibility-primary-contrast);
   border-radius: 50%;
   border: none;
-  outline: none;
 
   cursor: pointer;
-}
-
-.button:focus {
-  outline: 1px solid var(--accessibility-focus);
-}
-
-.button:hover {
-  opacity: 0.8;
 }

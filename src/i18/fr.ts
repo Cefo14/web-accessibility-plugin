@@ -1,0 +1,26 @@
+import type { Translations } from "./Translations";
+
+export const fr: Translations = {
+  OPEN_MENU: 'Ouvrir le menu',
+  TITLE: 'Menu d\'accessibilité',
+  TEXT_ADJUSTMENTS: 'Réglages de texte',
+  TEXT_SIZE: 'Taille du texte',
+  TEXT_SPACE: 'Espacement du texte',
+  TEXT_HEIGHT: 'Hauteur du texte',
+  TEXT_WEIGHT: 'Poids du texte',
+  HIGHLIGHTS: 'Surlignages',
+  HIGHLIGHT_TITLES: 'Surligner le titre',
+  HIGHLIGHT_LINKS: 'Surligner les liens',
+  HIGHLIGHT_CURSOR: 'Surligner le curseur',
+  COLOR_FILTERS: 'Filtres de couleurs',
+  HIGH_CONTRAST: 'Contraste élevé',
+  HIGH_SATURATION: 'Saturation élevée',
+  INVERT_COLORS: 'Inverser les couleurs',
+  PROTANOPIA: 'Protanopie',
+  DEUTERANOPIA: 'Deuteranopie',
+  TRITANOPIA: 'Tritanopie',
+  ACHROMATOPSIA: 'Achromatopsie',
+  ACHROMATOMALY: 'Achromatomaly',
+  RESET: 'Réinitialiser',
+  CLOSE_MENU: 'Fermer le menu',
+} as const;

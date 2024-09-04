@@ -1,0 +1,26 @@
+import type { Translations } from "./Translations";
+
+export const hi: Translations = {
+  OPEN_MENU: 'अकेस्बिलिटी मेनु खोलें',
+  TITLE: 'अकेस्बिलिटी मेनु',
+  TEXT_ADJUSTMENTS: 'पाठ समायोजन',
+  TEXT_SIZE: 'पाठ आकार',
+  TEXT_SPACE: 'पाठ अंतराल',
+  TEXT_HEIGHT: 'पाठ ऊँचाई',
+  TEXT_WEIGHT: 'पाठ मोटाई',
+  HIGHLIGHTS: 'हाइलाइट',
+  HIGHLIGHT_TITLES: 'शीर्षक हाइलाइट',
+  HIGHLIGHT_LINKS: 'लिंक हाइलाइट',
+  HIGHLIGHT_CURSOR: 'कुर्सर हाइलाइट',
+  COLOR_FILTERS: 'रंग फ़िल्‌तर',
+  HIGH_CONTRAST: 'उच्च समाश्रयण',
+  HIGH_SATURATION: 'उच्च संतृप्ति',
+  INVERT_COLORS: 'रंग उलटा',
+  PROTANOPIA: 'प्रोटोनॉपिया',
+  DEUTERANOPIA: 'ड्यूटरोनॉपिया',
+  TRITANOPIA: 'त्रीटोनॉपिया',
+  ACHROMATOPSIA: 'अक्रोमेटॉपसिया',
+  ACHROMATOMALY: 'अक्रोमेटोमली',
+  RESET: 'रीसेट',
+  CLOSE_MENU: 'मेनु बंद करें',
+} as const;
