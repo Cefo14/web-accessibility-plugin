@@ -45,7 +45,7 @@ const OPEN_MENU_ID =  'open-menu-button';
 const MODAL_ID =  'open-menu-button';
 const MODAL_TITLE_ID =  'menu-title';
 
-const Accessibility = () => {
+export const ReactWebAccessibilityPlugin = memo(() => {
   const { isOpen, open, close } = useOpen();
 
   const {
@@ -319,6 +319,4 @@ const Accessibility = () => {
       </Menu>
     </section>
   );
-};
-
-export default memo(Accessibility);
+});

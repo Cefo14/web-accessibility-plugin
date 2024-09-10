@@ -2,9 +2,9 @@ import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 
 import 'sanitize.css';
-import './styles.css';
+import '@/styles/global.css';
 
-import App from './Accessibility';
+import { ReactWebAccessibilityPlugin } from './ReactWebAccessibilityPlugin';
 
 class Accessibility {
   private container: HTMLElement;
@@ -16,7 +16,7 @@ class Accessibility {
     const root = createRoot(this.container);
     root.render(
       <StrictMode>
-        <App />
+        <ReactWebAccessibilityPlugin />
       </StrictMode>
     );
   }

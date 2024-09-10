@@ -1,5 +1,5 @@
-import highlightClassNames from '@/Accessibility/highlights.module.css';
-import filterStyles from '@/Accessibility/filter.module.css';
+import highlightClassNames from '@/styles/highlights.module.css';
+import filterStyles from '@/styles/filter.module.css';
 
 const HIGHLIGHTS_NAMES = {
   highlightTitles: highlightClassNames.highlightTitle,
