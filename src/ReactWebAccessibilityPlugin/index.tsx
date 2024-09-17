@@ -1,4 +1,7 @@
 import { useCallback, memo } from 'react';
+import clsx from 'clsx';
+
+import { type DivProps } from '@/types/DivProps';
 
 import { GLOBALS } from '@/constants/Globals';
 import { ACCESSIBILITY_CLASS_NAMES_KEYS, ACCESSIBILITY_CLASS_NAMES } from '@/constants/AccessibilityClassNames';
@@ -41,11 +44,13 @@ import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
 import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 import { useTranslate } from '@/hooks/useTranslate';
 
+type ReactWebAccessibilityPluginProps = Omit<DivProps, 'children'>;
+
 const OPEN_MENU_ID =  'open-menu-button';
 const MODAL_ID =  'open-menu-button';
 const MODAL_TITLE_ID =  'menu-title';
 
-export const ReactWebAccessibilityPlugin = memo(() => {
+export const ReactWebAccessibilityPlugin = memo(({ className, ...props }: ReactWebAccessibilityPluginProps) => {
   const { isOpen, open, close } = useOpen();
 
   const {
@@ -111,7 +116,11 @@ export const ReactWebAccessibilityPlugin = memo(() => {
 
   if(!isOpen) {
     return (
-      <section id={GLOBALS.ACCESSIBILITY_ID} className="Accessibility__root">
+      <section
+        id={GLOBALS.ACCESSIBILITY_ID}
+        className={clsx("Accessibility__root", className)}
+        {...props}
+      >
         <AccessibilityButton
           id={OPEN_MENU_ID}
           title={t('OPEN_MENU')}
@@ -127,7 +136,11 @@ export const ReactWebAccessibilityPlugin = memo(() => {
   }
 
   return (
-    <section id={GLOBALS.ACCESSIBILITY_ID} className="Accessibility__root">
+    <section
+      id={GLOBALS.ACCESSIBILITY_ID}
+      className={clsx("Accessibility__root", className)}
+      {...props}
+    >
       <Menu
         $isOpen={isOpen}
         id={MODAL_ID}

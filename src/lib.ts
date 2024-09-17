@@ -1,0 +1,1 @@
+export { ReactWebAccessibilityPlugin } from './ReactWebAccessibilityPlugin'

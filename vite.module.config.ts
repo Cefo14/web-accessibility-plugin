@@ -5,6 +5,10 @@ import react from '@vitejs/plugin-react';
 import svgr from "vite-plugin-svgr";
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
+/**
+ * Build all files in single file
+ */
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -16,15 +20,15 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
       react:'preact/compat',
+      'react/jsx-runtime': 'preact/jsx-runtime',
       'react-dom/test-utils':'preact/test-utils',
       'react-dom':'preact/compat',
-      'react/jsx-runtime': 'preact/jsx-runtime'
     },
   },
   build: {
     rollupOptions: {
       input: {
-        app: './src/main.tsx',
+        app: './src/module.tsx',
       },
       output: [
         {

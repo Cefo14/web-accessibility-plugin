@@ -26,7 +26,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "build:preact": "tsc -b && vite build --config vite.production.config.ts",
+    "build:module": "tsc -b && vite build --config vite.module.config.ts",
+    "build:component": "tsc -b && vite build --config vite.lib.config.ts",
     "preview": "vite preview",
     "prepare": "husky",
     "commit": "cz",
@@ -48,6 +49,7 @@
     "typescript": "5.5.4",
     "vite": "5.4.2",
     "vite-plugin-css-injected-by-js": "3.5.1",
+    "vite-plugin-dts": "4.2.1",
     "vite-plugin-svgr": "4.2.0"
   },
   "devDependencies": {
