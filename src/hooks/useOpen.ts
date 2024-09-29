@@ -14,6 +14,6 @@ export const useOpen = () => {
   return {
     isOpen,
     open,
-    close
+    close,
   };
 };

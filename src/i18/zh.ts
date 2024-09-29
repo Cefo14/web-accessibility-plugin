@@ -1,4 +1,4 @@
-import type { Translations } from "./Translations";
+import type { Translations } from './Translations';
 
 // Chinese (Simplified) translation
 export const zh: Translations = {

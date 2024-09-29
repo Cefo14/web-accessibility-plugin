@@ -24,8 +24,6 @@ export const useColorFilter = () => {
       if (prev === className) return '';
       return className;
     });
-
-
   }, [currentClassName]);
 
   const isActiveColorFilter = useCallback((name: string) => (
@@ -41,6 +39,6 @@ export const useColorFilter = () => {
   return {
     toggleColorFilter,
     isActiveColorFilter,
-    resetColorFilter
+    resetColorFilter,
   };
 };

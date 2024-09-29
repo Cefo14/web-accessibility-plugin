@@ -22,7 +22,7 @@ const AutoGrid = ({
   const styles = useMemo<CSSProperties>(() => ({
     gap: $gap,
     gridTemplateColumns: `repeat(auto-fill, minmax(${$columnWidth}, 1fr))`,
-    $placeContent: $placeContent,
+    $placeContent,
   }), [$gap, $columnWidth, $placeContent]);
 
   return (

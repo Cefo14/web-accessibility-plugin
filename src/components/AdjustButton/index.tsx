@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */ // TODO: fix this
 import { memo } from 'react';
 import clsx from 'clsx';
 
@@ -35,7 +36,8 @@ const AdjustButton = ({
   <Card
     className={clsx(styles.root, className)}
     aria-labelledby={$id}
-    {...props}>
+    {...props}
+  >
     <div className={styles.actionContainer}>
       <button
         type="button"

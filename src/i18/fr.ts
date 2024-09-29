@@ -1,4 +1,4 @@
-import type { Translations } from "./Translations";
+import type { Translations } from './Translations';
 
 export const fr: Translations = {
   OPEN_MENU: 'Ouvrir le menu',

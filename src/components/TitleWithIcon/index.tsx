@@ -7,7 +7,9 @@ interface TitleProps extends HTMLAttributes<HTMLHeadElement> {
   $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-const TitleWithIcon = ({ $as, className, children, ...props }: TitleProps) => {
+const TitleWithIcon = ({
+  $as, className, children, ...props
+}: TitleProps) => {
   const Component = $as;
   return (
     <Component

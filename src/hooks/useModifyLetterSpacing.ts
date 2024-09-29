@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 
 import { TextElements } from '@/helpers/TextElements';
 import { getOriginalPropertyValue } from '@/helpers/getOriginalPropertyValue';
@@ -8,7 +9,9 @@ import { useDidUpdate } from './useDidUpdate';
 
 const textElements = TextElements.instance;
 
-const initial = { min: -10, max: 10, step: 1, initialValue: 0 }
+const initial = {
+  min: -10, max: 10, step: 1, initialValue: 0,
+};
 
 export const useModifyLetterSpacing = () => {
   const {

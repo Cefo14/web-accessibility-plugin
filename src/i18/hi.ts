@@ -1,4 +1,4 @@
-import type { Translations } from "./Translations";
+import type { Translations } from './Translations';
 
 export const hi: Translations = {
   OPEN_MENU: 'अकेस्बिलिटी मेनु खोलें',

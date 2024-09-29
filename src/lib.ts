@@ -1,1 +1,1 @@
-export { ReactWebAccessibilityPlugin } from './ReactWebAccessibilityPlugin'
+export { ReactWebAccessibilityPlugin } from './ReactWebAccessibilityPlugin';

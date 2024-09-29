@@ -14,20 +14,18 @@ const Menu = ({
   children,
   className,
   ...props
-}: MenuProps) => {
-  return (
-    <article
-      {...props}
-      className={clsx(
-        styles.root,
-        { [styles.rootHidde]: !$isOpen },
-        className
-      )}
-      aria-hidden={!$isOpen}
-    >
-      { children }
-    </article>
-  );
-};
+}: MenuProps) => (
+  <article
+    {...props}
+    className={clsx(
+      styles.root,
+      { [styles.rootHidde]: !$isOpen },
+      className,
+    )}
+    aria-hidden={!$isOpen}
+  >
+    { children }
+  </article>
+);
 
 export default memo(Menu);

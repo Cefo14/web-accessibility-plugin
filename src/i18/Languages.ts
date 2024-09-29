@@ -1,4 +1,4 @@
-import { type Translations } from "./Translations";
+import { type Translations } from './Translations';
 
 export type Languages = {
   en: Translations

@@ -2,8 +2,11 @@ import { GLOBALS } from '@/constants/Globals';
 
 export class TextElements {
   private nodes: Set<Node>;
+
   private excludedNodes: Set<Node>;
+
   private currentElements: HTMLElement[];
+
   private observer: MutationObserver;
 
   static #instance: TextElements;
@@ -31,16 +34,12 @@ export class TextElements {
 
   get titles(): HTMLElement[] {
     const headerElements = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
-    return this.getElements().filter((element) => {
-      return headerElements.includes(element.tagName);
-    });
+    return this.getElements().filter((element) => headerElements.includes(element.tagName));
   }
 
   get links(): HTMLElement[] {
     const headerElements = ['A'];
-    return this.getElements().filter((element) => {
-      return headerElements.includes(element.tagName);
-    });
+    return this.getElements().filter((element) => headerElements.includes(element.tagName));
   }
 
   public reload() {
@@ -64,19 +63,19 @@ export class TextElements {
         acceptNode(node) {
           if (!node.parentElement) return NodeFilter.FILTER_SKIP;
           if (excludeTagNames.includes(node.parentElement.tagName)) return NodeFilter.FILTER_SKIP;
-          if(!node?.textContent?.trim?.()) return NodeFilter.FILTER_SKIP;
+          if (!node?.textContent?.trim?.()) return NodeFilter.FILTER_SKIP;
           return NodeFilter.FILTER_ACCEPT;
-        }
-      }
+        },
+      },
     );
 
     while (treeWalker.nextNode()) {
       const node = treeWalker.currentNode;
-      if(node.parentElement) textElements.push(node);
+      if (node.parentElement) textElements.push(node);
     }
 
     return textElements;
-  };
+  }
 
   private loadBodyNodes() {
     const textNodes = this.fetchNodes(document.body);
@@ -104,12 +103,12 @@ export class TextElements {
   }
 
   private observeNodes() {
-    const observer =  new MutationObserver((mutationsList) => {
-      for (const mutation of mutationsList) {
+    const observer = new MutationObserver((mutationsList) => {
+      mutationsList.forEach((mutation) => {
         const { addedNodes, removedNodes } = mutation;
         if (addedNodes.length > 0) this.addNodes(addedNodes);
         if (removedNodes.length > 0) this.removeNodes(removedNodes);
-      }
+      });
     });
     return observer;
   }
@@ -134,7 +133,7 @@ export class TextElements {
     return nodes;
   }
 
-  private refreshElements () {
+  private refreshElements() {
     const nodes = new Set(this.nodes);
     this.getExcludeNodes().forEach((node) => {
       nodes.delete(node);

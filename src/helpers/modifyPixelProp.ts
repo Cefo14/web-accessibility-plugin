@@ -19,11 +19,9 @@ export const modifyPixelProp = (element: HTMLElement, prop: CSSByArgs, multiply 
   if (Number.isNaN(originalValue)) {
     const styleValue = element.style[prop as never];
     let currentValue = (
-      styleValue
-        ? styleValue
-        : window
-          .getComputedStyle(element)
-          .getPropertyValue(camelCaseToKebabCase(propByStr))
+      styleValue || window
+        .getComputedStyle(element)
+        .getPropertyValue(camelCaseToKebabCase(propByStr))
     );
     currentValue = currentValue.replace(/[A-Za-z]/, '');
     originalValue = parseFloat(currentValue);
@@ -31,6 +29,7 @@ export const modifyPixelProp = (element: HTMLElement, prop: CSSByArgs, multiply 
   }
 
   const newAttrValue = toFixed(originalValue * multiply, 2);
+  // eslint-disable-next-line no-param-reassign
   element.style[prop as never] = `${newAttrValue}px`;
 
   return element;

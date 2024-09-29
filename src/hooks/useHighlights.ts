@@ -10,14 +10,14 @@ export const useHighlights = () => {
   const toggleActiveHighlight = useCallback((name: string) => {
     setActiveHighlights((prev) => {
       const newSet = new Set(prev);
-      if (newSet.has(name)){
+      if (newSet.has(name)) {
         newSet.delete(name);
         return newSet;
       }
       newSet.add(name);
       return newSet;
     });
-  } , []);
+  }, []);
 
   const togglHighlight = useCallback((event: MouseEventButton) => {
     const { name } = event.currentTarget;
@@ -38,6 +38,6 @@ export const useHighlights = () => {
   return {
     togglHighlight,
     isActiveHighlight,
-    resetHighlights
+    resetHighlights,
   };
 };

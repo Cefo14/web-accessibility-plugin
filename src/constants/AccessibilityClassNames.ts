@@ -15,7 +15,7 @@ const FILTER_CLASS_NAMES = {
   deuteranopia: filterStyles.deuteranopia,
   tritanopia: filterStyles.tritanopia,
   achromatopsia: filterStyles.achromatopsia,
-  achromatomaly: filterStyles.achromatomaly
+  achromatomaly: filterStyles.achromatomaly,
 } as const;
 
 export const ACCESSIBILITY_CLASS_NAMES = {
@@ -27,11 +27,12 @@ export const ACCESSIBILITY_CLASS_NAMES_KEYS = Object
   .keys(ACCESSIBILITY_CLASS_NAMES)
   .reduce((acc, key) => ({
     ...acc,
-    [key]: key
+    [key]: key,
   }), {} as Record<keyof typeof ACCESSIBILITY_CLASS_NAMES, string>);
 
 export type AccessibilityClassNamesType = typeof ACCESSIBILITY_CLASS_NAMES;
 
 export type AccessibilityClassNamesKeys = keyof typeof ACCESSIBILITY_CLASS_NAMES;
 
+/* eslint-disable-next-line max-len */ // TODO: fix this
 export type AccessibilityClassNamesValues = AccessibilityClassNamesType[AccessibilityClassNamesKeys];

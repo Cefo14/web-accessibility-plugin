@@ -31,7 +31,8 @@
     "preview": "vite preview",
     "prepare": "husky",
     "commit": "cz",
-    "lint": "eslint ."
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
   },
   "dependencies": {
     "@vitejs/plugin-react": "4.3.1",
@@ -55,20 +56,22 @@
   "devDependencies": {
     "@commitlint/cli": "19.4.0",
     "@commitlint/config-conventional": "19.2.2",
-    "@eslint/compat": "1.1.1",
-    "@eslint/js": "9.8.0",
-    "@types/eslint": "9.6.0",
     "@types/node": "22.1.0",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
     "commitizen": "4.3.0",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "9.8.0",
-    "eslint-plugin-react": "7.35.0",
+    "eslint": "8.56.0",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.25.3",
+    "eslint-plugin-jsx-a11y": "6.10.0",
+    "eslint-plugin-react": "7.36.1",
     "eslint-plugin-react-hooks": "4.6.2",
-    "eslint-plugin-react-refresh": "0.4.11",
     "globals": "15.9.0",
-    "husky": "9.1.5",
-    "typescript-eslint": "8.0.1"
+    "husky": "9.1.5"
   }
 }

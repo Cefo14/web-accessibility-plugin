@@ -11,11 +11,9 @@ export const getOriginalPropertyValue = (element: HTMLElement, prop: CSSByArgs) 
   if (!originalValue) {
     const styleValue = element.style[prop as never];
     originalValue = (
-      styleValue
-        ? styleValue
-        : window
-          .getComputedStyle(element)
-          .getPropertyValue(camelCaseToKebabCase(propByStr))
+      styleValue || window
+        .getComputedStyle(element)
+        .getPropertyValue(camelCaseToKebabCase(propByStr))
     );
     element.setAttribute(DATA_ATTR, originalValue.toString());
   }

@@ -1,7 +1,7 @@
-import { toFixed } from '@/helpers/toFixed';
 import { useCallback, useState } from 'react';
+import { toFixed } from '@/helpers/toFixed';
 
-interface useSteperProps {
+interface UseSteperProps {
   min: number;
   max: number;
   step: number;
@@ -9,7 +9,9 @@ interface useSteperProps {
   presition?: number
 }
 
-export const useSteper = ({ min, max, step, initialValue, presition = 2 }: useSteperProps) => {
+export const useSteper = ({
+  min, max, step, initialValue, presition = 2,
+}: UseSteperProps) => {
   const [value, setValue] = useState(initialValue);
 
   const decrement = useCallback(() => {
@@ -32,7 +34,7 @@ export const useSteper = ({ min, max, step, initialValue, presition = 2 }: useSt
 
   return {
     value,
-    step: toFixed((value - initialValue)/step, 0),
+    step: toFixed((value - initialValue) / step, 0),
     decrement,
     increment,
     reset,

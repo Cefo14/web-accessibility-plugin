@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/aria-props */ // TODO: fix this
+
 import { useCallback, memo } from 'react';
 import clsx from 'clsx';
 
@@ -46,11 +48,14 @@ import { useTranslate } from '@/hooks/useTranslate';
 
 type ReactWebAccessibilityPluginProps = Omit<DivProps, 'children'>;
 
-const OPEN_MENU_ID =  'open-menu-button';
-const MODAL_ID =  'open-menu-button';
-const MODAL_TITLE_ID =  'menu-title';
+const OPEN_MENU_ID = 'open-menu-button';
+const MODAL_ID = 'open-menu-button';
+const MODAL_TITLE_ID = 'menu-title';
 
-export const ReactWebAccessibilityPlugin = memo(({ className, ...props }: ReactWebAccessibilityPluginProps) => {
+export const ReactWebAccessibilityPlugin = memo(({
+  className,
+  ...props
+}: ReactWebAccessibilityPluginProps) => {
   const { isOpen, open, close } = useOpen();
 
   const {
@@ -59,7 +64,7 @@ export const ReactWebAccessibilityPlugin = memo(({ className, ...props }: ReactW
     now: nowFontSizeValue,
     decrement: decrementFontSizePercentage,
     increment: incrementFontSizePercentage,
-    reset: resetFontSize
+    reset: resetFontSize,
   } = useModifyFontSize();
 
   const {
@@ -92,13 +97,13 @@ export const ReactWebAccessibilityPlugin = memo(({ className, ...props }: ReactW
   const {
     togglHighlight,
     isActiveHighlight,
-    resetHighlights
+    resetHighlights,
   } = useHighlights();
 
   const {
     toggleColorFilter,
     isActiveColorFilter,
-    resetColorFilter
+    resetColorFilter,
   } = useColorFilter();
 
   const reset = useCallback(() => {
@@ -108,17 +113,24 @@ export const ReactWebAccessibilityPlugin = memo(({ className, ...props }: ReactW
     resetFontWeight();
     resetHighlights();
     resetColorFilter();
-  }, [resetFontSize, resetLetterSpacing, resetLineHeight, resetFontWeight, resetHighlights, resetColorFilter]);
+  }, [
+    resetFontSize,
+    resetLetterSpacing,
+    resetLineHeight,
+    resetFontWeight,
+    resetHighlights,
+    resetColorFilter,
+  ]);
 
   const {
-    t
-  }= useTranslate();
+    t,
+  } = useTranslate();
 
-  if(!isOpen) {
+  if (!isOpen) {
     return (
       <section
         id={GLOBALS.ACCESSIBILITY_ID}
-        className={clsx("Accessibility__root", className)}
+        className={clsx('Accessibility__root', className)}
         {...props}
       >
         <AccessibilityButton
@@ -138,7 +150,7 @@ export const ReactWebAccessibilityPlugin = memo(({ className, ...props }: ReactW
   return (
     <section
       id={GLOBALS.ACCESSIBILITY_ID}
-      className={clsx("Accessibility__root", className)}
+      className={clsx('Accessibility__root', className)}
       {...props}
     >
       <Menu
