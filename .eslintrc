@@ -71,6 +71,7 @@
     "@typescript-eslint/brace-style": [
       "error",
       "stroustrup"
-    ]
+    ],
+    "@typescript-eslint/consistent-type-imports": "error"
   }
 }

@@ -28,7 +28,7 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        app: './src/module.tsx',
+        app: './src/publish/module.tsx',
       },
       output: [
         {

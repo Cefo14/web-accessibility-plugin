@@ -27,7 +27,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:module": "tsc -b && vite build --config vite.module.config.ts",
-    "build:component": "tsc -b && vite build --config vite.lib.config.ts",
+    "build:component": "tsc -b && vite build --config vite.component.config.ts",
     "preview": "vite preview",
     "prepare": "husky",
     "commit": "cz",

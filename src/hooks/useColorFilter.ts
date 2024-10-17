@@ -1,8 +1,7 @@
 import { useCallback, useState } from 'react';
 
 import { type MouseEventButton } from '@/types/MouseEventButton';
-
-import { ACCESSIBILITY_CLASS_NAMES, AccessibilityClassNamesKeys } from '@/constants/AccessibilityClassNames';
+import { ACCESSIBILITY_CLASS_NAMES, type AccessibilityClassNamesKeys } from '@/constants/AccessibilityClassNames';
 
 export const useColorFilter = () => {
   const [currentClassName, setCurrentClassName] = useState<string>('');

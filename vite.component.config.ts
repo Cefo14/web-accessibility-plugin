@@ -25,7 +25,7 @@ export default defineConfig({
   },
   build: {
     lib: {
-      entry: path.resolve(__dirname, './src/lib.ts'),
+      entry: path.resolve(__dirname, './src/publish/component.ts'),
       name: 'react-web-accessibility-plugin',
       fileName: (format) => `index.${format}.js`,
     },

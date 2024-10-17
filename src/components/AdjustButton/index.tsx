@@ -2,7 +2,7 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { DivProps } from '@/types/DivProps';
+import type { DivProps } from '@/types/DivProps';
 import type { OnClickButton } from '@/types/OnClickButton';
 
 import MinusIcon from '@/assets/minus-svgrepo-com.svg?react';
