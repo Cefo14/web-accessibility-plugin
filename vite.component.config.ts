@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import commonjs from '@rollup/plugin-commonjs';
 
 /**
  * Build a component lib
@@ -16,24 +17,26 @@ export default defineConfig({
     react(),
     svgr(),
     cssInjectedByJsPlugin(),
-    dts({ rollupTypes: true, tsconfigPath: "./tsconfig.app.json" })
+    dts({ rollupTypes: true, tsconfigPath: './tsconfig.app.json' }),
+    commonjs(),
   ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src")
+      '@': path.resolve(__dirname, './src'),
     },
   },
   build: {
     lib: {
       entry: path.resolve(__dirname, './src/publish/component.ts'),
       name: 'react-web-accessibility-plugin',
-      fileName: (format) => `index.${format}.js`,
+      fileName: (format) => `react-web-accessibility-plugin.${format}.js`,
+      formats: ['es', 'umd', 'cjs'],
     },
     rollupOptions: {
       external: [
         'react',
         'react/jsx-runtime',
-        'react-dom'
+        'react-dom',
       ],
       output: {
         globals: {

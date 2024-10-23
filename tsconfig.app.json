@@ -26,5 +26,10 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": [
+    "src",
+    "vite.config.ts",
+    "vite.component.config.ts",
+    "vite.module.config.ts"
+  ]
 }

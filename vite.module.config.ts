@@ -2,7 +2,7 @@ import path from 'path';
 
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import svgr from "vite-plugin-svgr";
+import svgr from 'vite-plugin-svgr';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
 
 /**
@@ -15,14 +15,14 @@ export default defineConfig({
     react(),
     svgr(),
     cssInjectedByJsPlugin(),
-  ].filter(Boolean),
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"),
-      react:'preact/compat',
+      '@': path.resolve(__dirname, './src'),
+      react: 'preact/compat',
       'react/jsx-runtime': 'preact/jsx-runtime',
-      'react-dom/test-utils':'preact/test-utils',
-      'react-dom':'preact/compat',
+      'react-dom/test-utils': 'preact/test-utils',
+      'react-dom': 'preact/compat',
     },
   },
   build: {
@@ -32,10 +32,10 @@ export default defineConfig({
       },
       output: [
         {
-          entryFileNames: "web-accessibility-plugin.min.[format].js",
-          format: 'es'
+          entryFileNames: 'web-accessibility-plugin.min.[format].js',
+          format: 'es',
         },
-      ]
+      ],
     },
   },
 });

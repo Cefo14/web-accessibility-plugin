@@ -1,7 +1,7 @@
 {
   "name": "web-accessibility-plugin",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.0-rc.1",
+  "description": "A simple web accessibility plugin for browsers",
   "author": "Cefo14 <cefo14@protonmail.com>",
   "license": "GPL-3.0-or-later",
   "repository": {
@@ -23,6 +23,14 @@
     "typescript",
     "vite"
   ],
+  "main": "dist/react-web-accessibility-plugin.cjs.js",
+  "module": "dist/react-web-accessibility-plugin.es.js",
+  "types": "dist/react-web-accessibility-plugin.es.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -34,7 +42,12 @@
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
   },
+  "peerDependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
   "dependencies": {
+    "@rollup/plugin-commonjs": "28.0.1",
     "@vitejs/plugin-react": "4.3.1",
     "clsx": "2.1.1",
     "cssnano": "7.0.5",
