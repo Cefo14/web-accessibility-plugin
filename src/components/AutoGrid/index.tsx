@@ -1,11 +1,11 @@
 import { type CSSProperties, memo, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 
 import classNames from './AutoGrid.module.css';
 
-interface AutoGridProps extends DivProps {
+interface AutoGridProps extends ElementProps {
   $gap?: CSSProperties['gap'];
   $columnWidth?: CSSProperties['width'];
   $placeContent?: CSSProperties['placeContent'];

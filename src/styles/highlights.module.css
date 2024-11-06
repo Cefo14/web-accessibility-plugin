@@ -6,12 +6,12 @@
 .highlightTitle h5:not(:global(.Accessibility__root) h5),
 .highlightTitle h6:not(:global(.Accessibility__root) h6)
 {
-  outline: 2px solid #c44601 !important;
+  outline: 2px solid var(--accessibility-coral-red) !important;
   outline-offset: 1px !important;
 }
 
 .highlightLink a:not(:global(.Accessibility__root) a) {
-  outline: 2px solid #0073e6 !important;
+  outline: 2px solid var(--accessibility-true-blue) !important;
   outline-offset: 1px !important;
 }
 

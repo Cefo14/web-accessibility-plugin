@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 import { type OnClickButton } from '@/types/OnClickButton';
 
 import MinusIcon from '@/assets/minus-svgrepo-com.svg?react';
@@ -9,7 +9,7 @@ import PlusIcon from '@/assets/plus-svgrepo-com.svg?react';
 
 import styles from './styles.module.css';
 
-interface AdjustValueProps extends DivProps {
+interface AdjustValueProps extends ElementProps {
   $onDecrement?: OnClickButton;
   $onIncrement?: OnClickButton;
   $value?: number;

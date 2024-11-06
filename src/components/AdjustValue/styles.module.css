@@ -11,7 +11,7 @@
   border-radius: 50%;
   width: 2em;
   height: 2em;
-  background-color: var(--accessibility-tertiary-contrast);
+  background-color: var(--accessibility-white);
   display: flex;
   place-content: center;
   place-items: center;
@@ -19,10 +19,11 @@
 }
 
 .button:focus {
-  outline: 1px solid var(--accessibility-focus);
+  outline: 1px solid var(--accessibility-deep-cerise);
 }
 
 .button:hover {
+  border-color: var(--accessibility-black);
   opacity: 0.8;
 }
 

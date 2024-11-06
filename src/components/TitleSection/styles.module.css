@@ -1,0 +1,20 @@
+.root {
+  display: inline-flex;
+  place-items: center;
+  gap: 0.5em;
+
+  background-color: var(--accessibility-true-blue);
+  color: #ffffff;
+
+  border-radius: 16px;
+  margin: 0;
+  padding: 1em;
+
+  text-align: left;
+  font-weight: bold;
+}
+
+.root > svg {
+  width: 1.5em;
+  height: 1.5em;
+}

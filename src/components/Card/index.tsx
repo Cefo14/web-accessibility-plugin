@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 
 import styles from './styles.module.css';
 
-const Card = ({ children, className, ...props }: DivProps) => (
+const Card = ({ children, className, ...props }: ElementProps) => (
   <section
     {...props}
     className={clsx(styles.root, className)}

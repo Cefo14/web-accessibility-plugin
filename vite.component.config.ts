@@ -5,7 +5,6 @@ import react from '@vitejs/plugin-react';
 import svgr from 'vite-plugin-svgr';
 import dts from 'vite-plugin-dts';
 import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
-import commonjs from '@rollup/plugin-commonjs';
 
 /**
  * Build a component lib
@@ -18,7 +17,6 @@ export default defineConfig({
     svgr(),
     cssInjectedByJsPlugin(),
     dts({ rollupTypes: true, tsconfigPath: './tsconfig.app.json' }),
-    commonjs(),
   ],
   resolve: {
     alias: {

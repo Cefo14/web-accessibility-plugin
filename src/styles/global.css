@@ -1,17 +1,14 @@
 :root {
-  --accessibility-primary: #1d4289;
-  --accessibility-primary-contrast: #FFFFFF;
-  --accessibility-primary-text: #FFFFFF;
+  --accessibility-true-blue: #0073e6;
+  --accessibility-very-light-blue: #606ff3; 
 
-  --accessibility-secondary: #e7e7e7;
-  --accessibility-secondary-text: #FFFFFF;
+  --accessibility-white: #ffffff;
+  --accessibility-black: #000000;
+  --accessibility-lotion : #fafafa;
 
-  --accessibility-tertiary: #FFFFFF;
-  --accessibility-tertiary-contrast: #d3d3d3;
-  --accessibility-tertiary-text: #212121;
-
-  --accessibility-focus: black;
-  --accessibility-selected: #99CCFF;
+  --accessibility-deep-cerise : #e6308a;
+  --accessibility-munsell-yellow: #f2c300;
+  --accessibility-coral-red: #f53f42;
 
   --accessibility-breakpoint-xs: 575px;
   --accessibility-breakpoint-sm: 576px;
@@ -24,6 +21,9 @@
 .Accessibility__root {
   font-size: 16px !important;
   line-height: 1.5;
+}
+
+.Accessibility__root * {
   font-family: sans-serif !important;
 }
 

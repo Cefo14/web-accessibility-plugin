@@ -3,7 +3,7 @@
 import { useCallback, memo } from 'react';
 import clsx from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 
 import { GLOBALS } from '@/constants/Globals';
 import { ACCESSIBILITY_CLASS_NAMES_KEYS, ACCESSIBILITY_CLASS_NAMES } from '@/constants/AccessibilityClassNames';
@@ -12,19 +12,14 @@ import AccessibilityButton from '@/components/AccessibilityButton';
 import Menu from '@/components/Menu';
 import MenuHeader from '@/components/MenuHeader';
 import MenuBody from '@/components/MenuBody';
-import Card from '@/components/Card';
 import AutoGrid from '@/components/AutoGrid';
-import TitleWithIcon from '@/components/TitleWithIcon';
+import TitleSection from '@/components/TitleSection';
 import MenuButton from '@/components/MenuButton';
 import AdjustButton from '@/components/AdjustButton';
 
 import FontIcon from '@/assets/font-svgrepo-com.svg?react';
-import FontSizeIcon from '@/assets/font-size-svgrepo-com.svg?react';
 import TitleIcon from '@/assets/title-svgrepo-com.svg?react';
 import LinkIcon from '@/assets/link-svgrepo-com.svg?react';
-import LetterSpacingIcon from '@/assets/letter-spacing-svgrepo-com.svg?react';
-import LineHeightIcon from '@/assets/line-height-svgrepo-com.svg?react';
-import BoldIcon from '@/assets/bold-svgrepo-com.svg?react';
 import ColorFilterIcon from '@/assets/color-filter-svgrepo-com.svg?react';
 import ContrastIcon from '@/assets/contrast-svgrepo-com.svg?react';
 import SunIcon from '@/assets/sun-svgrepo-com.svg?react';
@@ -46,7 +41,7 @@ import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
 import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 import { useTranslate } from '@/hooks/useTranslate';
 
-type ReactWebAccessibilityPluginProps = Omit<DivProps, 'children'>;
+type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
 const OPEN_MENU_ID = 'open-menu-button';
 const MODAL_ID = 'open-menu-button';
@@ -166,12 +161,10 @@ export const ReactWebAccessibilityPlugin = memo(({
           aria-label="header"
         />
         <MenuBody aria-label="body">
-          <Card>
-            <TitleWithIcon $as="h5">
-              <FontIcon />
-              {t('TEXT_ADJUSTMENTS')}
-            </TitleWithIcon>
-          </Card>
+          <TitleSection $as="h5">
+            <FontIcon />
+            {t('TEXT_ADJUSTMENTS')}
+          </TitleSection>
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="10em">
             <AdjustButton
@@ -184,7 +177,6 @@ export const ReactWebAccessibilityPlugin = memo(({
               $onIncrement={incrementFontSizePercentage}
               aria-description="Adjust the text size."
             >
-              <FontSizeIcon width={24} height={24} />
               {t('TEXT_SIZE')}
             </AdjustButton>
 
@@ -198,7 +190,6 @@ export const ReactWebAccessibilityPlugin = memo(({
               $onIncrement={incrementLetterSpacing}
               aria-description="Adjust the letter spacing."
             >
-              <LetterSpacingIcon width={24} height={24} />
               {t('TEXT_SPACE')}
             </AdjustButton>
 
@@ -212,7 +203,6 @@ export const ReactWebAccessibilityPlugin = memo(({
               $onIncrement={incrementLineHeightPercentage}
               aria-description="Adjust the line height."
             >
-              <LineHeightIcon width={24} height={24} />
               {t('TEXT_HEIGHT')}
             </AdjustButton>
 
@@ -226,17 +216,14 @@ export const ReactWebAccessibilityPlugin = memo(({
               $onIncrement={incrementFontWeight}
               aria-description="Adjust the text weight."
             >
-              <BoldIcon width={24} height={24} />
               {t('TEXT_WEIGHT')}
             </AdjustButton>
           </AutoGrid>
 
-          <Card>
-            <TitleWithIcon $as="h5">
-              <UnderLineIcon />
-              {t('HIGHLIGHTS')}
-            </TitleWithIcon>
-          </Card>
+          <TitleSection $as="h5">
+            <UnderLineIcon />
+            {t('HIGHLIGHTS')}
+          </TitleSection>
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="8em">
             <MenuButton
@@ -267,12 +254,10 @@ export const ReactWebAccessibilityPlugin = memo(({
             </MenuButton>
           </AutoGrid>
 
-          <Card>
-            <TitleWithIcon $as="h5">
-              <ColorFilterIcon />
-              {t('COLOR_FILTERS')}
-            </TitleWithIcon>
-          </Card>
+          <TitleSection $as="h5">
+            <ColorFilterIcon />
+            {t('COLOR_FILTERS')}
+          </TitleSection>
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="9em">
             <MenuButton

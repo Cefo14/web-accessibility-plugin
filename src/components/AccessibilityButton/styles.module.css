@@ -3,13 +3,14 @@
   bottom: 1vh;
   right: 1vh;
 
-  background-color: var(--accessibility-primary);
-  outline: 4px solid var(--accessibility-primary);
-  border: 2px solid var(--accessibility-primary-contrast);
+  background-color: var(--accessibility-true-blue);
+  outline: 4px solid var(--accessibility-true-blue);
+  border: 2px solid var(--accessibility-white);
   border-radius: 50%;
 
-  width: 4em;
-  height: 4em;
+  width: 64px;
+  height: 64px;
+  padding: 0;
 
   display: flex;
   place-content: center;
@@ -19,5 +20,11 @@
 }
 
 .root:focus {
-  outline: 4px solid var(--accessibility-focus);
+  background-color: var(--accessibility-deep-cerise);
+  outline: 4px solid var(--accessibility-deep-cerise);
+}
+
+.root:hover {
+  opacity: 0.8;
+  border-color: var(--accessibility-white);
 }

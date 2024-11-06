@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 import { type OnClickButton } from '@/types/OnClickButton';
 
 import ResetIcon from '@/assets/reset-svgrepo-com.svg?react';
@@ -9,7 +9,7 @@ import CloseIcon from '@/assets/close-bold-svgrepo-com.svg?react';
 
 import styles from './styles.module.css';
 
-interface MenuHeaderProps extends DivProps {
+interface MenuHeaderProps extends ElementProps {
   $titleId?: string;
   $title?: string;
   $onClose?: OnClickButton,
@@ -34,7 +34,7 @@ const MenuHeader = ({
     <div className={styles.actions}>
       <button
         type="button"
-        className={styles.button}
+        className={clsx(styles.button, styles.resetButton)}
         title="Reset settings"
         aria-label="Reset settings"
         onClick={$onReset}
@@ -43,7 +43,7 @@ const MenuHeader = ({
       </button>
       <button
         type="button"
-        className={styles.button}
+        className={clsx(styles.button, styles.closeButton)}
         title="Close menu"
         aria-label="Close menu"
         onClick={$onClose}

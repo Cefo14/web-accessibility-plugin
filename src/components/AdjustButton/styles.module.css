@@ -1,7 +1,14 @@
 
 .root {
   display: grid;
+  align-content: space-evenly;
   gap: 1em;
+
+  padding: 1em;
+
+  background-color: var(--accessibility-white);
+  border: solid 3px var(--accessibility-black);
+  border-radius: 14px;
 }
 
 .actionContainer {
@@ -15,32 +22,48 @@
   border: none;
   flex: 1 auto;
   height: 3em;
+  border: solid 2px var(--accessibility-black);
+  background-color: var( --accessibility-very-light-blue);
+}
+
+.button:focus {
+  outline: 2px solid var(--accessibility-deep-cerise);
+}
+
+.button:hover {
+  border-color: var(--accessibility-black);
+  opacity: 0.8;
 }
 
 .buttonMinus {
+  border-radius: 0px;
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
 }
 
 .buttonPlus {
+  border-radius: 0px;
   border-top-right-radius: 8px;
   border-bottom-right-radius: 8px;
 }
 
 .value {
-  margin: 0;
   flex: 1 50%;
-  height: 100%;
+
   display: grid;
   place-content: center;
-  border: solid 1px #e9e9ed;
+
+  height: 100%;
+
+  border: solid 2px var(--accessibility-black);
+  border-left: none;
+  border-right: none;
+
+  color: var(--accessibility-black);
 }
 
 .title {
   margin: 0px;
-  display: flex;
-  place-content: center;
-  place-items: center;
-  gap: 0.5em;
-
+  text-align: center;
+  color: var(--accessibility-black);
 }

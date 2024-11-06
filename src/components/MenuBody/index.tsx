@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 
 import styles from './styles.module.css';
 
@@ -9,7 +9,7 @@ const MenuBody = ({
   children,
   className,
   ...props
-}: DivProps) => (
+}: ElementProps) => (
   <section
     {...props}
     className={clsx(styles.root, className)}

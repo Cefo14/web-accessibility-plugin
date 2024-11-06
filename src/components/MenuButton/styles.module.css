@@ -1,29 +1,29 @@
 .root {
-  all: unset;
   display: grid;
   place-content: center;
   place-items: center;
   gap: 1em;
 
-  background-color: var(--accessibility-tertiary);
+  background-color: var(--accessibility-white);
+  border: solid 3px black;
   border-radius: 16px;
 
   padding: 1em;
   max-width: 8em;
-  height: 5em;
+  height: 8em;
 
   font-weight: bold;
   text-align: center;
   font-size: 1em;
-
-  cursor: pointer;
+  color: var(--accessibility-black);
 }
 
 .root:focus {
-  outline: solid 1px var(--accessibility-focus);
+  outline: solid 3px var(--accessibility-deep-cerise);
 }
 
 .root:hover {
+  border-color: var(--accessibility-black);
   opacity: 0.8;
 }
 
@@ -33,5 +33,5 @@
 }
 
 .rootActive {
-  background-color: var(--accessibility-selected);
+  background-color: var(--accessibility-very-light-blue);
 }

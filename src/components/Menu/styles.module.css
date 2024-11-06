@@ -5,11 +5,12 @@
   z-index: 500000;
   opacity: 1;
   overflow: hidden;
-  background-color: var(--accessibility-secondary);
+  background-color: var(--accessibility-white);
   width: 480px;
   line-height: 1;
   height: 100%;
   letter-spacing: 0.015em;
+  box-shadow: -1px 0px 25px -10px var(--accessibility-black);
 }
 
 .rootHidde {

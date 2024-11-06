@@ -2,16 +2,15 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import type { DivProps } from '@/types/DivProps';
+import type { ElementProps } from '@/types/ElementProps';
 import type { OnClickButton } from '@/types/OnClickButton';
 
 import MinusIcon from '@/assets/minus-svgrepo-com.svg?react';
 import PlusIcon from '@/assets/plus-svgrepo-com.svg?react';
 
 import styles from './styles.module.css';
-import Card from '../Card';
 
-interface AdjustButtonProps extends DivProps {
+interface AdjustButtonProps extends ElementProps {
   $min?: number;
   $max?: number;
   $now?: number;
@@ -33,7 +32,7 @@ const AdjustButton = ({
   children,
   ...props
 }: AdjustButtonProps) => (
-  <Card
+  <section
     className={clsx(styles.root, className)}
     aria-labelledby={$id}
     {...props}
@@ -64,7 +63,7 @@ const AdjustButton = ({
     <h6 id={$id} className={styles.title}>
       {children}
     </h6>
-  </Card>
+  </section>
 );
 
 export default memo(AdjustButton);

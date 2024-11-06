@@ -1,11 +1,11 @@
 import { memo } from 'react';
 import { clsx } from 'clsx';
 
-import { type DivProps } from '@/types/DivProps';
+import { type ElementProps } from '@/types/ElementProps';
 
 import styles from './styles.module.css';
 
-interface MenuProps extends DivProps {
+interface MenuProps extends ElementProps {
   $isOpen?: boolean
 }
 

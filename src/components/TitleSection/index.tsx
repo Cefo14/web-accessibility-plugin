@@ -3,13 +3,13 @@ import clsx from 'clsx';
 
 import styles from './styles.module.css';
 
-interface TitleProps extends HTMLAttributes<HTMLHeadElement> {
+interface TitleSectionProps extends HTMLAttributes<HTMLHeadElement> {
   $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
-const TitleWithIcon = ({
+const TitleSection = ({
   $as, className, children, ...props
-}: TitleProps) => {
+}: TitleSectionProps) => {
   const Component = $as;
   return (
     <Component
@@ -21,4 +21,4 @@ const TitleWithIcon = ({
   );
 };
 
-export default memo(TitleWithIcon);
+export default memo(TitleSection);

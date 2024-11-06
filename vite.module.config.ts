@@ -33,7 +33,7 @@ export default defineConfig({
       output: [
         {
           entryFileNames: 'web-accessibility-plugin.min.[format].js',
-          format: 'es',
+          format: 'cjs',
         },
       ],
     },
