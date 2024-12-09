@@ -1,41 +1,67 @@
 import { useCallback, useState } from 'react';
 
 import { type MouseEventButton } from '@/types/MouseEventButton';
-import { ACCESSIBILITY_CLASS_NAMES, type AccessibilityClassNamesKeys } from '@/constants/AccessibilityClassNames';
+import filterStyles from '@/styles/filter.module.css';
+
+const FILTERS_ID = {
+  hightContrast: 'hightContrast',
+  hightSaturation: 'hightSaturation',
+  invertColors: 'invertColors',
+  protanopia: 'protanopia',
+  deuteranopia: 'deuteranopia',
+  tritanopia: 'tritanopia',
+  achromatopsia: 'achromatopsia',
+  achromatomaly: 'achromatomaly',
+} as const;
+
+const FILTERS_CLASS_NAMES = {
+  [FILTERS_ID.hightContrast]: filterStyles.hightContrast,
+  [FILTERS_ID.hightSaturation]: filterStyles.hightSaturation,
+  [FILTERS_ID.invertColors]: filterStyles.invertColors,
+  [FILTERS_ID.protanopia]: filterStyles.protanopia,
+  [FILTERS_ID.deuteranopia]: filterStyles.deuteranopia,
+  [FILTERS_ID.tritanopia]: filterStyles.tritanopia,
+  [FILTERS_ID.achromatopsia]: filterStyles.achromatopsia,
+  [FILTERS_ID.achromatomaly]: filterStyles.achromatomaly,
+} as const;
+
+type FiltersClassNames = keyof typeof FILTERS_CLASS_NAMES;
 
 export const useColorFilter = () => {
-  const [currentClassName, setCurrentClassName] = useState<string>('');
+  const [currentClassNameId, setCurrentClassNameId] = useState<string>('');
 
   const toggleColorFilter = useCallback((event: MouseEventButton) => {
     const { name } = event.currentTarget;
-    const className: string = ACCESSIBILITY_CLASS_NAMES[name as AccessibilityClassNamesKeys];
+    const newClassName: string = FILTERS_CLASS_NAMES[name as FiltersClassNames];
+    const currentClassName = FILTERS_CLASS_NAMES[currentClassNameId as FiltersClassNames];
 
-    if (currentClassName === className) {
-      document.documentElement.classList.toggle(className);
+    if (!newClassName) return;
+
+    if (currentClassName && newClassName !== currentClassName) {
+      document.documentElement.classList.remove(currentClassName);
     }
 
-    else {
-      if (currentClassName) document.documentElement.classList.remove(currentClassName);
-      document.documentElement.classList.add(className);
-    }
+    document.documentElement.classList.toggle(newClassName);
 
-    setCurrentClassName((prev) => {
-      if (prev === className) return '';
-      return className;
+    setCurrentClassNameId((prev) => {
+      if (prev === name) return '';
+      return name;
     });
-  }, [currentClassName]);
+  }, [currentClassNameId]);
 
   const isActiveColorFilter = useCallback((name: string) => (
-    currentClassName === name
-  ), [currentClassName]);
+    currentClassNameId === name
+  ), [currentClassNameId]);
 
   const resetColorFilter = useCallback(() => {
-    if (!currentClassName) return;
+    if (!currentClassNameId) return;
+    const currentClassName = FILTERS_CLASS_NAMES[currentClassNameId as FiltersClassNames];
     document.documentElement.classList.remove(currentClassName);
-    setCurrentClassName('');
-  }, [currentClassName]);
+    setCurrentClassNameId('');
+  }, [currentClassNameId]);
 
   return {
+    id: FILTERS_ID,
     toggleColorFilter,
     isActiveColorFilter,
     resetColorFilter,

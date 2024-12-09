@@ -53,8 +53,8 @@ export class TextElements {
     this.observer.observe(document.body, { childList: true, subtree: true });
   }
 
-  private fetchNodes(element: Node): Node[] {
-    const textElements: Node[] = [];
+  private fetchTextNodes(element: Node): Node[] {
+    const textNodes: Node[] = [];
     const excludeTagNames = ['NOSCRIPT', 'SCRIPT', 'LINK', 'STYLE'];
     const treeWalker = document.createTreeWalker(
       element,
@@ -71,14 +71,14 @@ export class TextElements {
 
     while (treeWalker.nextNode()) {
       const node = treeWalker.currentNode;
-      if (node.parentElement) textElements.push(node);
+      if (node.parentElement) textNodes.push(node);
     }
 
-    return textElements;
+    return textNodes;
   }
 
   private loadBodyNodes() {
-    const textNodes = this.fetchNodes(document.body);
+    const textNodes = this.fetchTextNodes(document.body);
     textNodes.forEach((textNode) => {
       this.nodes.add(textNode);
     });
@@ -86,7 +86,7 @@ export class TextElements {
 
   private addNodes(nodes: NodeList) {
     nodes.forEach((node) => {
-      const textNodes = this.fetchNodes(node);
+      const textNodes = this.fetchTextNodes(node);
       textNodes.forEach((textNode) => {
         this.nodes.add(textNode);
       });
@@ -95,7 +95,7 @@ export class TextElements {
 
   private removeNodes(nodes: NodeList) {
     nodes.forEach((node) => {
-      const textNodes = this.fetchNodes(node);
+      const textNodes = this.fetchTextNodes(node);
       textNodes.forEach((textNode) => {
         this.nodes.delete(textNode);
       });
@@ -126,7 +126,7 @@ export class TextElements {
       return Array.from(this.excludedNodes);
     }
 
-    const nodes = this.fetchNodes(accessibilityRoot);
+    const nodes = this.fetchTextNodes(accessibilityRoot);
     nodes.forEach((node) => {
       this.excludedNodes.add(node);
     });
@@ -140,7 +140,8 @@ export class TextElements {
     });
     this.currentElements = Array
       .from(nodes)
-      .map((node) => node.parentElement as HTMLElement);
+      .map((node) => node.parentElement as HTMLElement)
+      .filter(Boolean);
   }
 
   private getElements(): HTMLElement[] {

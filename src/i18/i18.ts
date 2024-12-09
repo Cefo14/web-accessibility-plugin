@@ -1,4 +1,3 @@
-import { type LanguagesKeys } from './Languages';
 import { type Translations } from './Translations';
 
 import { en } from './en';
@@ -7,14 +6,14 @@ import { hi } from './hi';
 import { es } from './es';
 import { fr } from './fr';
 
-export type I18 = {
-  [key in LanguagesKeys]: Translations;
-};
-
-export const translations: I18 = {
+export const translations = {
   en,
   zh,
   hi,
   es,
   fr,
-};
+} satisfies Record<PropertyKey, Translations>;
+
+export type I18 = typeof translations;
+
+export type Languages = keyof I18;

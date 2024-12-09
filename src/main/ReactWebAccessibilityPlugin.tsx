@@ -6,7 +6,6 @@ import clsx from 'clsx';
 import { type ElementProps } from '@/types/ElementProps';
 
 import { GLOBALS } from '@/constants/Globals';
-import { ACCESSIBILITY_CLASS_NAMES_KEYS, ACCESSIBILITY_CLASS_NAMES } from '@/constants/AccessibilityClassNames';
 
 import AccessibilityButton from '@/components/AccessibilityButton';
 import Menu from '@/components/Menu';
@@ -90,12 +89,14 @@ export const ReactWebAccessibilityPlugin = memo(({
   } = useModifyFontWeight();
 
   const {
+    id: highlightId,
     togglHighlight,
     isActiveHighlight,
     resetHighlights,
   } = useHighlights();
 
   const {
+    id: filterId,
     toggleColorFilter,
     isActiveColorFilter,
     resetColorFilter,
@@ -121,33 +122,22 @@ export const ReactWebAccessibilityPlugin = memo(({
     t,
   } = useTranslate();
 
-  if (!isOpen) {
-    return (
-      <section
-        id={GLOBALS.ACCESSIBILITY_ID}
-        className={clsx('Accessibility__root', className)}
-        {...props}
-      >
-        <AccessibilityButton
-          id={OPEN_MENU_ID}
-          title={t('OPEN_MENU')}
-          aria-label={t('OPEN_MENU')}
-          aria-controls={MODAL_ID}
-          aria-hidden={isOpen}
-          aria-expanded={isOpen}
-          aria-haspopup="menu"
-          onClick={open}
-        />
-      </section>
-    );
-  }
-
   return (
     <section
       id={GLOBALS.ACCESSIBILITY_ID}
       className={clsx('Accessibility__root', className)}
       {...props}
     >
+      <AccessibilityButton
+        id={OPEN_MENU_ID}
+        title={t('OPEN_MENU')}
+        aria-label={t('OPEN_MENU')}
+        aria-controls={MODAL_ID}
+        aria-hidden={isOpen}
+        aria-expanded={isOpen}
+        aria-haspopup="menu"
+        onClick={open}
+      />
       <Menu
         $isOpen={isOpen}
         id={MODAL_ID}
@@ -227,8 +217,8 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="8em">
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightTitles}
-              $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightTitles)}
+              name={highlightId.highlightTitles}
+              $active={isActiveHighlight(highlightId.highlightTitles)}
               onClick={togglHighlight}
             >
               <TitleIcon />
@@ -236,8 +226,8 @@ export const ReactWebAccessibilityPlugin = memo(({
             </MenuButton>
 
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightLinks}
-              $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightLinks)}
+              name={highlightId.highlightLinks}
+              $active={isActiveHighlight(highlightId.highlightLinks)}
               onClick={togglHighlight}
             >
               <LinkIcon />
@@ -245,8 +235,8 @@ export const ReactWebAccessibilityPlugin = memo(({
             </MenuButton>
 
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.highlightCursor}
-              $active={isActiveHighlight(ACCESSIBILITY_CLASS_NAMES.highlightCursor)}
+              name={highlightId.highlightCursor}
+              $active={isActiveHighlight(highlightId.highlightCursor)}
               onClick={togglHighlight}
             >
               <CursorIcon />
@@ -261,64 +251,64 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <AutoGrid $gap="0.5em" $placeContent="center" $columnWidth="9em">
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.hightContrast}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightContrast)}
+              name={filterId.hightContrast}
+              $active={isActiveColorFilter(filterId.hightContrast)}
               onClick={toggleColorFilter}
             >
               <ContrastIcon />
               {t('HIGH_CONTRAST')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.hightSaturation}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.hightSaturation)}
+              name={filterId.hightSaturation}
+              $active={isActiveColorFilter(filterId.hightSaturation)}
               onClick={toggleColorFilter}
             >
               <SunIcon />
               {t('HIGH_SATURATION')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.invertColors}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.invertColors)}
+              name={filterId.invertColors}
+              $active={isActiveColorFilter(filterId.invertColors)}
               onClick={toggleColorFilter}
             >
               <InvertColorsIcon />
               {t('INVERT_COLORS')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.protanopia}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.protanopia)}
+              name={filterId.protanopia}
+              $active={isActiveColorFilter(filterId.protanopia)}
               onClick={toggleColorFilter}
             >
               <RedSquareIcon />
               {t('PROTANOPIA')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.deuteranopia}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.deuteranopia)}
+              name={filterId.deuteranopia}
+              $active={isActiveColorFilter(filterId.deuteranopia)}
               onClick={toggleColorFilter}
             >
               <GreenSquareIcon />
               {t('DEUTERANOPIA')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.tritanopia}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.tritanopia)}
+              name={filterId.tritanopia}
+              $active={isActiveColorFilter(filterId.tritanopia)}
               onClick={toggleColorFilter}
             >
               <BlueSquareIcon />
               {t('TRITANOPIA')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.achromatopsia}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.achromatopsia)}
+              name={filterId.achromatopsia}
+              $active={isActiveColorFilter(filterId.achromatopsia)}
               onClick={toggleColorFilter}
             >
               <PieChartTwotone50Icon />
               {t('ACHROMATOPSIA')}
             </MenuButton>
             <MenuButton
-              name={ACCESSIBILITY_CLASS_NAMES_KEYS.achromatomaly}
-              $active={isActiveColorFilter(ACCESSIBILITY_CLASS_NAMES.achromatomaly)}
+              name={filterId.achromatomaly}
+              $active={isActiveColorFilter(filterId.achromatomaly)}
               onClick={toggleColorFilter}
             >
               <PieChartTwotone25Icon />

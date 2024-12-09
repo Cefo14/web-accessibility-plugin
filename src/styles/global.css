@@ -28,31 +28,37 @@
 }
 
 .Accessibility__root h1 {
-  font-size: 3em; /* 48px */
-  letter-spacing: -0.015em; /* -0.24px */
+  font-size: 3em !important; /* 48px */
+  letter-spacing: -0.015em !important; /* -0.24px */
+  font-weight: bold !important;
 }
 
 .Accessibility__root h2 {
-  font-size: 2.25em; /* 36px */
-  letter-spacing: -0.01em; /* -0.16px */
+  font-size: 2.25em !important; /* 36px */
+  letter-spacing: -0.01em !important; /* -0.16px */
+  font-weight: bold !important;
 }
 
 .Accessibility__root h3 {
-  font-size: 1.75em; /* 28px */
-  letter-spacing: -0.005em; /* -0.08px */
+  font-size: 1.75em !important; /* 28px */
+  letter-spacing: -0.005em !important; /* -0.08px */
+  font-weight: bold !important;
 }
 
 .Accessibility__root h4 {
-  font-size: 1.5em; /* 24px */
-  letter-spacing: 0em; /* 0px */
+  font-size: 1.5em !important; /* 24px */
+  letter-spacing: 0em !important; /* 0px */
+  font-weight: bold !important;
 }
 
 .Accessibility__root h5 {
-  font-size: 1.25em; /* 20px */
-  letter-spacing: 0.005em; /* 0.08px */
+  font-size: 1.25em !important; /* 20px */
+  letter-spacing: 0.005em !important; /* 0.08px */
+  font-weight: bold !important;
 }
 
 .Accessibility__root h6 {
-  font-size: 1em; /* 16px */
-  letter-spacing: 0.01em; /* 0.16px */
+  font-size: 1em !important; /* 16px */
+  letter-spacing: 0.01em !important; /* 0.16px */
+  font-weight: bold !important;
 }

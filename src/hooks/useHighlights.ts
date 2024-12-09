@@ -1,8 +1,21 @@
 import { useCallback, useState } from 'react';
 
 import { type MouseEventButton } from '@/types/MouseEventButton';
+import highlightClassNames from '@/styles/highlights.module.css';
 
-import { ACCESSIBILITY_CLASS_NAMES, type AccessibilityClassNamesKeys } from '@/constants/AccessibilityClassNames';
+const HIGHLIGHT_ID = {
+  highlightTitles: 'highlightTitles',
+  highlightLinks: 'highlightLinks',
+  highlightCursor: 'highlightCursor',
+} as const;
+
+const HIGHLIGHTS_CLASS_NAMES = {
+  [HIGHLIGHT_ID.highlightTitles]: highlightClassNames.highlightTitle,
+  [HIGHLIGHT_ID.highlightLinks]: highlightClassNames.highlightLink,
+  [HIGHLIGHT_ID.highlightCursor]: highlightClassNames.highlightCursor,
+} as const;
+
+type HighlightsClassNames = keyof typeof HIGHLIGHTS_CLASS_NAMES;
 
 export const useHighlights = () => {
   const [activeHighlights, setActiveHighlights] = useState<Set<string>>(new Set());
@@ -19,23 +32,29 @@ export const useHighlights = () => {
     });
   }, []);
 
-  const togglHighlight = useCallback((event: MouseEventButton) => {
-    const { name } = event.currentTarget;
-    if (!(name in ACCESSIBILITY_CLASS_NAMES)) throw new Error(`invalid class name: ${name}`);
-    const className: string = ACCESSIBILITY_CLASS_NAMES[name as AccessibilityClassNamesKeys];
-    document.body.classList.toggle(className);
-    toggleActiveHighlight(className);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const emptyActiveHighlights = useCallback(() => {
+    setActiveHighlights(new Set());
   }, []);
 
-  const isActiveHighlight = (name: string) => activeHighlights.has(name);
+  const togglHighlight = useCallback((event: MouseEventButton) => {
+    const { name } = event.currentTarget;
+    if (!(name in HIGHLIGHTS_CLASS_NAMES)) throw new Error(`invalid class name: ${name}`);
+    const className: string = HIGHLIGHTS_CLASS_NAMES[name as HighlightsClassNames];
+    document.body.classList.toggle(className);
+    toggleActiveHighlight(name);
+  }, [toggleActiveHighlight]);
+
+  const isActiveHighlight = useCallback((name: string) => (
+    activeHighlights.has(name)
+  ), [activeHighlights]);
 
   const resetHighlights = useCallback(() => {
     document.body.classList.remove(...Array.from(activeHighlights));
-    setActiveHighlights(new Set());
-  }, [activeHighlights]);
+    emptyActiveHighlights();
+  }, [activeHighlights, emptyActiveHighlights]);
 
   return {
+    id: HIGHLIGHT_ID,
     togglHighlight,
     isActiveHighlight,
     resetHighlights,

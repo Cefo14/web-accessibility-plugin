@@ -1,11 +1,11 @@
 import { useCallback, useState } from 'react';
-import { translations, type LanguagesKeys, type TranslationsKeys } from '@/i18';
+import { translations, type Languages, type TranslationsKeys } from '@/i18';
 
-const getLanguage = (): LanguagesKeys => {
+const getLanguage = (): Languages => {
   const { language } = navigator;
   const [lang] = language.split('-');
   if (!lang) return 'en';
-  if (lang in translations) return lang as LanguagesKeys;
+  if (lang in translations) return lang as Languages;
   return 'en';
 };
 
@@ -19,7 +19,7 @@ export const useTranslate = () => {
     return locale[key];
   }, [language]);
 
-  const changeLanguage = useCallback((lang: LanguagesKeys) => {
+  const changeLanguage = useCallback((lang: Languages) => {
     setLanguage(lang);
   }, []);
 
