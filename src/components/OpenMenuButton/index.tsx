@@ -7,9 +7,9 @@ import AccessibilityIcon from '@/assets/accessibility-svgrepo-com.svg?react';
 
 import styles from './styles.module.css';
 
-type AccessibilityButtonProps = ButtonProps;
+type OpenMenuButtonProps = ButtonProps;
 
-const AccessibilityButton = ({ onClick, className, ...props }: AccessibilityButtonProps) => (
+const OpenMenuButton = ({ onClick, className, ...props }: OpenMenuButtonProps) => (
   <button
     {...props}
     type="button"
@@ -19,4 +19,5 @@ const AccessibilityButton = ({ onClick, className, ...props }: AccessibilityButt
     <AccessibilityIcon fill="white" width={32} height={32} />
   </button>
 );
-export default memo(AccessibilityButton);
+
+export default memo(OpenMenuButton);

@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 
-import { type MouseEventButton } from '@/types/MouseEventButton';
+import type { ChangeEventInput } from '@/types/ChangeEvent';
 import highlightClassNames from '@/styles/highlights.module.css';
 
 const HIGHLIGHT_ID = {
@@ -36,7 +36,7 @@ export const useHighlights = () => {
     setActiveHighlights(new Set());
   }, []);
 
-  const togglHighlight = useCallback((event: MouseEventButton) => {
+  const togglHighlight = useCallback((event: ChangeEventInput) => {
     const { name } = event.currentTarget;
     if (!(name in HIGHLIGHTS_CLASS_NAMES)) throw new Error(`invalid class name: ${name}`);
     const className: string = HIGHLIGHTS_CLASS_NAMES[name as HighlightsClassNames];

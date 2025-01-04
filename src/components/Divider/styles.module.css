@@ -1,0 +1,7 @@
+.root {
+  width: 100%;
+  color: var(--accessibility-secondary-color);
+  border-color: var(--accessibility-secondary-color);
+  border-style: solid;
+  margin: 0.5em 0;
+}

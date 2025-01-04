@@ -1,0 +1,41 @@
+.xxl {
+  font-size: 2em !important;
+  font-weight: bold !important;
+  line-height: 40px !important;
+}
+
+.xl {
+  font-size: 1.75em !important;
+  font-weight: bold !important;
+  line-height: 40px !important;
+}
+
+.lg {
+  font-size: 1.50em !important;
+  font-weight: bold !important;
+  line-height: 36px !important;
+}
+
+.md {
+  font-size: 1.25em !important;
+  font-weight: bold !important;
+  line-height: 32px !important;
+}
+
+.sm {
+  font-size: 1em !important;
+  font-weight: bold !important;
+  line-height: 28px !important;
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.primary {
+  color: var(--accessibility-primary-text-color) !important;
+}
+
+.secondary {
+  color: var(--accessibility-secondary-text-color) !important;
+}

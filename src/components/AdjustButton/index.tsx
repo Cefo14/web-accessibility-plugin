@@ -20,6 +20,9 @@ interface AdjustButtonProps extends ElementProps {
   $id?: string;
 }
 
+/**
+ * @deprecated Use `SwitchButtons` instead of this component
+ */
 const AdjustButton = ({
   $min,
   $max,

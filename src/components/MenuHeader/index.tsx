@@ -8,6 +8,7 @@ import ResetIcon from '@/assets/reset-svgrepo-com.svg?react';
 import CloseIcon from '@/assets/close-bold-svgrepo-com.svg?react';
 
 import styles from './styles.module.css';
+import Heading from '../Heading';
 
 interface MenuHeaderProps extends ElementProps {
   $titleId?: string;
@@ -28,9 +29,14 @@ const MenuHeader = ({
     {...props}
     className={clsx(styles.root, className)}
   >
-    <h4 id={$titleId} className={styles.title}>
+    <Heading
+      id={$titleId}
+      $as="h1"
+      $size="lg"
+      $color="secondary"
+    >
       { $title }
-    </h4>
+    </Heading>
     <div className={styles.actions}>
       <button
         type="button"

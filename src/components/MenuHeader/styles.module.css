@@ -1,14 +1,10 @@
 .root {
-  background-color: var(--accessibility-true-blue);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1em;
-}
-
-.title {
-  color: var(--accessibility-white);
-  margin: 0;
+  height: 64px;
+  padding: 0 1em;
+  background-color: var(--accessibility-secondary-color);
 }
 
 .actions {

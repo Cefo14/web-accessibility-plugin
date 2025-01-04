@@ -1,0 +1,38 @@
+.root {
+  display: flex;
+  place-items: center;
+  gap: 0.5em;
+}
+
+.button {
+  background-color: var(--accessibility-primary-color);
+  color: var(--accessibility-primary-text-color);
+  border: solid 1px var(--accessibility-primary-border-color);
+  border-radius: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2em;
+  height: 2em;
+  font-size: inherit;
+}
+
+.button:hover {
+  background-color: var(--accessibility-primary-hover-color);
+}
+
+.button:disabled {
+  & svg path {
+    stroke: var(--accessibility-primary-border-color);
+  }
+}
+
+.value {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  place-content: center;
+  place-items: center;
+}

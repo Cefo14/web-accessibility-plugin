@@ -2,11 +2,11 @@
   position: fixed;
   right: 0;
   top: 0;
-  z-index: 500000;
+  z-index: 2147483647;
   opacity: 1;
   overflow: hidden;
   background-color: var(--accessibility-white);
-  width: 480px;
+  width: 400px;
   line-height: 1;
   height: 100%;
   letter-spacing: 0.015em;
@@ -17,7 +17,7 @@
   display: none;
 }
 
-@media only screen and (max-width: 512px) {
+@media only screen and (max-width: 576px) {
   .root {
       width: 100%;
   }

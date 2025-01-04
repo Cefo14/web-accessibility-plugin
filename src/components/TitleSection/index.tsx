@@ -7,6 +7,9 @@ interface TitleSectionProps extends HTMLAttributes<HTMLHeadElement> {
   $as: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
 }
 
+/**
+ * @deprecated Use `Heading` instead of this component
+ */
 const TitleSection = ({
   $as, className, children, ...props
 }: TitleSectionProps) => {

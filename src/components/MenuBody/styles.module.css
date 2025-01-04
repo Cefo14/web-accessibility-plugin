@@ -1,8 +1,11 @@
 .root {
   overflow: scroll;
-  padding: 0.5em;
-  display: grid;
-  gap: 1em;
-  max-height: calc(100vh - 5em);
+  padding: 1em;
+  height: 100vh;
+  max-height: calc(100vh - 64px);
   background-color: var(--accessibility-lotion);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
 }

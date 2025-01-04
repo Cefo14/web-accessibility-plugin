@@ -12,30 +12,19 @@
 
 .invertColors {
   filter: invert(1) hue-rotate(180deg) !important;
+  & img {
+    filter: invert(1) hue-rotate(180deg) !important;
+  }
 }
 
-.invertColors img {
-  filter: invert(1) hue-rotate(180deg) !important;
+.red {
+  filter: sepia(1) saturate(5) hue-rotate(-30deg);
 }
 
-/* Daltonism */
-
-.protanopia {
-  filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(-30deg) saturate(150%);
+.green {
+  filter: sepia(1) saturate(5) hue-rotate(60deg);
 }
 
-.deuteranopia {
-  filter: brightness(120%) contrast(110%) sepia(70%) hue-rotate(-30deg) saturate(120%);
-}
-
-.tritanopia {
-  filter: brightness(130%) contrast(115%) sepia(80%) hue-rotate(60deg) saturate(140%);
-}
-
-.achromatopsia {
-  filter: brightness(115%) contrast(125%) grayscale(90%);
-}
-
-.achromatomaly {
-  filter: brightness(115%) contrast(120%) saturate(80%);
+.blue {
+  filter: sepia(1) saturate(5) hue-rotate(180deg);
 }

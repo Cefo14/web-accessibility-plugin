@@ -1,21 +1,21 @@
 :root {
-  --accessibility-true-blue: #0073e6;
-  --accessibility-very-light-blue: #606ff3; 
+  --accessibility-primary-color: #FFFFFF;
+  --accessibility-primary-text-color: #09090b;
+  --accessibility-primary-border-color: #e4e4e7;
+  --accessibility-primary-hover-color: #f4f4f5;
 
-  --accessibility-white: #ffffff;
-  --accessibility-black: #000000;
-  --accessibility-lotion : #fafafa;
+  --accessibility-secondary-color: #18181b;
+  --accessibility-secondary-text-color: #FFFFFF;
+
 
   --accessibility-deep-cerise : #e6308a;
   --accessibility-munsell-yellow: #f2c300;
   --accessibility-coral-red: #f53f42;
-
-  --accessibility-breakpoint-xs: 575px;
-  --accessibility-breakpoint-sm: 576px;
-  --accessibility-breakpoint-md: 768px;
-  --accessibility-breakpoint-lg: 992px;
-  --accessibility-breakpoint-xl: 1200px;
-  --accessibility-breakpoint-xxl: 1400px;
+  --accessibility-true-blue: #0073e6;
+  --accessibility-very-light-blue: #606ff3;
+  --accessibility-white: #ffffff;
+  --accessibility-black: #000000;
+  --accessibility-lotion : #fafafa;
 }
 
 .Accessibility__root {
@@ -25,40 +25,4 @@
 
 .Accessibility__root * {
   font-family: sans-serif !important;
-}
-
-.Accessibility__root h1 {
-  font-size: 3em !important; /* 48px */
-  letter-spacing: -0.015em !important; /* -0.24px */
-  font-weight: bold !important;
-}
-
-.Accessibility__root h2 {
-  font-size: 2.25em !important; /* 36px */
-  letter-spacing: -0.01em !important; /* -0.16px */
-  font-weight: bold !important;
-}
-
-.Accessibility__root h3 {
-  font-size: 1.75em !important; /* 28px */
-  letter-spacing: -0.005em !important; /* -0.08px */
-  font-weight: bold !important;
-}
-
-.Accessibility__root h4 {
-  font-size: 1.5em !important; /* 24px */
-  letter-spacing: 0em !important; /* 0px */
-  font-weight: bold !important;
-}
-
-.Accessibility__root h5 {
-  font-size: 1.25em !important; /* 20px */
-  letter-spacing: 0.005em !important; /* 0.08px */
-  font-weight: bold !important;
-}
-
-.Accessibility__root h6 {
-  font-size: 1em !important; /* 16px */
-  letter-spacing: 0.01em !important; /* 0.16px */
-  font-weight: bold !important;
 }
