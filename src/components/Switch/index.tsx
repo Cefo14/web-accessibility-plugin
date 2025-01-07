@@ -1,19 +1,26 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { type InputHTMLAttributes, memo } from 'react';
+import { type InputHTMLAttributes, type KeyboardEvent, memo } from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';
 
-type SiwtchProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>;
+interface SiwtchProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
+  $enterabled?: boolean;
+}
 
-const Switch = ({ className, ...props }: SiwtchProps) => (
-  <label className={styles.root}>
+const onEnter = (event: KeyboardEvent<HTMLInputElement>) => {
+  if (event.key.toLowerCase() === 'enter') event.currentTarget.click();
+};
+
+const Switch = ({ $enterabled, className, ...props }: SiwtchProps) => (
+  <div className={styles.root}>
     <input
       {...props}
+      onKeyUp={$enterabled ? onEnter : props.onKeyUp}
       type="checkbox"
       className={clsx(styles.input, className)}
     />
     <span className={styles.slider} />
-  </label>
+  </div>
 );
 
 export default memo(Switch);

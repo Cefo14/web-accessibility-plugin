@@ -19,6 +19,7 @@ import SwitchButtons from '@/components/SwitchButtons';
 import Text from '@/components/Text';
 import SpaceBetween from '@/components/SpaceBetween';
 import Switch from '@/components/Switch';
+import Divider from '@/components/Divider';
 
 // import TitleIcon from '@/assets/title-svgrepo-com.svg?react';
 // import LinkIcon from '@/assets/link-svgrepo-com.svg?react';
@@ -42,7 +43,6 @@ import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
 import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
 import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 import { useTranslate } from '@/hooks/useTranslate';
-import Divider from '@/components/Divider';
 
 type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
@@ -230,6 +230,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={highlightId.highlightTitles}
               onChange={togglHighlight}
               checked={isActiveHighlight(highlightId.highlightTitles)}
+              aria-label={t('HIGHLIGHT_TITLES')}
+              $enterabled
             />
           </SpaceBetween>
 
@@ -241,6 +243,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={highlightId.highlightLinks}
               onChange={togglHighlight}
               checked={isActiveHighlight(highlightId.highlightLinks)}
+              aria-label={t('HIGHLIGHT_LINKS')}
+              $enterabled
             />
           </SpaceBetween>
 
@@ -252,6 +256,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={highlightId.highlightCursor}
               onChange={togglHighlight}
               checked={isActiveHighlight(highlightId.highlightCursor)}
+              aria-label={t('HIGHLIGHT_CURSOR')}
+              $enterabled
             />
           </SpaceBetween>
 
@@ -269,6 +275,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={filterId.hightContrast}
               onChange={toggleColorFilter}
               checked={isActiveColorFilter(filterId.hightContrast)}
+              aria-label={t('HIGH_CONTRAST')}
+              $enterabled
             />
           </SpaceBetween>
 
@@ -280,6 +288,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={filterId.hightSaturation}
               onChange={toggleColorFilter}
               checked={isActiveColorFilter(filterId.hightSaturation)}
+              aria-label={t('HIGH_SATURATION')}
+              $enterabled
             />
           </SpaceBetween>
 
@@ -291,6 +301,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={filterId.invertColors}
               onChange={toggleColorFilter}
               checked={isActiveColorFilter(filterId.invertColors)}
+              aria-label={t('INVERT_COLORS')}
+              $enterabled
             />
           </SpaceBetween>
 
@@ -303,6 +315,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={filterId.red}
               onChange={toggleColorFilter}
               checked={isActiveColorFilter(filterId.red)}
+              aria-label="TODO"
+              $enterabled
             />
           </SpaceBetween>
 
@@ -315,6 +329,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={filterId.green}
               onChange={toggleColorFilter}
               checked={isActiveColorFilter(filterId.green)}
+              aria-label="TODO"
+              $enterabled
             />
           </SpaceBetween>
 
@@ -327,6 +343,8 @@ export const ReactWebAccessibilityPlugin = memo(({
               name={filterId.blue}
               onChange={toggleColorFilter}
               checked={isActiveColorFilter(filterId.blue)}
+              aria-label="TODO"
+              $enterabled
             />
           </SpaceBetween>
         </MenuBody>
