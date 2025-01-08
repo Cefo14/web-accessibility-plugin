@@ -5,6 +5,7 @@ import type { ElementProps } from '@/types/ElementProps';
 import type { OnClickButton } from '@/types/OnClickButton';
 
 import Text from '@/components/Text';
+import Button from '@/components/Button';
 
 import MinusIcon from '@/assets/minus-svgrepo-com.svg?react';
 import PlusIcon from '@/assets/plus-svgrepo-com.svg?react';
@@ -35,7 +36,7 @@ const SwitchButtons = ({
     className={clsx(styles.root, className)}
     {...props}
   >
-    <button
+    <Button
       type="button"
       className={clsx(styles.button)}
       onClick={$onDecrement}
@@ -43,11 +44,11 @@ const SwitchButtons = ({
       aria-label="Decrement value"
     >
       <MinusIcon width={24} height={24} />
-    </button>
+    </Button>
     <Text $as="span" $size="sm" className={styles.value}>
       {$value}
     </Text>
-    <button
+    <Button
       type="button"
       className={clsx(styles.button)}
       onClick={$onIncrement}
@@ -55,7 +56,7 @@ const SwitchButtons = ({
       aria-label="Increment value"
     >
       <PlusIcon width={24} height={24} />
-    </button>
+    </Button>
   </div>
 );
 

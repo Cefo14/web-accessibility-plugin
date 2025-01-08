@@ -20,6 +20,9 @@ import Text from '@/components/Text';
 import SpaceBetween from '@/components/SpaceBetween';
 import Switch from '@/components/Switch';
 import Divider from '@/components/Divider';
+import Slider from '@/components/Slider';
+import Button from '@/components/Button';
+import ButtonGroup from '@/components/ButtonGroup';
 
 // import TitleIcon from '@/assets/title-svgrepo-com.svg?react';
 // import LinkIcon from '@/assets/link-svgrepo-com.svg?react';
@@ -42,8 +45,7 @@ import { useColorFilter } from '@/hooks/useColorFilter';
 import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
 import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
 import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
-import { useTranslate } from '@/hooks/useTranslate';
-import Slider from '@/components/Slider';
+// import { useTranslate } from '@/hooks/useTranslate';
 
 type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
@@ -124,9 +126,9 @@ export const ReactWebAccessibilityPlugin = memo(({
     onResetColorFilter,
   ]);
 
-  const {
-    t,
-  } = useTranslate();
+  // const {
+  //   t,
+  // } = useTranslate();
 
   return (
     <section
@@ -136,8 +138,8 @@ export const ReactWebAccessibilityPlugin = memo(({
     >
       <OpenMenuButton
         id={OPEN_MENU_ID}
-        title={t('OPEN_MENU')}
-        aria-label={t('OPEN_MENU')}
+        title="Abrir Menu"
+        aria-label="Abrir Menu"
         aria-controls={MENU_ID}
         aria-hidden={isOpen}
         aria-expanded={isOpen}
@@ -150,7 +152,7 @@ export const ReactWebAccessibilityPlugin = memo(({
         aria-labelledby={MENU_TITLE_ID}
       >
         <MenuHeader
-          $title={t('TITLE')}
+          $title="Accesibilidad"
           $onClose={close}
           $onReset={reset}
           $titleId={MENU_TITLE_ID}
@@ -159,12 +161,12 @@ export const ReactWebAccessibilityPlugin = memo(({
         <MenuBody aria-label="body">
 
           <Heading $as="h3" $size="md">
-            {t('TEXT_ADJUSTMENTS')}
+            Ajustes de Texto
           </Heading>
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('TEXT_SIZE')}
+              Tamaño
             </Text>
             <SwitchButtons
               $min={minFontSizeValue}
@@ -178,7 +180,7 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('TEXT_SPACE')}
+              Espaciado
             </Text>
             <SwitchButtons
               $min={minLetterSpacingValue}
@@ -192,7 +194,7 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('TEXT_HEIGHT')}
+              Altura
             </Text>
             <SwitchButtons
               $min={minLineHeightValue}
@@ -206,7 +208,7 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('TEXT_WEIGHT')}
+              Peso
             </Text>
             <SwitchButtons
               $min={minFontWeightValue}
@@ -220,26 +222,26 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('HIGHLIGHT_TITLES')}
+              Resaltar Titulos
             </Text>
             <Switch
               name={highlightId.highlightTitles}
               onChange={togglHighlight}
               checked={isActiveHighlight(highlightId.highlightTitles)}
-              aria-label={t('HIGHLIGHT_TITLES')}
+              aria-label="Resaltar Titulos"
               $enterabled
             />
           </SpaceBetween>
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('HIGHLIGHT_LINKS')}
+              Resaltar Enlaces
             </Text>
             <Switch
               name={highlightId.highlightLinks}
               onChange={togglHighlight}
               checked={isActiveHighlight(highlightId.highlightLinks)}
-              aria-label={t('HIGHLIGHT_LINKS')}
+              aria-label="Resaltar Enlaces"
               $enterabled
             />
           </SpaceBetween>
@@ -247,12 +249,12 @@ export const ReactWebAccessibilityPlugin = memo(({
           <Divider />
 
           <Heading $as="h3" $size="md">
-            {t('COLOR_FILTERS')}
+            Filtros de Color
           </Heading>
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              brightness
+              Brillo
             </Text>
             <Slider
               name={actions.brightness}
@@ -266,7 +268,7 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              contrast
+              Contraste
             </Text>
             <Slider
               name={actions.contrast}
@@ -280,7 +282,7 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              saturate
+              Saturacion
             </Text>
             <Slider
               name={actions.saturate}
@@ -294,7 +296,7 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              sepia
+              Calor
             </Text>
             <Slider
               name={actions.sepia}
@@ -313,33 +315,57 @@ export const ReactWebAccessibilityPlugin = memo(({
             <Slider
               name={actions.hue}
               onChange={onChangeColorFilter}
-              min={-360}
+              min={0}
               max={360}
               step={1}
               value={filters.hue}
             />
           </SpaceBetween>
 
-          <div>
-            <button type="button" name={actions.reset} onClick={onResetColorFilter}>
+          <ButtonGroup>
+            <Button
+              type="button"
+              name={actions.reset}
+              onClick={onResetColorFilter}
+            >
               Restablecer
-            </button>
-            <button type="button" name={actions.warm} onClick={onChangeCustomColorFilter}>
+            </Button>
+            <Button
+              type="button"
+              name={actions.warm}
+              onClick={onChangeCustomColorFilter}
+            >
               Calido
-            </button>
-            <button type="button" name={actions.blue} onClick={onChangeCustomColorFilter}>
+            </Button>
+            <Button
+              type="button"
+              name={actions.blue}
+              onClick={onChangeCustomColorFilter}
+            >
               Azul
-            </button>
-            <button type="button" name={actions.red} onClick={onChangeCustomColorFilter}>
+            </Button>
+            <Button
+              type="button"
+              name={actions.red}
+              onClick={onChangeCustomColorFilter}
+            >
               Rojo
-            </button>
-            <button type="button" name={actions.green} onClick={onChangeCustomColorFilter}>
+            </Button>
+            <Button
+              type="button"
+              name={actions.green}
+              onClick={onChangeCustomColorFilter}
+            >
               Verde
-            </button>
-            <button type="button" name={actions.monochrome} onClick={onChangeCustomColorFilter}>
-              monocrome
-            </button>
-          </div>
+            </Button>
+            <Button
+              type="button"
+              name={actions.monochrome}
+              onClick={onChangeCustomColorFilter}
+            >
+              Monocromatico
+            </Button>
+          </ButtonGroup>
 
           <Divider />
 
@@ -349,13 +375,13 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              {t('HIGHLIGHT_CURSOR')}
+              Resaltar cursor
             </Text>
             <Switch
               name={highlightId.highlightCursor}
               onChange={togglHighlight}
               checked={isActiveHighlight(highlightId.highlightCursor)}
-              aria-label={t('HIGHLIGHT_CURSOR')}
+              aria-label="Resaltar cursor"
               $enterabled
             />
           </SpaceBetween>

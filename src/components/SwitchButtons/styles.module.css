@@ -5,11 +5,6 @@
 }
 
 .button {
-  background-color: var(--accessibility-primary-color);
-  color: var(--accessibility-primary-text-color);
-  border: solid 1px var(--accessibility-primary-border-color);
-  border-radius: 4px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,10 +12,7 @@
   width: 2em;
   height: 2em;
   font-size: inherit;
-}
-
-.button:hover {
-  background-color: var(--accessibility-primary-hover-color);
+  padding: 0px;
 }
 
 .button:disabled {
