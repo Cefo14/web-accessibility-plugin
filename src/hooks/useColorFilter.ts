@@ -1,75 +1,174 @@
-import { useCallback, useState } from 'react';
+import {
+  useCallback,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 
 import type { ChangeEventInput } from '@/types/ChangeEvent';
-import filterStyles from '@/styles/filter.module.css';
+import type { MouseEventButton } from '@/types/MouseEvent';
 
-const FILTERS_ID = {
-  hightContrast: 'hightContrast',
-  hightSaturation: 'hightSaturation',
-  invertColors: 'invertColors',
-  protanopia: 'protanopia',
-  deuteranopia: 'deuteranopia',
-  tritanopia: 'tritanopia',
-  achromatopsia: 'achromatopsia',
-  achromatomaly: 'achromatomaly',
+const FILTERS = {
+  brightness: 'brightness',
+  contrast: 'contrast',
+  saturate: 'saturate',
+  sepia: 'sepia',
+  hue: 'hue',
+  invert: 'invert',
+} as const;
+
+const ACTION_TYPES = {
+  [FILTERS.brightness]: FILTERS.brightness,
+  [FILTERS.contrast]: FILTERS.contrast,
+  [FILTERS.saturate]: FILTERS.saturate,
+  [FILTERS.sepia]: FILTERS.sepia,
+  [FILTERS.hue]: FILTERS.hue,
   red: 'red',
   green: 'green',
   blue: 'blue',
+  warm: 'warm',
+  monochrome: 'monochrome',
+  change: 'change',
+  reset: 'reset',
 } as const;
 
-const FILTERS_CLASS_NAMES = {
-  [FILTERS_ID.hightContrast]: filterStyles.hightContrast,
-  [FILTERS_ID.hightSaturation]: filterStyles.hightSaturation,
-  [FILTERS_ID.invertColors]: filterStyles.invertColors,
-  [FILTERS_ID.protanopia]: filterStyles.protanopia,
-  [FILTERS_ID.deuteranopia]: filterStyles.deuteranopia,
-  [FILTERS_ID.tritanopia]: filterStyles.tritanopia,
-  [FILTERS_ID.achromatopsia]: filterStyles.achromatopsia,
-  [FILTERS_ID.achromatomaly]: filterStyles.achromatomaly,
-  [FILTERS_ID.red]: filterStyles.red,
-  [FILTERS_ID.green]: filterStyles.green,
-  [FILTERS_ID.blue]: filterStyles.blue,
-} as const;
+type ActionType = keyof typeof ACTION_TYPES;
 
-type FiltersClassNames = keyof typeof FILTERS_CLASS_NAMES;
+const DEFAULT_STATE = {
+  [FILTERS.brightness]: 100,
+  [FILTERS.contrast]: 100,
+  [FILTERS.saturate]: 100,
+  [FILTERS.sepia]: 0,
+  [FILTERS.hue]: 0,
+};
+
+type State = typeof DEFAULT_STATE;
+
+interface Action {
+  type: ActionType;
+  payload?: {
+    value: number;
+  };
+}
+
+const reducer = (state: State, action: Action): State => {
+  const { type, payload } = action;
+  const { value = 0 } = payload ?? {};
+
+  const currentState = {
+    ...state,
+    hue: DEFAULT_STATE.hue,
+  };
+
+  switch (type) {
+    case ACTION_TYPES.brightness:
+      return {
+        ...currentState,
+        brightness: value,
+      };
+    case ACTION_TYPES.contrast:
+      return {
+        ...currentState,
+        contrast: value,
+      };
+    case ACTION_TYPES.saturate:
+      return {
+        ...currentState,
+        saturate: value,
+      };
+    case ACTION_TYPES.sepia:
+      return {
+        ...currentState,
+        sepia: value,
+      };
+    case ACTION_TYPES.hue:
+      return {
+        ...currentState,
+        hue: value,
+      };
+    case ACTION_TYPES.red:
+      return {
+        ...DEFAULT_STATE,
+        sepia: 100,
+        saturate: 500,
+        hue: -50,
+      };
+    case ACTION_TYPES.green:
+      return {
+        ...DEFAULT_STATE,
+        sepia: 100,
+        saturate: 500,
+        hue: 50,
+      };
+    case ACTION_TYPES.blue:
+      return {
+        ...DEFAULT_STATE,
+        sepia: 100,
+        saturate: 500,
+        hue: 150,
+      };
+    case ACTION_TYPES.warm:
+      return {
+        ...DEFAULT_STATE,
+        brightness: 90,
+        sepia: 50,
+        saturate: 125,
+      };
+    case ACTION_TYPES.monochrome:
+      return {
+        ...DEFAULT_STATE,
+        saturate: 0,
+      };
+    case ACTION_TYPES.reset:
+      return { ...DEFAULT_STATE };
+    default:
+      return state;
+  }
+};
 
 export const useColorFilter = () => {
-  const [currentClassNameId, setCurrentClassNameId] = useState<string>('');
+  const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
+  const [hasCustomFilter, setHasCustomFilter] = useState(false);
 
-  const toggleColorFilter = useCallback((event: ChangeEventInput) => {
+  const onChangeColorFilter = useCallback((event: ChangeEventInput) => {
+    const { name, value } = event.target;
+    const type = name as ActionType;
+    const payload = {
+      value: Number(value),
+    };
+    dispatch({ type, payload });
+  }, []);
+
+  const onChangeCustomColorFilter = useCallback((event: MouseEventButton) => {
     const { name } = event.currentTarget;
-    const newClassName: string = FILTERS_CLASS_NAMES[name as FiltersClassNames];
-    const currentClassName = FILTERS_CLASS_NAMES[currentClassNameId as FiltersClassNames];
+    const type = name as ActionType;
+    dispatch({ type });
+    setHasCustomFilter(false);
+    setHasCustomFilter(true);
+  }, []);
 
-    if (!newClassName) return;
+  const onResetColorFilter = useCallback(() => {
+    dispatch({ type: ACTION_TYPES.reset });
+    setHasCustomFilter(false);
+  }, []);
 
-    if (currentClassName && newClassName !== currentClassName) {
-      document.documentElement.classList.remove(currentClassName);
-    }
-
-    document.documentElement.classList.toggle(newClassName);
-
-    setCurrentClassNameId((prev) => {
-      if (prev === name) return '';
-      return name;
-    });
-  }, [currentClassNameId]);
-
-  const isActiveColorFilter = useCallback((name: string) => (
-    currentClassNameId === name
-  ), [currentClassNameId]);
-
-  const resetColorFilter = useCallback(() => {
-    if (!currentClassNameId) return;
-    const currentClassName = FILTERS_CLASS_NAMES[currentClassNameId as FiltersClassNames];
-    document.documentElement.classList.remove(currentClassName);
-    setCurrentClassNameId('');
-  }, [currentClassNameId]);
+  useEffect(() => {
+    const filter = [
+      `brightness(${state.brightness}%)`,
+      `contrast(${state.contrast}%)`,
+      `saturate(${state.saturate}%)`,
+      `sepia(${state.sepia}%)`,
+      `hue-rotate(${state.hue}deg)`,
+    ].join(' ');
+    document.documentElement.style.filter = filter;
+  }, [state]);
 
   return {
-    id: FILTERS_ID,
-    toggleColorFilter,
-    isActiveColorFilter,
-    resetColorFilter,
+    actions: ACTION_TYPES,
+    filters: state,
+    hasCustomFilter,
+    onChangeColorFilter,
+    onChangeCustomColorFilter,
+    onResetColorFilter,
   };
 };

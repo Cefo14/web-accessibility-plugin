@@ -43,6 +43,7 @@ import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
 import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
 import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 import { useTranslate } from '@/hooks/useTranslate';
+import Slider from '@/components/Slider';
 
 type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
@@ -100,10 +101,11 @@ export const ReactWebAccessibilityPlugin = memo(({
   } = useHighlights();
 
   const {
-    id: filterId,
-    toggleColorFilter,
-    isActiveColorFilter,
-    resetColorFilter,
+    actions,
+    filters,
+    onResetColorFilter,
+    onChangeColorFilter,
+    onChangeCustomColorFilter,
   } = useColorFilter();
 
   const reset = useCallback(() => {
@@ -112,14 +114,14 @@ export const ReactWebAccessibilityPlugin = memo(({
     resetLineHeight();
     resetFontWeight();
     resetHighlights();
-    resetColorFilter();
+    onResetColorFilter();
   }, [
     resetFontSize,
     resetLetterSpacing,
     resetLineHeight,
     resetFontWeight,
     resetHighlights,
-    resetColorFilter,
+    onResetColorFilter,
   ]);
 
   const {
@@ -156,7 +158,7 @@ export const ReactWebAccessibilityPlugin = memo(({
         />
         <MenuBody aria-label="body">
 
-          <Heading $as="h2" $size="md">
+          <Heading $as="h3" $size="md">
             {t('TEXT_ADJUSTMENTS')}
           </Heading>
 
@@ -216,12 +218,6 @@ export const ReactWebAccessibilityPlugin = memo(({
             />
           </SpaceBetween>
 
-          <Divider />
-
-          <Heading $as="h2" $size="md">
-            {t('HIGHLIGHTS')}
-          </Heading>
-
           <SpaceBetween>
             <Text $size="sm" $as="span">
               {t('HIGHLIGHT_TITLES')}
@@ -248,6 +244,109 @@ export const ReactWebAccessibilityPlugin = memo(({
             />
           </SpaceBetween>
 
+          <Divider />
+
+          <Heading $as="h3" $size="md">
+            {t('COLOR_FILTERS')}
+          </Heading>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              brightness
+            </Text>
+            <Slider
+              name={actions.brightness}
+              onChange={onChangeColorFilter}
+              min={50}
+              max={150}
+              step={1}
+              value={filters.brightness}
+            />
+          </SpaceBetween>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              contrast
+            </Text>
+            <Slider
+              name={actions.contrast}
+              onChange={onChangeColorFilter}
+              min={20}
+              max={180}
+              step={1}
+              value={filters.contrast}
+            />
+          </SpaceBetween>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              saturate
+            </Text>
+            <Slider
+              name={actions.saturate}
+              onChange={onChangeColorFilter}
+              min={20}
+              max={180}
+              step={1}
+              value={filters.saturate}
+            />
+          </SpaceBetween>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              sepia
+            </Text>
+            <Slider
+              name={actions.sepia}
+              onChange={onChangeColorFilter}
+              min={0}
+              max={100}
+              step={1}
+              value={filters.sepia}
+            />
+          </SpaceBetween>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              Tonalidad
+            </Text>
+            <Slider
+              name={actions.hue}
+              onChange={onChangeColorFilter}
+              min={-360}
+              max={360}
+              step={1}
+              value={filters.hue}
+            />
+          </SpaceBetween>
+
+          <div>
+            <button type="button" name={actions.reset} onClick={onResetColorFilter}>
+              Restablecer
+            </button>
+            <button type="button" name={actions.warm} onClick={onChangeCustomColorFilter}>
+              Calido
+            </button>
+            <button type="button" name={actions.blue} onClick={onChangeCustomColorFilter}>
+              Azul
+            </button>
+            <button type="button" name={actions.red} onClick={onChangeCustomColorFilter}>
+              Rojo
+            </button>
+            <button type="button" name={actions.green} onClick={onChangeCustomColorFilter}>
+              Verde
+            </button>
+            <button type="button" name={actions.monochrome} onClick={onChangeCustomColorFilter}>
+              monocrome
+            </button>
+          </div>
+
+          <Divider />
+
+          <Heading $as="h3" $size="md">
+            Herramientas
+          </Heading>
+
           <SpaceBetween>
             <Text $size="sm" $as="span">
               {t('HIGHLIGHT_CURSOR')}
@@ -261,92 +360,6 @@ export const ReactWebAccessibilityPlugin = memo(({
             />
           </SpaceBetween>
 
-          <Divider />
-
-          <Heading $as="h2" $size="md">
-            {t('COLOR_FILTERS')}
-          </Heading>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              {t('HIGH_CONTRAST')}
-            </Text>
-            <Switch
-              name={filterId.hightContrast}
-              onChange={toggleColorFilter}
-              checked={isActiveColorFilter(filterId.hightContrast)}
-              aria-label={t('HIGH_CONTRAST')}
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              {t('HIGH_SATURATION')}
-            </Text>
-            <Switch
-              name={filterId.hightSaturation}
-              onChange={toggleColorFilter}
-              checked={isActiveColorFilter(filterId.hightSaturation)}
-              aria-label={t('HIGH_SATURATION')}
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              {t('INVERT_COLORS')}
-            </Text>
-            <Switch
-              name={filterId.invertColors}
-              onChange={toggleColorFilter}
-              checked={isActiveColorFilter(filterId.invertColors)}
-              aria-label={t('INVERT_COLORS')}
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              {/* {t('RED')} */}
-              Filtro Rojo
-            </Text>
-            <Switch
-              name={filterId.red}
-              onChange={toggleColorFilter}
-              checked={isActiveColorFilter(filterId.red)}
-              aria-label="TODO"
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              {/* {t('GREEN')} */}
-              Filtro Verde
-            </Text>
-            <Switch
-              name={filterId.green}
-              onChange={toggleColorFilter}
-              checked={isActiveColorFilter(filterId.green)}
-              aria-label="TODO"
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              {/* {t('BLUE')} */}
-              Filtro Azul
-            </Text>
-            <Switch
-              name={filterId.blue}
-              onChange={toggleColorFilter}
-              checked={isActiveColorFilter(filterId.blue)}
-              aria-label="TODO"
-              $enterabled
-            />
-          </SpaceBetween>
         </MenuBody>
       </Menu>
     </section>

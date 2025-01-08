@@ -1,13 +1,25 @@
+.lowBrightness {
+  filter: brightness(90%);
+}
+
+.hightBrightness {
+  filter: brightness(110%);
+}
+
 .hightContrast {
   filter: contrast(125%) !important;
 }
 
-.lowConstrast {
-  filter: contrast(50%) !important;
+.lowContrast {
+  filter: contrast(75%) !important;
 }
 
 .hightSaturation {
   filter: saturate(200%) !important;
+}
+
+.lowSaturation {
+  filter: saturate(50%) !important;
 }
 
 .invertColors {
@@ -17,14 +29,22 @@
   }
 }
 
+.monochrome {
+  filter: grayscale(100%) !important;
+}
+
 .red {
-  filter: sepia(1) saturate(5) hue-rotate(-30deg);
+  filter: sepia(1) saturate(5) hue-rotate(-50deg);
 }
 
 .green {
-  filter: sepia(1) saturate(5) hue-rotate(60deg);
+  filter: sepia(1) saturate(5) hue-rotate(50deg);
 }
 
 .blue {
-  filter: sepia(1) saturate(5) hue-rotate(180deg);
+  filter: sepia(1) saturate(5) hue-rotate(150deg);
+}
+
+.warm {
+  filter: brightness(90%) sepia(50%) saturate(125%) hue-rotate(0deg);
 }
