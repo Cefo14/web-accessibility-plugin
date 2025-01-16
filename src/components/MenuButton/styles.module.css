@@ -4,7 +4,7 @@
   place-items: center;
   gap: 1em;
 
-  background-color: var(--accessibility-white);
+  background-color: var(--accessibility-color-white);
   border: solid 3px black;
   border-radius: 16px;
 
@@ -19,11 +19,11 @@
 }
 
 .root:focus {
-  outline: solid 3px var(--accessibility-deep-cerise);
+  outline: solid 3px var(--accessibility-color-active);
 }
 
 .root:hover {
-  border-color: var(--accessibility-black);
+  border-color: var(--accessibility-color-black);
   opacity: 0.8;
 }
 
@@ -33,5 +33,5 @@
 }
 
 .rootActive {
-  background-color: var(--accessibility-very-light-blue);
+  background-color: var(--accessibility-color-info);
 }

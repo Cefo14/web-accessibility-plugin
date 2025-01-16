@@ -6,8 +6,8 @@
 
   padding: 1em;
 
-  background-color: var(--accessibility-white);
-  border: solid 3px var(--accessibility-black);
+  background-color: var(--accessibility-color-white);
+  border: solid 3px var(--accessibility-color-black);
   border-radius: 14px;
 }
 
@@ -22,16 +22,16 @@
   border: none;
   flex: 1 auto;
   height: 3em;
-  border: solid 2px var(--accessibility-black);
-  background-color: var( --accessibility-very-light-blue);
+  border: solid 2px var(--accessibility-color-black);
+  background-color: var(--accessibility-color-info);
 }
 
 .button:focus {
-  outline: 2px solid var(--accessibility-deep-cerise);
+  outline: 2px solid var(--accessibility-color-active);
 }
 
 .button:hover {
-  border-color: var(--accessibility-black);
+  border-color: var(--accessibility-color-black);
   opacity: 0.8;
 }
 
@@ -55,15 +55,15 @@
 
   height: 100%;
 
-  border: solid 2px var(--accessibility-black);
+  border: solid 2px var(--accessibility-color-black);
   border-left: none;
   border-right: none;
 
-  color: var(--accessibility-black);
+  color: var(--accessibility-color-black);
 }
 
 .title {
   margin: 0px;
   text-align: center;
-  color: var(--accessibility-black);
+  color: var(--accessibility-color-black);
 }

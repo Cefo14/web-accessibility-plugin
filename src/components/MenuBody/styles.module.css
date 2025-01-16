@@ -3,7 +3,7 @@
   padding: 1em;
   height: 100vh;
   max-height: calc(100vh - 64px);
-  background-color: var(--accessibility-lotion);
+  background-color: var(--accessibility-color-secondary);
 
   display: flex;
   flex-direction: column;

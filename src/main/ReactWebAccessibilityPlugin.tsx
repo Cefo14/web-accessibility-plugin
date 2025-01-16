@@ -39,12 +39,13 @@ import ButtonGroup from '@/components/ButtonGroup';
 // import UnderLineIcon from '@/assets/underline-svgrepo-com.svg?react';
 
 import { useOpen } from '@/hooks/useOpen';
-import { useModifyFontSize } from '@/hooks/useModifyFontSize';
-import { useHighlights } from '@/hooks/useHighlights';
+// import { useModifyFontSize } from '@/hooks/useModifyFontSize';
 import { useColorFilter } from '@/hooks/useColorFilter';
-import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
-import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
-import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
+// import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
+// import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
+// import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
+import { useTools } from '@/hooks/useTools';
+import { useAdjustFont } from '@/hooks/useAdjustFont';
 // import { useTranslate } from '@/hooks/useTranslate';
 
 type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
@@ -60,47 +61,27 @@ export const ReactWebAccessibilityPlugin = memo(({
   const { isOpen, open, close } = useOpen();
 
   const {
-    min: minFontSizeValue,
-    max: maxFontSizeValue,
-    now: nowFontSizeValue,
-    decrement: decrementFontSizePercentage,
-    increment: incrementFontSizePercentage,
-    reset: resetFontSize,
-  } = useModifyFontSize();
+    fontSizeStep,
+    incrementFontSize,
+    decrementFontSize,
+    fontWeightStep,
+    incrementFontWeight,
+    decrementFontWeight,
+    letterSpacingStep,
+    incrementLetterSpacing,
+    decrementLetterSpacing,
+    resetAdjustFont,
+    lineHeightStep,
+    incrementLineHeight,
+    decrementLineHeight,
+  } = useAdjustFont();
 
   const {
-    min: minLetterSpacingValue,
-    max: maxLetterSpacingValue,
-    now: nowLetterSpacingValue,
-    decrement: decrementLetterSpacing,
-    increment: incrementLetterSpacing,
-    reset: resetLetterSpacing,
-  } = useModifyLetterSpacing();
-
-  const {
-    min: minLineHeightValue,
-    max: maxLineHeightValue,
-    now: nowLineHeightValue,
-    decrement: decrementLineHeightPercentage,
-    increment: incrementLineHeightPercentage,
-    reset: resetLineHeight,
-  } = useModifyLineHeight();
-
-  const {
-    min: minFontWeightValue,
-    max: maxFontWeightValue,
-    now: nowFontWeightValue,
-    decrement: decrementFontWeight,
-    increment: incrementFontWeight,
-    reset: resetFontWeight,
-  } = useModifyFontWeight();
-
-  const {
-    id: highlightId,
-    togglHighlight,
-    isActiveHighlight,
-    resetHighlights,
-  } = useHighlights();
+    toolNames,
+    toggleTool,
+    isToolActive,
+    resetTools,
+  } = useTools();
 
   const {
     actions,
@@ -111,19 +92,13 @@ export const ReactWebAccessibilityPlugin = memo(({
   } = useColorFilter();
 
   const reset = useCallback(() => {
-    resetFontSize();
-    resetLetterSpacing();
-    resetLineHeight();
-    resetFontWeight();
-    resetHighlights();
+    resetTools();
     onResetColorFilter();
+    resetAdjustFont();
   }, [
-    resetFontSize,
-    resetLetterSpacing,
-    resetLineHeight,
-    resetFontWeight,
-    resetHighlights,
+    resetTools,
     onResetColorFilter,
+    resetAdjustFont,
   ]);
 
   // const {
@@ -169,12 +144,12 @@ export const ReactWebAccessibilityPlugin = memo(({
               Tamaño
             </Text>
             <SwitchButtons
-              $min={minFontSizeValue}
-              $max={maxFontSizeValue}
-              $now={nowFontSizeValue}
-              $value={`${nowFontSizeValue}x`}
-              $onDecrement={decrementFontSizePercentage}
-              $onIncrement={incrementFontSizePercentage}
+              $min={-10}
+              $max={10}
+              $now={fontSizeStep}
+              $value={`${fontSizeStep}x`}
+              $onDecrement={decrementFontSize}
+              $onIncrement={incrementFontSize}
             />
           </SpaceBetween>
 
@@ -183,10 +158,10 @@ export const ReactWebAccessibilityPlugin = memo(({
               Espaciado
             </Text>
             <SwitchButtons
-              $min={minLetterSpacingValue}
-              $max={maxLetterSpacingValue}
-              $now={nowLetterSpacingValue}
-              $value={`${nowLetterSpacingValue}x`}
+              $min={-10}
+              $max={10}
+              $now={letterSpacingStep}
+              $value={`${letterSpacingStep}x`}
               $onDecrement={decrementLetterSpacing}
               $onIncrement={incrementLetterSpacing}
             />
@@ -197,12 +172,12 @@ export const ReactWebAccessibilityPlugin = memo(({
               Altura
             </Text>
             <SwitchButtons
-              $min={minLineHeightValue}
-              $max={maxLineHeightValue}
-              $now={nowLineHeightValue}
-              $value={`${nowLineHeightValue}x`}
-              $onDecrement={decrementLineHeightPercentage}
-              $onIncrement={incrementLineHeightPercentage}
+              $min={-10}
+              $max={10}
+              $now={lineHeightStep}
+              $value={`${lineHeightStep}x`}
+              $onDecrement={decrementLineHeight}
+              $onIncrement={incrementLineHeight}
             />
           </SpaceBetween>
 
@@ -211,10 +186,10 @@ export const ReactWebAccessibilityPlugin = memo(({
               Peso
             </Text>
             <SwitchButtons
-              $min={minFontWeightValue}
-              $max={maxFontWeightValue}
-              $now={nowFontWeightValue}
-              $value={`${nowFontWeightValue}x`}
+              $min={-10}
+              $max={10}
+              $now={fontWeightStep}
+              $value={`${fontWeightStep}x`}
               $onDecrement={decrementFontWeight}
               $onIncrement={incrementFontWeight}
             />
@@ -225,9 +200,9 @@ export const ReactWebAccessibilityPlugin = memo(({
               Resaltar Titulos
             </Text>
             <Switch
-              name={highlightId.highlightTitles}
-              onChange={togglHighlight}
-              checked={isActiveHighlight(highlightId.highlightTitles)}
+              name={toolNames.highlightTitles}
+              onChange={toggleTool}
+              checked={isToolActive(toolNames.highlightTitles)}
               aria-label="Resaltar Titulos"
               $enterabled
             />
@@ -238,9 +213,9 @@ export const ReactWebAccessibilityPlugin = memo(({
               Resaltar Enlaces
             </Text>
             <Switch
-              name={highlightId.highlightLinks}
-              onChange={togglHighlight}
-              checked={isActiveHighlight(highlightId.highlightLinks)}
+              name={toolNames.highlightLinks}
+              onChange={toggleTool}
+              checked={isToolActive(toolNames.highlightLinks)}
               aria-label="Resaltar Enlaces"
               $enterabled
             />
@@ -378,9 +353,22 @@ export const ReactWebAccessibilityPlugin = memo(({
               Resaltar cursor
             </Text>
             <Switch
-              name={highlightId.highlightCursor}
-              onChange={togglHighlight}
-              checked={isActiveHighlight(highlightId.highlightCursor)}
+              name={toolNames.highlightCursor}
+              onChange={toggleTool}
+              checked={isToolActive(toolNames.highlightCursor)}
+              aria-label="Resaltar cursor"
+              $enterabled
+            />
+          </SpaceBetween>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              Ocultar Imagenes
+            </Text>
+            <Switch
+              name={toolNames.hideImages}
+              onChange={toggleTool}
+              checked={isToolActive(toolNames.hideImages)}
               aria-label="Resaltar cursor"
               $enterabled
             />

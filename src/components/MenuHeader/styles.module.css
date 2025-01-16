@@ -4,7 +4,7 @@
   align-items: center;
   height: 64px;
   padding: 0 1em;
-  background-color: var(--accessibility-secondary-color);
+  background-color: var(--accessibility-color-primary);
 }
 
 .actions {
@@ -28,13 +28,13 @@
 }
 
 .button:focus {
-  outline: 3px solid var(--accessibility-deep-cerise);
+  outline: 3px solid var(--accessibility-color-active);
 }
 
 .resetButton {
-  background-color: var( --accessibility-munsell-yellow);
+  background-color: var(--accessibility-color-warn);
 }
 
 .closeButton {
-  background-color: var(--accessibility-coral-red);
+  background-color: var(--accessibility-color-danger);
 }

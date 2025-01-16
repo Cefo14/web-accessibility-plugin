@@ -33,7 +33,7 @@ const MenuHeader = ({
       id={$titleId}
       $as="h2"
       $size="lg"
-      $color="secondary"
+      $color="white"
     >
       { $title }
     </Heading>

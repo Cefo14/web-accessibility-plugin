@@ -21,7 +21,7 @@
   bottom: 0;
 
   border-radius: 16px;
-  background-color: #C1C1C1;
+  background-color: var(--accessibility-color-border);
 
   transition: .4s;
 }
@@ -39,13 +39,13 @@
   height: 18px;
   width: 18px;
   border-radius: 50%;
-  background-color: var(--accessibility-primary-color);
+  background-color: var(--accessibility-color-secondary);
 
   transition: .4s;
 }
 
 .input:checked + .slider {
-  background-color: var(--accessibility-secondary-color);
+  background-color: var(--accessibility-color-primary);
 }
 
 .input:checked + .slider:before {

@@ -5,7 +5,7 @@
   z-index: 2147483647;
   opacity: 1;
   overflow: hidden;
-  background-color: var(--accessibility-white);
+  background-color: var(--accessibility-color-white);
   width: 400px;
   line-height: 1;
   height: 100%;

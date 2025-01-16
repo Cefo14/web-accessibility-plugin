@@ -3,13 +3,13 @@
   bottom: 1vh;
   right: 1vh;
 
-  background-color: var(--accessibility-true-blue);
-  outline: 4px solid var(--accessibility-true-blue);
-  border: 2px solid var(--accessibility-white);
+  background-color: var(--accessibility-color-info);
+  outline: 4px solid var(--accessibility-color-info);
+  border: 2px solid var(--accessibility-color-white);
   border-radius: 50%;
 
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
   padding: 0;
 
   display: flex;
@@ -20,11 +20,11 @@
 }
 
 .root:focus {
-  background-color: var(--accessibility-deep-cerise);
-  outline: 4px solid var(--accessibility-deep-cerise);
+  background-color: var(--accessibility-color-active);
+  outline: 4px solid var(--accessibility-color-active);
 }
 
 .root:hover {
   opacity: 0.8;
-  border-color: var(--accessibility-white);
+  border-color: var(--accessibility-color-white);
 }

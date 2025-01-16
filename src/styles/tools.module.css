@@ -17,3 +17,7 @@
 .highlightCursor * {
   cursor: url('../assets/cursor-svgrepo-com.svg'), auto !important;
 }
+
+.hideImages img {
+  display: none !important;
+}

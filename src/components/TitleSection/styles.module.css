@@ -3,8 +3,8 @@
   place-items: center;
   gap: 0.5em;
 
-  background-color: var(--accessibility-true-blue);
-  color: #ffffff;
+  background-color: var(--accessibility-color-info);
+  color: var(--accessibility-color-secondary);
 
   border-radius: 16px;
   margin: 0;

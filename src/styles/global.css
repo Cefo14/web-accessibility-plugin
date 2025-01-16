@@ -1,21 +1,15 @@
 :root {
-  --accessibility-primary-color: #FFFFFF;
-  --accessibility-primary-text-color: #09090b;
-  --accessibility-primary-border-color: #c1c1c1;
-  --accessibility-primary-hover-color: #e1e1e1;
+  --accessibility-color-primary: #09090b;
+  --accessibility-color-secondary: #fafafa;
+  --accessibility-color-border: #c1c1c1;
+  --accessibility-color-hover: #e1e1e1;
 
-  --accessibility-secondary-color: #18181b;
-  --accessibility-secondary-text-color: #FFFFFF;
-
-
-  --accessibility-deep-cerise : #e6308a;
-  --accessibility-munsell-yellow: #f2c300;
-  --accessibility-coral-red: #f53f42;
-  --accessibility-true-blue: #0073e6;
-  --accessibility-very-light-blue: #606ff3;
-  --accessibility-white: #ffffff;
-  --accessibility-black: #000000;
-  --accessibility-lotion : #fafafa;
+  --accessibility-color-info: #0073e6;
+  --accessibility-color-warn: #f2c300;
+  --accessibility-color-danger: #f53f42;
+  --accessibility-color-active: #e6308a;
+  --accessibility-color-white: #ffffff;
+  --accessibility-color-black: #000000;
 }
 
 .Accessibility__root {
@@ -24,5 +18,5 @@
 }
 
 .Accessibility__root * {
-  font-family: sans-serif !important;
+  font-family: Arial, Helvetica, sans-serif !important;
 }

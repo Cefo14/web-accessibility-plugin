@@ -1,5 +1,5 @@
 .root {
-  background-color: var(--accessibility-white);
+  background-color: var(--accessibility-color-white);
   padding: 1em;
   border-radius: 8px;
 }
