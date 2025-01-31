@@ -17,17 +17,17 @@ const FILTERS = {
   invert: 'invert',
 } as const;
 
-const ACTION_TYPES = {
-  [FILTERS.brightness]: FILTERS.brightness,
-  [FILTERS.contrast]: FILTERS.contrast,
-  [FILTERS.saturate]: FILTERS.saturate,
-  [FILTERS.sepia]: FILTERS.sepia,
-  [FILTERS.hue]: FILTERS.hue,
+const CUSTOM_FILTERS = {
   red: 'red',
   green: 'green',
   blue: 'blue',
   warm: 'warm',
   monochrome: 'monochrome',
+};
+
+const ACTION_TYPES = {
+  ...FILTERS,
+  ...CUSTOM_FILTERS,
   change: 'change',
   reset: 'reset',
 } as const;
@@ -126,31 +126,37 @@ const reducer = (state: State, action: Action): State => {
   }
 };
 
+const EMPTY_STRING = '';
+
 export const useColorFilter = () => {
   const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
-  const [hasCustomFilter, setHasCustomFilter] = useState(false);
+  const [activeCustomFilter, setActiveCustomFilter] = useState(EMPTY_STRING);
 
-  const onChangeColorFilter = useCallback((event: ChangeEventInput) => {
+  const changeColorFilter = useCallback((event: ChangeEventInput) => {
     const { name, value } = event.target;
     const type = name as ActionType;
     const payload = {
       value: Number(value),
     };
     dispatch({ type, payload });
+    setActiveCustomFilter(EMPTY_STRING);
   }, []);
 
-  const onChangeCustomColorFilter = useCallback((event: MouseEventButton) => {
+  const toggleCustomColorFilter = useCallback((event: MouseEventButton) => {
     const { name } = event.currentTarget;
     const type = name as ActionType;
     dispatch({ type });
-    setHasCustomFilter(false);
-    setHasCustomFilter(true);
+    setActiveCustomFilter(name);
   }, []);
 
-  const onResetColorFilter = useCallback(() => {
+  const resetColorFilter = useCallback(() => {
     dispatch({ type: ACTION_TYPES.reset });
-    setHasCustomFilter(false);
+    setActiveCustomFilter(EMPTY_STRING);
   }, []);
+
+  const isCustomFilterActive = useCallback((filter: string) => (
+    activeCustomFilter === filter
+  ), [activeCustomFilter]);
 
   useEffect(() => {
     const filter = [
@@ -166,9 +172,9 @@ export const useColorFilter = () => {
   return {
     actions: ACTION_TYPES,
     filters: state,
-    hasCustomFilter,
-    onChangeColorFilter,
-    onChangeCustomColorFilter,
-    onResetColorFilter,
+    changeColorFilter,
+    toggleCustomColorFilter,
+    resetColorFilter,
+    isCustomFilterActive,
   };
 };

@@ -6,14 +6,15 @@ interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'
 
 const Slider = ({ $label, ...props }: SliderProps) => {
   const id = useId();
+  const currentId = props.id ?? id;
   return (
     <div>
       <input
         {...props}
         type="range"
-        id={props.id ?? id}
+        id={currentId}
       />
-      { $label && <label htmlFor={props.id ?? id}>{$label}</label>}
+      { $label && <label htmlFor={currentId}>{$label}</label>}
     </div>
   );
 };

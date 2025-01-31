@@ -5,9 +5,12 @@ import clsx from 'clsx';
 
 import styles from './styles.module.css';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement>;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  $variant?: 'secondary' | 'info' | 'warning' | 'danger';
+}
 
 const Button = ({
+  $variant,
   className,
   children,
   type = 'button',
@@ -16,7 +19,16 @@ const Button = ({
   <button
     {...props}
     type={type}
-    className={clsx(styles.button, className)}
+    className={clsx(
+      styles.button,
+      {
+        [styles['button--secondary']]: $variant === 'secondary',
+        [styles['button--info']]: $variant === 'info',
+        [styles['button--warning']]: $variant === 'warning',
+        [styles['button--danger']]: $variant === 'danger',
+      },
+      className,
+    )}
   >
     {children}
   </button>

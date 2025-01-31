@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 interface HeadingProps extends HTMLAttributes<HTMLHeadingElement> {
   $as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
   $size?: 'xxl' | 'xl' | 'lg' | 'md' | 'sm';
-  $color?: 'primary' | 'secondary' | 'white';
+  $color?: 'primary' | 'secondary';
 }
 
 const Heading = ({

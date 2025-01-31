@@ -1,15 +1,31 @@
 :root {
-  --accessibility-color-primary: #09090b;
-  --accessibility-color-secondary: #fafafa;
-  --accessibility-color-border: #c1c1c1;
-  --accessibility-color-hover: #e1e1e1;
+  --accessibility-color-primary-light: #fbfbfb;
+  --accessibility-color-primary: #fafafa;
+  --accessibility-color-primary-dark: #bbbbbb;
+  --accessibility-color-primary-text: #000000;
 
+  --accessibility-color-secondary-light: #40404e;
+  --accessibility-color-secondary: #09090b;
+  --accessibility-color-secondary-dark: #060608;
+  --accessibility-color-secondary-text: #ffffff;
+
+  --accessibility-color-info-light: #2d96ff;
   --accessibility-color-info: #0073e6;
-  --accessibility-color-warn: #f2c300;
+  --accessibility-color-info-dark: #0056ac;
+  --accessibility-color-info-text: #ffffff;
+
+  --accessibility-color-warning-light: #ffd735;
+  --accessibility-color-warning: #f2c300;
+  --accessibility-color-warning-dark: #b59200;
+  --accessibility-color-warning-text: #000000;
+
+  --accessibility-color-danger-light: #f76f71;
   --accessibility-color-danger: #f53f42;
+  --accessibility-color-danger-dark: #db0b0e;
+
+  --accessibility-color-active-light: #ec63a7;
   --accessibility-color-active: #e6308a;
-  --accessibility-color-white: #ffffff;
-  --accessibility-color-black: #000000;
+  --accessibility-color-active-dark: #ba1667;
 }
 
 .Accessibility__root {

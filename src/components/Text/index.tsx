@@ -6,7 +6,7 @@ import styles from './styles.module.css';
 interface TextProps extends HTMLAttributes<HTMLElement> {
   $as?: 'p' | 'span' | 'strong' | 'i' | 'small' | 'ins' | 'sub' | 'b' | 'mark' | 'del' | 'em' | 'sup';
   $size?: 'xxl' | 'xl' | 'lg' | 'md' | 'sm';
-  $color?: 'primary' | 'secondary' | 'white';
+  $color?: 'primary' | 'secondary';
 }
 
 const Text = ({

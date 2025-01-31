@@ -33,13 +33,9 @@
 }
 
 .primary {
-  color: var(--accessibility-color-primary) !important;
+  color: var(--accessibility-color-primary-text) !important;
 }
 
 .secondary {
-  color: var(--accessibility-color-secondary) !important;
-}
-
-.white {
-  color: var(--accessibility-color-white) !important;
+  color: var(--accessibility-color-secondary-text) !important;
 }

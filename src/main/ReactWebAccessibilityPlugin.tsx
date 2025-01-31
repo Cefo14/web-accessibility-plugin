@@ -86,18 +86,19 @@ export const ReactWebAccessibilityPlugin = memo(({
   const {
     actions,
     filters,
-    onResetColorFilter,
-    onChangeColorFilter,
-    onChangeCustomColorFilter,
+    resetColorFilter,
+    changeColorFilter,
+    toggleCustomColorFilter,
+    isCustomFilterActive,
   } = useColorFilter();
 
   const reset = useCallback(() => {
     resetTools();
-    onResetColorFilter();
+    resetColorFilter();
     resetAdjustFont();
   }, [
     resetTools,
-    onResetColorFilter,
+    resetColorFilter,
     resetAdjustFont,
   ]);
 
@@ -233,7 +234,7 @@ export const ReactWebAccessibilityPlugin = memo(({
             </Text>
             <Slider
               name={actions.brightness}
-              onChange={onChangeColorFilter}
+              onChange={changeColorFilter}
               min={50}
               max={150}
               step={1}
@@ -247,7 +248,7 @@ export const ReactWebAccessibilityPlugin = memo(({
             </Text>
             <Slider
               name={actions.contrast}
-              onChange={onChangeColorFilter}
+              onChange={changeColorFilter}
               min={20}
               max={180}
               step={1}
@@ -261,7 +262,7 @@ export const ReactWebAccessibilityPlugin = memo(({
             </Text>
             <Slider
               name={actions.saturate}
-              onChange={onChangeColorFilter}
+              onChange={changeColorFilter}
               min={20}
               max={180}
               step={1}
@@ -271,11 +272,11 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              Calor
+              Sepia
             </Text>
             <Slider
               name={actions.sepia}
-              onChange={onChangeColorFilter}
+              onChange={changeColorFilter}
               min={0}
               max={100}
               step={1}
@@ -285,11 +286,11 @@ export const ReactWebAccessibilityPlugin = memo(({
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              Tonalidad
+              HUE
             </Text>
             <Slider
               name={actions.hue}
-              onChange={onChangeColorFilter}
+              onChange={changeColorFilter}
               min={0}
               max={360}
               step={1}
@@ -301,42 +302,48 @@ export const ReactWebAccessibilityPlugin = memo(({
             <Button
               type="button"
               name={actions.reset}
-              onClick={onResetColorFilter}
+              onClick={resetColorFilter}
+              $variant="warning"
             >
               Restablecer
             </Button>
             <Button
               type="button"
               name={actions.warm}
-              onClick={onChangeCustomColorFilter}
+              onClick={toggleCustomColorFilter}
+              $variant={isCustomFilterActive(actions.warm) ? 'secondary' : undefined}
             >
               Calido
             </Button>
             <Button
               type="button"
               name={actions.blue}
-              onClick={onChangeCustomColorFilter}
+              onClick={toggleCustomColorFilter}
+              $variant={isCustomFilterActive(actions.blue) ? 'secondary' : undefined}
             >
               Azul
             </Button>
             <Button
               type="button"
               name={actions.red}
-              onClick={onChangeCustomColorFilter}
+              onClick={toggleCustomColorFilter}
+              $variant={isCustomFilterActive(actions.red) ? 'secondary' : undefined}
             >
               Rojo
             </Button>
             <Button
               type="button"
               name={actions.green}
-              onClick={onChangeCustomColorFilter}
+              onClick={toggleCustomColorFilter}
+              $variant={isCustomFilterActive(actions.green) ? 'secondary' : undefined}
             >
               Verde
             </Button>
             <Button
               type="button"
               name={actions.monochrome}
-              onClick={onChangeCustomColorFilter}
+              onClick={toggleCustomColorFilter}
+              $variant={isCustomFilterActive(actions.monochrome) ? 'secondary' : undefined}
             >
               Monocromatico
             </Button>

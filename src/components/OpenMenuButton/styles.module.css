@@ -1,11 +1,11 @@
 .root {
   position: fixed;
-  bottom: 1vh;
-  right: 1vh;
+  bottom: 16px;
+  right: 16px;
 
   background-color: var(--accessibility-color-info);
   outline: 4px solid var(--accessibility-color-info);
-  border: 2px solid var(--accessibility-color-white);
+  border: 2px solid var(--accessibility-color-info-text);
   border-radius: 50%;
 
   width: 56px;
@@ -25,6 +25,6 @@
 }
 
 .root:hover {
-  opacity: 0.8;
-  border-color: var(--accessibility-color-white);
+  background-color: var(--accessibility-color-info-light);
+  outline-color: var(--accessibility-color-info-light);
 }

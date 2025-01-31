@@ -1,15 +1,67 @@
 .button {
-  background-color: var(--accessibility-color-secondary);
-  color: var(--accessibility-color-primary);
-  border: solid 1px var(--accessibility-color-border);
+  background-color: var(--accessibility-color-primary);
+  border: solid 1px var(--accessibility-color-primary-dark);
+  color: var(--accessibility-color-primary-text);
   border-radius: 4px;
   padding: 0.25em 0.5em;
 }
 
-.button:hover {
-  background-color: var(--accessibility-color-hover);
+.button:active {
+  outline: solid 2px Highlight;
+  outline: solid 2px -webkit-focus-ring-color;
 }
 
-.button:disabled {
-  color: var(--accessibility-color-border);
+.button:focus {
+  outline: solid 2px Highlight;
+  outline: solid 2px -webkit-focus-ring-color;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--accessibility-color-primary-dark);
+}
+
+.button--secondary {
+  font-weight: bold;
+  border-color: var(--accessibility-color-secondary);
+  background-color: var(--accessibility-color-secondary);
+  color: var(--accessibility-color-secondary-text);
+}
+
+.button--secondary:hover:not(:disabled) {
+  background-color: var(--accessibility-color-secondary-dark);
+  border-color: var(--accessibility-color-secondary-dark);
+}
+
+.button--info {
+  background-color: var(--accessibility-color-info);
+  border-color: var(--accessibility-color-info);
+  color: var(--accessibility-color-info-text);
+}
+
+.button--info:hover:not(:disabled) {
+  background-color: var(--accessibility-color-info-dark);
+  border-color: var(--accessibility-color-info-dark);
+}
+
+.button--warning {
+  background-color: var(--accessibility-color-warning);
+  border-color: var(--accessibility-color-warning);
+  color: var(--accessibility-color-warning-text);
+  font-weight: bold;
+}
+
+.button--warning:hover:not(:disabled) {
+  background-color: var(--accessibility-color-warning-dark);
+  border-color: var(--accessibility-color-warning-dark);
+}
+
+.button--danger {
+  background-color: var(--accessibility-color-danger);
+  border-color: var(--accessibility-color-danger);
+  color: var(--accessibility-color-danger-text);
+}
+
+.button--danger:hover:not(:disabled) {
+  background-color: var(--accessibility-color-danger-dark);
+  border-color: var(--accessibility-color-danger-dark);
 }
