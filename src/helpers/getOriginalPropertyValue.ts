@@ -4,7 +4,7 @@ type CSSByArgs = keyof Omit<CSSStyleDeclaration, 'length' | 'parentRule'>;
 
 export const getOriginalPropertyValue = (element: HTMLElement, prop: CSSByArgs) => {
   const propByStr = prop.toString();
-  const DATA_ATTR = `original-${propByStr.toLowerCase()}`;
+  const DATA_ATTR = `data-${propByStr.toLowerCase()}`;
 
   let originalValue = element.getAttribute(DATA_ATTR) ?? null;
 

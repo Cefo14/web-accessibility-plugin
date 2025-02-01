@@ -15,12 +15,6 @@
   padding: 0px;
 }
 
-.button:disabled {
-  & svg path {
-    stroke: var(--accessibility-color-border);
-  }
-}
-
 .value {
   width: 2em;
   height: 2em;

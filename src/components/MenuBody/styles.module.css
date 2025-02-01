@@ -1,8 +1,8 @@
 .root {
   overflow-y: auto;
   padding: 1em;
-  height: 100vh;
-  max-height: calc(100vh - 64px);
+  height: 100%;
+  max-height: calc(100% - 64px);
   background-color: var(--accessibility-color-primary);
 
   display: flex;

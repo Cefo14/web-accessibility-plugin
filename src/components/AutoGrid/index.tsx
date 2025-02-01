@@ -6,14 +6,18 @@ import { type ElementProps } from '@/types/ElementProps';
 import classNames from './AutoGrid.module.css';
 
 interface AutoGridProps extends ElementProps {
-  $gap?: CSSProperties['gap'];
-  $columnWidth?: CSSProperties['width'];
-  $placeContent?: CSSProperties['placeContent'];
+  $gap?: string | number;
+  $columnWidth?: string | number;
+  $rowWidth?: string | number;
+  $rows?: number;
+  $placeContent?: string | number;
 }
 
 const AutoGrid = ({
   $gap,
   $columnWidth,
+  $rowWidth,
+  $rows,
   $placeContent,
   children,
   className,
@@ -22,17 +26,18 @@ const AutoGrid = ({
   const styles = useMemo<CSSProperties>(() => ({
     gap: $gap,
     gridTemplateColumns: `repeat(auto-fill, minmax(${$columnWidth}, 1fr))`,
+    gridTemplateRows: $rows ? `repeat(${$rows}, ${$rowWidth})` : 'auto',
     $placeContent,
-  }), [$gap, $columnWidth, $placeContent]);
+  }), [$gap, $columnWidth, $rows, $rowWidth, $placeContent]);
 
   return (
-    <section
+    <div
       {...props}
       className={clsx(classNames.root, className)}
       style={styles}
     >
       { children }
-    </section>
+    </div>
   );
 };
 

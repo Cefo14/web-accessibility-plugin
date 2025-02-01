@@ -6,12 +6,18 @@
   padding: 0.25em 0.5em;
 }
 
-.button:active {
+.button:disabled {
+  opacity: 0.5;
+  background-color: #d3d3d3;
+  border-color: #d3d3d3;
+}
+
+.button:focus:not(:disabled) {
   outline: solid 2px Highlight;
   outline: solid 2px -webkit-focus-ring-color;
 }
 
-.button:focus {
+.button:active:not(:disabled) {
   outline: solid 2px Highlight;
   outline: solid 2px -webkit-focus-ring-color;
 }
@@ -21,7 +27,6 @@
 }
 
 .button--secondary {
-  font-weight: bold;
   border-color: var(--accessibility-color-secondary);
   background-color: var(--accessibility-color-secondary);
   color: var(--accessibility-color-secondary-text);

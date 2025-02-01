@@ -1,5 +1,7 @@
 import { GLOBALS } from '@/constants/Globals';
 
+type NotifyFN = (elements: HTMLElement[]) => void;
+
 export class TextElements {
   private nodes: Set<Node>;
 
@@ -7,7 +9,9 @@ export class TextElements {
 
   private currentElements: HTMLElement[];
 
-  private observer: MutationObserver;
+  private mutationObserver: MutationObserver;
+
+  private observers: Set<NotifyFN>;
 
   static #instance: TextElements;
 
@@ -15,10 +19,11 @@ export class TextElements {
     this.nodes = new Set();
     this.excludedNodes = new Set();
     this.currentElements = [];
+    this.observers = new Set();
 
     this.loadBodyNodes();
-    this.observer = this.observeNodes();
-    this.observer.observe(document.body, { childList: true, subtree: true });
+    this.mutationObserver = this.observeNodes();
+    this.mutationObserver.observe(document.body, { childList: true, subtree: true });
   }
 
   public static get instance(): TextElements {
@@ -28,30 +33,38 @@ export class TextElements {
     return TextElements.#instance;
   }
 
-  get elements(): HTMLElement[] {
+  public get elements(): HTMLElement[] {
     return this.getElements();
   }
 
-  get titles(): HTMLElement[] {
+  public get titles(): HTMLElement[] {
     const headerElements = ['H1', 'H2', 'H3', 'H4', 'H5', 'H6'];
     return this.getElements().filter((element) => headerElements.includes(element.tagName));
   }
 
-  get links(): HTMLElement[] {
+  public get links(): HTMLElement[] {
     const headerElements = ['A'];
     return this.getElements().filter((element) => headerElements.includes(element.tagName));
   }
 
   public reload() {
-    this.observer.disconnect();
+    this.mutationObserver.disconnect();
 
     this.nodes.clear();
     this.excludedNodes.clear();
     this.currentElements = [];
 
     this.loadBodyNodes();
-    this.observer.observe(document.body, { childList: true, subtree: true });
+    this.mutationObserver.observe(document.body, { childList: true, subtree: true });
   }
+
+  public subscribe = (observer: NotifyFN) => {
+    this.observers.add(observer);
+  };
+
+  public unsubscribe = (observer: NotifyFN) => {
+    this.observers.delete(observer);
+  };
 
   private fetchTextNodes(element: Node): Node[] {
     const textNodes: Node[] = [];
@@ -109,6 +122,7 @@ export class TextElements {
         if (addedNodes.length > 0) this.addNodes(addedNodes);
         if (removedNodes.length > 0) this.removeNodes(removedNodes);
       });
+      this.notifyMutation();
     });
     return observer;
   }
@@ -150,4 +164,11 @@ export class TextElements {
     this.refreshElements();
     return this.currentElements;
   }
+
+  private notifyMutation = () => {
+    this.observers.forEach((observer) => {
+      const elements = this.getElements();
+      observer(elements);
+    });
+  };
 }

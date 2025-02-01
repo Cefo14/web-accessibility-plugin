@@ -1,12 +1,12 @@
 import {
   useCallback,
-  useEffect,
   useReducer,
   useState,
 } from 'react';
 
 import type { ChangeEventInput } from '@/types/ChangeEvent';
 import type { MouseEventButton } from '@/types/MouseEvent';
+import { useDidUpdate } from './useDidUpdate';
 
 const FILTERS = {
   brightness: 'brightness',
@@ -158,7 +158,7 @@ export const useColorFilter = () => {
     activeCustomFilter === filter
   ), [activeCustomFilter]);
 
-  useEffect(() => {
+  useDidUpdate(() => {
     const filter = [
       `brightness(${state.brightness}%)`,
       `contrast(${state.contrast}%)`,
@@ -166,7 +166,7 @@ export const useColorFilter = () => {
       `sepia(${state.sepia}%)`,
       `hue-rotate(${state.hue}deg)`,
     ].join(' ');
-    document.documentElement.style.filter = filter;
+    document.documentElement.style.setProperty('filter', filter);
   }, [state]);
 
   return {

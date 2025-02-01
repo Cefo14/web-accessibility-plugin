@@ -20,6 +20,7 @@ interface SwitchButtonsProps extends ElementProps {
   $onDecrement?: OnClickButton;
   $onIncrement?: OnClickButton;
   $id?: string;
+  $name?: string;
 }
 
 const SwitchButtons = ({
@@ -29,6 +30,7 @@ const SwitchButtons = ({
   $value,
   $onIncrement,
   $onDecrement,
+  $name,
   className,
   ...props
 }: SwitchButtonsProps) => (
@@ -37,6 +39,7 @@ const SwitchButtons = ({
     {...props}
   >
     <Button
+      name={$name}
       type="button"
       className={clsx(styles.button)}
       onClick={$onDecrement}
@@ -49,6 +52,7 @@ const SwitchButtons = ({
       {$value}
     </Text>
     <Button
+      name={$name}
       type="button"
       className={clsx(styles.button)}
       onClick={$onIncrement}

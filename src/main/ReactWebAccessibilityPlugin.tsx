@@ -22,7 +22,9 @@ import Switch from '@/components/Switch';
 import Divider from '@/components/Divider';
 import Slider from '@/components/Slider';
 import Button from '@/components/Button';
-import ButtonGroup from '@/components/ButtonGroup';
+import AutoGrid from '@/components/AutoGrid';
+import Select from '@/components/Select';
+// import ButtonGroup from '@/components/ButtonGroup';
 
 // import TitleIcon from '@/assets/title-svgrepo-com.svg?react';
 // import LinkIcon from '@/assets/link-svgrepo-com.svg?react';
@@ -61,19 +63,14 @@ export const ReactWebAccessibilityPlugin = memo(({
   const { isOpen, open, close } = useOpen();
 
   const {
+    fontProps,
+    incrementFontProp,
+    decrementFontProp,
     fontSizeStep,
-    incrementFontSize,
-    decrementFontSize,
     fontWeightStep,
-    incrementFontWeight,
-    decrementFontWeight,
     letterSpacingStep,
-    incrementLetterSpacing,
-    decrementLetterSpacing,
-    resetAdjustFont,
     lineHeightStep,
-    incrementLineHeight,
-    decrementLineHeight,
+    resetAdjustFont,
   } = useAdjustFont();
 
   const {
@@ -149,8 +146,9 @@ export const ReactWebAccessibilityPlugin = memo(({
               $max={10}
               $now={fontSizeStep}
               $value={`${fontSizeStep}x`}
-              $onDecrement={decrementFontSize}
-              $onIncrement={incrementFontSize}
+              $onDecrement={decrementFontProp}
+              $onIncrement={incrementFontProp}
+              $name={fontProps.size}
             />
           </SpaceBetween>
 
@@ -163,8 +161,9 @@ export const ReactWebAccessibilityPlugin = memo(({
               $max={10}
               $now={letterSpacingStep}
               $value={`${letterSpacingStep}x`}
-              $onDecrement={decrementLetterSpacing}
-              $onIncrement={incrementLetterSpacing}
+              $onDecrement={decrementFontProp}
+              $onIncrement={incrementFontProp}
+              $name={fontProps.letterSpacing}
             />
           </SpaceBetween>
 
@@ -177,8 +176,9 @@ export const ReactWebAccessibilityPlugin = memo(({
               $max={10}
               $now={lineHeightStep}
               $value={`${lineHeightStep}x`}
-              $onDecrement={decrementLineHeight}
-              $onIncrement={incrementLineHeight}
+              $onDecrement={decrementFontProp}
+              $onIncrement={incrementFontProp}
+              $name={fontProps.lineHeight}
             />
           </SpaceBetween>
 
@@ -191,34 +191,22 @@ export const ReactWebAccessibilityPlugin = memo(({
               $max={10}
               $now={fontWeightStep}
               $value={`${fontWeightStep}x`}
-              $onDecrement={decrementFontWeight}
-              $onIncrement={incrementFontWeight}
+              $onDecrement={decrementFontProp}
+              $onIncrement={incrementFontProp}
+              $name={fontProps.weight}
             />
           </SpaceBetween>
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
-              Resaltar Titulos
+              Fuente
             </Text>
-            <Switch
-              name={toolNames.highlightTitles}
-              onChange={toggleTool}
-              checked={isToolActive(toolNames.highlightTitles)}
-              aria-label="Resaltar Titulos"
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Resaltar Enlaces
-            </Text>
-            <Switch
-              name={toolNames.highlightLinks}
-              onChange={toggleTool}
-              checked={isToolActive(toolNames.highlightLinks)}
-              aria-label="Resaltar Enlaces"
-              $enterabled
+            <Select
+              $options={[{
+                value: 'Arial',
+                label: 'Arial',
+              }]}
+              $value=""
             />
           </SpaceBetween>
 
@@ -298,15 +286,7 @@ export const ReactWebAccessibilityPlugin = memo(({
             />
           </SpaceBetween>
 
-          <ButtonGroup>
-            <Button
-              type="button"
-              name={actions.reset}
-              onClick={resetColorFilter}
-              $variant="warning"
-            >
-              Restablecer
-            </Button>
+          <AutoGrid $gap="0.5em" $columnWidth="6em" $rows={2} $rowWidth="2rem">
             <Button
               type="button"
               name={actions.warm}
@@ -347,13 +327,47 @@ export const ReactWebAccessibilityPlugin = memo(({
             >
               Monocromatico
             </Button>
-          </ButtonGroup>
+            <Button
+              type="button"
+              name={actions.reset}
+              onClick={resetColorFilter}
+              $variant="warning"
+            >
+              Restablecer
+            </Button>
+          </AutoGrid>
 
           <Divider />
 
           <Heading $as="h3" $size="md">
             Herramientas
           </Heading>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              Resaltar Titulos
+            </Text>
+            <Switch
+              name={toolNames.highlightTitles}
+              onChange={toggleTool}
+              checked={isToolActive(toolNames.highlightTitles)}
+              aria-label="Resaltar Titulos"
+              $enterabled
+            />
+          </SpaceBetween>
+
+          <SpaceBetween>
+            <Text $size="sm" $as="span">
+              Resaltar Enlaces
+            </Text>
+            <Switch
+              name={toolNames.highlightLinks}
+              onChange={toggleTool}
+              checked={isToolActive(toolNames.highlightLinks)}
+              aria-label="Resaltar Enlaces"
+              $enterabled
+            />
+          </SpaceBetween>
 
           <SpaceBetween>
             <Text $size="sm" $as="span">
