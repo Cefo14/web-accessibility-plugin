@@ -1,19 +1,21 @@
-import { type HtmlHTMLAttributes, memo } from 'react';
+import { type SelectHTMLAttributes, memo } from 'react';
 import clsx from 'clsx';
 
 import styles from './styles.module.css';
 
-interface SelectProps extends Omit<HtmlHTMLAttributes<HTMLSelectElement>, 'children'> {
-  $options: {
-    value: string | number;
-    label: string | number;
-  }[];
-  $value: string | number;
+export type SelectOption = {
+  id?: string | number;
+  value: string | number;
+  label: string | number;
+};
+
+interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children'> {
+  $options: SelectOption[];
 }
 
 const Select = ({
   $options,
-  $value,
+  value,
   className,
   ...props
 }: SelectProps) => (
@@ -24,10 +26,11 @@ const Select = ({
     {
       $options.map((option) => (
         <option
+          key={option?.id ?? `${option.label}-${option.value}`}
           value={option.value}
-          selected={$value === option.value}
+          selected={value === option.value}
         >
-          {option.value}
+          {option.label}
         </option>
       ))
     }

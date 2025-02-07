@@ -45,6 +45,7 @@ const SwitchButtons = ({
       onClick={$onDecrement}
       disabled={$now === $min}
       aria-label="Decrement value"
+      value={$now}
     >
       <MinusIcon width={24} height={24} />
     </Button>
@@ -58,6 +59,7 @@ const SwitchButtons = ({
       onClick={$onIncrement}
       disabled={$now === $max}
       aria-label="Increment value"
+      value={$now}
     >
       <PlusIcon width={24} height={24} />
     </Button>

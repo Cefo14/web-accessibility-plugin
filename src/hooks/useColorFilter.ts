@@ -1,11 +1,9 @@
+/* eslint-disable no-case-declarations */
 import {
   useCallback,
   useReducer,
-  useState,
 } from 'react';
 
-import type { ChangeEventInput } from '@/types/ChangeEvent';
-import type { MouseEventButton } from '@/types/MouseEvent';
 import { useDidUpdate } from './useDidUpdate';
 
 const FILTERS = {
@@ -17,146 +15,143 @@ const FILTERS = {
   invert: 'invert',
 } as const;
 
+type BaseFilters = typeof FILTERS;
+
 const CUSTOM_FILTERS = {
   red: 'red',
   green: 'green',
   blue: 'blue',
   warm: 'warm',
   monochrome: 'monochrome',
-};
-
-const ACTION_TYPES = {
-  ...FILTERS,
-  ...CUSTOM_FILTERS,
-  change: 'change',
-  reset: 'reset',
 } as const;
 
-type ActionType = keyof typeof ACTION_TYPES;
+type CustomFilters = typeof CUSTOM_FILTERS;
 
-const DEFAULT_STATE = {
-  [FILTERS.brightness]: 100,
-  [FILTERS.contrast]: 100,
-  [FILTERS.saturate]: 100,
-  [FILTERS.sepia]: 0,
-  [FILTERS.hue]: 0,
+const ALL_FILTERS = {
+  ...FILTERS,
+  ...CUSTOM_FILTERS,
+} as const;
+
+export type ColorFilters = typeof ALL_FILTERS;
+
+export type ColorFiltersState = {
+  [FILTERS.brightness]: number;
+  [FILTERS.contrast]: number;
+  [FILTERS.saturate]: number;
+  [FILTERS.sepia]: number;
+  [FILTERS.hue]: number;
+  customFilterSelected?: keyof CustomFilters,
 };
 
-type State = typeof DEFAULT_STATE;
+const INITIAL_STATE: ColorFiltersState = {
+  brightness: 100,
+  contrast: 100,
+  saturate: 100,
+  sepia: 0,
+  hue: 0,
+  customFilterSelected: undefined,
+};
+
+const ACTIONS = {
+  SET_FILTER: 'SET_FILTER',
+  SELECT_CUSTOM_FILTER: 'SELECT_CUSTOM_FILTER',
+  RESET: 'RESET',
+} as const;
 
 interface Action {
-  type: ActionType;
+  type: keyof typeof ACTIONS;
   payload?: {
-    value: number;
+    filter?: keyof BaseFilters;
+    customFilter?: keyof CustomFilters;
+    value?: number;
   };
 }
 
-const reducer = (state: State, action: Action): State => {
-  const { type, payload } = action;
-  const { value = 0 } = payload ?? {};
+const CUSTOM_FILTER_VALUES: Record<PropertyKey, ColorFiltersState> = {
+  red: {
+    ...INITIAL_STATE,
+    customFilterSelected: 'red',
+    sepia: 100,
+    saturate: 500,
+    hue: -50,
+  },
+  green: {
+    ...INITIAL_STATE,
+    customFilterSelected: 'green',
+    sepia: 100,
+    saturate: 500,
+    hue: 50,
+  },
+  blue: {
+    ...INITIAL_STATE,
+    customFilterSelected: 'blue',
+    sepia: 100,
+    saturate: 500,
+    hue: 150,
+  },
+  warm: {
+    ...INITIAL_STATE,
+    customFilterSelected: 'warm',
+    brightness: 90,
+    sepia: 50,
+    saturate: 125,
+  },
+  monochrome: {
+    ...INITIAL_STATE,
+    customFilterSelected: 'monochrome',
+    saturate: 0,
+  },
+} as const;
 
-  const currentState = {
-    ...state,
-    hue: DEFAULT_STATE.hue,
-  };
+const reducer = (state: ColorFiltersState, action: Action): ColorFiltersState => {
+  const { type, payload } = action;
+  const { filter, customFilter, value } = payload ?? {};
 
   switch (type) {
-    case ACTION_TYPES.brightness:
+    case ACTIONS.SET_FILTER:
+      if (filter === undefined) return state;
       return {
-        ...currentState,
-        brightness: value,
+        ...state,
+        customFilterSelected: undefined,
+        [filter]: value,
       };
-    case ACTION_TYPES.contrast:
-      return {
-        ...currentState,
-        contrast: value,
-      };
-    case ACTION_TYPES.saturate:
-      return {
-        ...currentState,
-        saturate: value,
-      };
-    case ACTION_TYPES.sepia:
-      return {
-        ...currentState,
-        sepia: value,
-      };
-    case ACTION_TYPES.hue:
-      return {
-        ...currentState,
-        hue: value,
-      };
-    case ACTION_TYPES.red:
-      return {
-        ...DEFAULT_STATE,
-        sepia: 100,
-        saturate: 500,
-        hue: -50,
-      };
-    case ACTION_TYPES.green:
-      return {
-        ...DEFAULT_STATE,
-        sepia: 100,
-        saturate: 500,
-        hue: 50,
-      };
-    case ACTION_TYPES.blue:
-      return {
-        ...DEFAULT_STATE,
-        sepia: 100,
-        saturate: 500,
-        hue: 150,
-      };
-    case ACTION_TYPES.warm:
-      return {
-        ...DEFAULT_STATE,
-        brightness: 90,
-        sepia: 50,
-        saturate: 125,
-      };
-    case ACTION_TYPES.monochrome:
-      return {
-        ...DEFAULT_STATE,
-        saturate: 0,
-      };
-    case ACTION_TYPES.reset:
-      return { ...DEFAULT_STATE };
+    case ACTIONS.SELECT_CUSTOM_FILTER:
+      if (customFilter === undefined) return state;
+      return CUSTOM_FILTER_VALUES[customFilter];
+    case ACTIONS.RESET:
+      return INITIAL_STATE;
     default:
       return state;
   }
 };
 
-const EMPTY_STRING = '';
-
 export const useColorFilter = () => {
-  const [state, dispatch] = useReducer(reducer, DEFAULT_STATE);
-  const [activeCustomFilter, setActiveCustomFilter] = useState(EMPTY_STRING);
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
-  const changeColorFilter = useCallback((event: ChangeEventInput) => {
-    const { name, value } = event.target;
-    const type = name as ActionType;
-    const payload = {
-      value: Number(value),
-    };
-    dispatch({ type, payload });
-    setActiveCustomFilter(EMPTY_STRING);
+  const setColorFilter = useCallback((name: string, value: string) => {
+    if (!(name in FILTERS)) throw new Error('Invalid filter');
+    dispatch({
+      type: ACTIONS.SET_FILTER,
+      payload: {
+        filter: name as keyof BaseFilters,
+        value: Number(value),
+      },
+    });
   }, []);
 
-  const toggleCustomColorFilter = useCallback((event: MouseEventButton) => {
-    const { name } = event.currentTarget;
-    const type = name as ActionType;
-    dispatch({ type });
-    setActiveCustomFilter(name);
+  const selectCustomColorFilter = useCallback((name: string) => {
+    if (!(name in CUSTOM_FILTERS)) throw new Error('Invalid custom filter');
+    dispatch({
+      type: ACTIONS.SELECT_CUSTOM_FILTER,
+      payload: {
+        customFilter: name as keyof CustomFilters,
+      },
+    });
   }, []);
 
   const resetColorFilter = useCallback(() => {
-    dispatch({ type: ACTION_TYPES.reset });
-    setActiveCustomFilter(EMPTY_STRING);
+    dispatch({ type: ACTIONS.RESET });
   }, []);
-
-  const isCustomFilterActive = useCallback((filter: string) => (
-    activeCustomFilter === filter
-  ), [activeCustomFilter]);
 
   useDidUpdate(() => {
     const filter = [
@@ -166,15 +161,14 @@ export const useColorFilter = () => {
       `sepia(${state.sepia}%)`,
       `hue-rotate(${state.hue}deg)`,
     ].join(' ');
-    document.documentElement.style.setProperty('filter', filter);
+    document.head.style.setProperty('filter', filter);
   }, [state]);
 
   return {
-    actions: ACTION_TYPES,
-    filters: state,
-    changeColorFilter,
-    toggleCustomColorFilter,
+    colorFilters: ALL_FILTERS,
+    colorfiltersState: state,
+    setColorFilter,
+    selectCustomColorFilter,
     resetColorFilter,
-    isCustomFilterActive,
   };
 };

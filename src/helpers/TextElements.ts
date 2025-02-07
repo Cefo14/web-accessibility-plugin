@@ -22,6 +22,7 @@ export class TextElements {
     this.observers = new Set();
 
     this.loadBodyNodes();
+    this.refreshElements();
     this.mutationObserver = this.observeNodes();
     this.mutationObserver.observe(document.body, { childList: true, subtree: true });
   }
@@ -122,7 +123,7 @@ export class TextElements {
         if (addedNodes.length > 0) this.addNodes(addedNodes);
         if (removedNodes.length > 0) this.removeNodes(removedNodes);
       });
-      this.notifyMutation();
+      if (this.elemenstChanged()) this.notifyMutation();
     });
     return observer;
   }
@@ -158,9 +159,13 @@ export class TextElements {
       .filter(Boolean);
   }
 
-  private getElements(): HTMLElement[] {
+  private elemenstChanged(): Boolean {
     const currentSize = this.nodes.size - this.excludedNodes.size;
-    if (this.currentElements.length === currentSize) return this.currentElements;
+    return this.currentElements.length !== currentSize;
+  }
+
+  private getElements(): HTMLElement[] {
+    if (!this.elemenstChanged()) return this.currentElements;
     this.refreshElements();
     return this.currentElements;
   }

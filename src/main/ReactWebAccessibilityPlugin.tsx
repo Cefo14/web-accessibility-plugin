@@ -1,7 +1,9 @@
-import { useCallback, memo } from 'react';
+import { useCallback, memo, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { type ElementProps } from '@/types/ElementProps';
+import type { ChangeEventInput, ChangeEventSelect } from '@/types/ChangeEvent';
+import type { MouseEventButton } from '@/types/MouseEvent';
 
 import { GLOBALS } from '@/constants/Globals';
 
@@ -14,16 +16,16 @@ import MenuBody from '@/components/MenuBody';
 // import MenuButton from '@/components/MenuButton';
 // import AdjustButton from '@/components/AdjustButton';
 
-import Heading from '@/components/Heading';
-import SwitchButtons from '@/components/SwitchButtons';
-import Text from '@/components/Text';
-import SpaceBetween from '@/components/SpaceBetween';
-import Switch from '@/components/Switch';
+// import Heading from '@/components/Heading';
+// import SwitchButtons from '@/components/SwitchButtons';
+// import Text from '@/components/Text';
+// import SpaceBetween from '@/components/SpaceBetween';
+// import Switch from '@/components/Switch';
 import Divider from '@/components/Divider';
-import Slider from '@/components/Slider';
-import Button from '@/components/Button';
-import AutoGrid from '@/components/AutoGrid';
-import Select from '@/components/Select';
+// import Slider from '@/components/Slider';
+// import Button from '@/components/Button';
+// import AutoGrid from '@/components/AutoGrid';
+// import Select from '@/components/Select';
 // import ButtonGroup from '@/components/ButtonGroup';
 
 // import TitleIcon from '@/assets/title-svgrepo-com.svg?react';
@@ -48,6 +50,9 @@ import { useColorFilter } from '@/hooks/useColorFilter';
 // import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 import { useTools } from '@/hooks/useTools';
 import { useAdjustFont } from '@/hooks/useAdjustFont';
+import FontSection from './FontSection';
+import ColorFilterSection from './ColorFilterSection';
+import ToolsSection from './ToolsSection';
 // import { useTranslate } from '@/hooks/useTranslate';
 
 type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
@@ -64,30 +69,32 @@ export const ReactWebAccessibilityPlugin = memo(({
 
   const {
     fontProps,
-    incrementFontProp,
-    decrementFontProp,
+    safeFontFamilies,
     fontSizeStep,
     fontWeightStep,
     letterSpacingStep,
     lineHeightStep,
+    fontFamilySelected,
+    incrementFontProp,
+    decrementFontProp,
+    changeFontFamily,
     resetAdjustFont,
   } = useAdjustFont();
 
   const {
-    toolNames,
+    colorFilters,
+    colorfiltersState,
+    setColorFilter,
+    selectCustomColorFilter,
+    resetColorFilter,
+  } = useColorFilter();
+
+  const {
+    tools,
     toggleTool,
     isToolActive,
     resetTools,
   } = useTools();
-
-  const {
-    actions,
-    filters,
-    resetColorFilter,
-    changeColorFilter,
-    toggleCustomColorFilter,
-    isCustomFilterActive,
-  } = useColorFilter();
 
   const reset = useCallback(() => {
     resetTools();
@@ -102,6 +109,42 @@ export const ReactWebAccessibilityPlugin = memo(({
   // const {
   //   t,
   // } = useTranslate();
+
+  const fontOptions = useMemo(() => (
+    [{ value: '', label: '-' }].concat(safeFontFamilies.map((fontFamily) => ({
+      value: fontFamily,
+      label: fontFamily.replace(/'/g, ''),
+    })))
+  ), [safeFontFamilies]);
+
+  const onIncrementFontProp = useCallback((event: MouseEventButton) => {
+    const { name, value } = event.currentTarget;
+    incrementFontProp(name, Number(value));
+  }, [incrementFontProp]);
+
+  const onDecrementFontProp = useCallback((event: MouseEventButton) => {
+    const { name, value } = event.currentTarget;
+    decrementFontProp(name, Number(value));
+  }, [decrementFontProp]);
+
+  const onChangeFontFamily = useCallback((event: ChangeEventSelect) => {
+    changeFontFamily(event.target.value);
+  }, [changeFontFamily]);
+
+  const onChangeColorFilter = useCallback((event: ChangeEventInput) => {
+    const { name, value } = event.currentTarget;
+    setColorFilter(name, value);
+  }, [setColorFilter]);
+
+  const onSelectCustomColorFilter = useCallback((event: MouseEventButton) => {
+    const { name } = event.currentTarget;
+    selectCustomColorFilter(name);
+  }, [selectCustomColorFilter]);
+
+  const onToggleTool = useCallback((event: ChangeEventInput) => {
+    const { name } = event.currentTarget;
+    toggleTool(name);
+  }, [toggleTool]);
 
   return (
     <section
@@ -132,269 +175,36 @@ export const ReactWebAccessibilityPlugin = memo(({
           aria-label="header"
         />
         <MenuBody aria-label="body">
-
-          <Heading $as="h3" $size="md">
-            Ajustes de Texto
-          </Heading>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Tamaño
-            </Text>
-            <SwitchButtons
-              $min={-10}
-              $max={10}
-              $now={fontSizeStep}
-              $value={`${fontSizeStep}x`}
-              $onDecrement={decrementFontProp}
-              $onIncrement={incrementFontProp}
-              $name={fontProps.size}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Espaciado
-            </Text>
-            <SwitchButtons
-              $min={-10}
-              $max={10}
-              $now={letterSpacingStep}
-              $value={`${letterSpacingStep}x`}
-              $onDecrement={decrementFontProp}
-              $onIncrement={incrementFontProp}
-              $name={fontProps.letterSpacing}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Altura
-            </Text>
-            <SwitchButtons
-              $min={-10}
-              $max={10}
-              $now={lineHeightStep}
-              $value={`${lineHeightStep}x`}
-              $onDecrement={decrementFontProp}
-              $onIncrement={incrementFontProp}
-              $name={fontProps.lineHeight}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Peso
-            </Text>
-            <SwitchButtons
-              $min={-10}
-              $max={10}
-              $now={fontWeightStep}
-              $value={`${fontWeightStep}x`}
-              $onDecrement={decrementFontProp}
-              $onIncrement={incrementFontProp}
-              $name={fontProps.weight}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Fuente
-            </Text>
-            <Select
-              $options={[{
-                value: 'Arial',
-                label: 'Arial',
-              }]}
-              $value=""
-            />
-          </SpaceBetween>
+          <FontSection
+            fontProps={fontProps}
+            fontOptions={fontOptions}
+            fontSizeStep={fontSizeStep}
+            fontWeightStep={fontWeightStep}
+            letterSpacingStep={letterSpacingStep}
+            lineHeightStep={lineHeightStep}
+            fontFamilySelected={fontFamilySelected}
+            onIncrementFontProp={onIncrementFontProp}
+            onDecrementFontProp={onDecrementFontProp}
+            onChangeFontFamily={onChangeFontFamily}
+          />
 
           <Divider />
 
-          <Heading $as="h3" $size="md">
-            Filtros de Color
-          </Heading>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Brillo
-            </Text>
-            <Slider
-              name={actions.brightness}
-              onChange={changeColorFilter}
-              min={50}
-              max={150}
-              step={1}
-              value={filters.brightness}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Contraste
-            </Text>
-            <Slider
-              name={actions.contrast}
-              onChange={changeColorFilter}
-              min={20}
-              max={180}
-              step={1}
-              value={filters.contrast}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Saturacion
-            </Text>
-            <Slider
-              name={actions.saturate}
-              onChange={changeColorFilter}
-              min={20}
-              max={180}
-              step={1}
-              value={filters.saturate}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Sepia
-            </Text>
-            <Slider
-              name={actions.sepia}
-              onChange={changeColorFilter}
-              min={0}
-              max={100}
-              step={1}
-              value={filters.sepia}
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              HUE
-            </Text>
-            <Slider
-              name={actions.hue}
-              onChange={changeColorFilter}
-              min={0}
-              max={360}
-              step={1}
-              value={filters.hue}
-            />
-          </SpaceBetween>
-
-          <AutoGrid $gap="0.5em" $columnWidth="6em" $rows={2} $rowWidth="2rem">
-            <Button
-              type="button"
-              name={actions.warm}
-              onClick={toggleCustomColorFilter}
-              $variant={isCustomFilterActive(actions.warm) ? 'secondary' : undefined}
-            >
-              Calido
-            </Button>
-            <Button
-              type="button"
-              name={actions.blue}
-              onClick={toggleCustomColorFilter}
-              $variant={isCustomFilterActive(actions.blue) ? 'secondary' : undefined}
-            >
-              Azul
-            </Button>
-            <Button
-              type="button"
-              name={actions.red}
-              onClick={toggleCustomColorFilter}
-              $variant={isCustomFilterActive(actions.red) ? 'secondary' : undefined}
-            >
-              Rojo
-            </Button>
-            <Button
-              type="button"
-              name={actions.green}
-              onClick={toggleCustomColorFilter}
-              $variant={isCustomFilterActive(actions.green) ? 'secondary' : undefined}
-            >
-              Verde
-            </Button>
-            <Button
-              type="button"
-              name={actions.monochrome}
-              onClick={toggleCustomColorFilter}
-              $variant={isCustomFilterActive(actions.monochrome) ? 'secondary' : undefined}
-            >
-              Monocromatico
-            </Button>
-            <Button
-              type="button"
-              name={actions.reset}
-              onClick={resetColorFilter}
-              $variant="warning"
-            >
-              Restablecer
-            </Button>
-          </AutoGrid>
+          <ColorFilterSection
+            filters={colorFilters}
+            filtersState={colorfiltersState}
+            onChangeColorFilter={onChangeColorFilter}
+            onSelectCustomColorFilter={onSelectCustomColorFilter}
+            resetColorFilter={resetColorFilter}
+          />
 
           <Divider />
 
-          <Heading $as="h3" $size="md">
-            Herramientas
-          </Heading>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Resaltar Titulos
-            </Text>
-            <Switch
-              name={toolNames.highlightTitles}
-              onChange={toggleTool}
-              checked={isToolActive(toolNames.highlightTitles)}
-              aria-label="Resaltar Titulos"
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Resaltar Enlaces
-            </Text>
-            <Switch
-              name={toolNames.highlightLinks}
-              onChange={toggleTool}
-              checked={isToolActive(toolNames.highlightLinks)}
-              aria-label="Resaltar Enlaces"
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Resaltar cursor
-            </Text>
-            <Switch
-              name={toolNames.highlightCursor}
-              onChange={toggleTool}
-              checked={isToolActive(toolNames.highlightCursor)}
-              aria-label="Resaltar cursor"
-              $enterabled
-            />
-          </SpaceBetween>
-
-          <SpaceBetween>
-            <Text $size="sm" $as="span">
-              Ocultar Imagenes
-            </Text>
-            <Switch
-              name={toolNames.hideImages}
-              onChange={toggleTool}
-              checked={isToolActive(toolNames.hideImages)}
-              aria-label="Resaltar cursor"
-              $enterabled
-            />
-          </SpaceBetween>
-
+          <ToolsSection
+            tools={tools}
+            onToggleTool={onToggleTool}
+            isToolActive={isToolActive}
+          />
         </MenuBody>
       </Menu>
     </section>

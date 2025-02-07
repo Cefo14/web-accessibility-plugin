@@ -1,6 +1,5 @@
 import { useCallback, useState } from 'react';
 
-import type { ChangeEventInput } from '@/types/ChangeEvent';
 import highlightClassNames from '@/styles/tools.module.css';
 
 const TOOL_CLASS_NAMES = {
@@ -17,32 +16,32 @@ const CLASS_NAMES = {
   [TOOL_CLASS_NAMES.hideImages]: highlightClassNames.hideImages,
 } as const;
 
-const TOOL_NAMES = {
+type ClassNames = typeof CLASS_NAMES;
+
+const TOOLS = {
   ...TOOL_CLASS_NAMES,
 };
 
-type ClassNames = keyof typeof CLASS_NAMES;
+export type Tools = typeof TOOLS;
 
 const EMPTY_ACTIVE_TOOLS = new Set<string>();
 
 export const useTools = () => {
   const [activeTools, setActiveTools] = useState<Set<string>>(EMPTY_ACTIVE_TOOLS);
 
-  const toggleActiveTools = useCallback((toolName: string) => {
+  const toggleToolState = useCallback((tool: string) => {
     const tools = new Set(activeTools);
-    if (tools.has(toolName)) tools.delete(toolName);
-    else tools.add(toolName);
+    if (tools.has(tool)) tools.delete(tool);
+    else tools.add(tool);
     setActiveTools(tools);
   }, [activeTools]);
 
-  const toggleTool = useCallback((event: ChangeEventInput) => {
-    const { name } = event.currentTarget;
-    if (name in CLASS_NAMES) {
-      const className: string = CLASS_NAMES[name as ClassNames];
-      document.body.classList.toggle(className);
-    }
-    toggleActiveTools(name);
-  }, [toggleActiveTools]);
+  const toggleTool = useCallback((name: string) => {
+    if (!(name in CLASS_NAMES)) throw new Error('Invalid Tool name');
+    const className: string = CLASS_NAMES[name as keyof ClassNames];
+    document.body.classList.toggle(className);
+    toggleToolState(name);
+  }, [toggleToolState]);
 
   const isToolActive = useCallback((name: string): boolean => (
     activeTools.has(name)
@@ -55,7 +54,7 @@ export const useTools = () => {
   }, []);
 
   return {
-    toolNames: TOOL_NAMES,
+    tools: TOOLS,
     toggleTool,
     isToolActive,
     resetTools,
