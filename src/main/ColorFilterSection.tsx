@@ -11,6 +11,7 @@ import Button from '@/components/Button';
 import AutoGrid from '@/components/AutoGrid';
 
 import type { ColorFilters, ColorFiltersState } from '@/hooks/useColorFilter';
+import { useTranslate } from '@/hooks/useTranslate';
 
 import styles from './styles.module.css';
 
@@ -29,18 +30,21 @@ const ColorFilterSection = ({
   onSelectCustomColorFilter,
   resetColorFilter,
 }: ColorFilterSectionProps) => {
+  const { t } = useTranslate();
+
   const isCustomFilterSelected = useCallback((filter: string) => (
     filtersState.customFilterSelected === filter
   ), [filtersState]);
+
   return (
     <section className={styles.section}>
       <Heading $as="h3" $size="md">
-        Filtros de Color
+        {t('section.colorFilter.blue')}
       </Heading>
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          Brillo
+          {t('section.colorFilter.brightness')}
         </Text>
         <Slider
           name={filters.brightness}
@@ -54,7 +58,7 @@ const ColorFilterSection = ({
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          Contraste
+          {t('section.colorFilter.contrast')}
         </Text>
         <Slider
           name={filters.contrast}
@@ -68,7 +72,7 @@ const ColorFilterSection = ({
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          Saturacion
+          {t('section.colorFilter.saturation')}
         </Text>
         <Slider
           name={filters.saturate}
@@ -82,7 +86,7 @@ const ColorFilterSection = ({
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          Sepia
+          {t('section.colorFilter.sepia')}
         </Text>
         <Slider
           name={filters.sepia}
@@ -96,7 +100,7 @@ const ColorFilterSection = ({
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          HUE
+          {t('section.colorFilter.hue')}
         </Text>
         <Slider
           name={filters.hue}
@@ -115,7 +119,7 @@ const ColorFilterSection = ({
           onClick={onSelectCustomColorFilter}
           $variant={isCustomFilterSelected(filters.warm) ? 'secondary' : undefined}
         >
-          Calido
+          {t('section.colorFilter.warm')}
         </Button>
         <Button
           type="button"
@@ -123,7 +127,7 @@ const ColorFilterSection = ({
           onClick={onSelectCustomColorFilter}
           $variant={isCustomFilterSelected(filters.blue) ? 'secondary' : undefined}
         >
-          Azul
+          {t('section.colorFilter.blue')}
         </Button>
         <Button
           type="button"
@@ -131,7 +135,7 @@ const ColorFilterSection = ({
           onClick={onSelectCustomColorFilter}
           $variant={isCustomFilterSelected(filters.red) ? 'secondary' : undefined}
         >
-          Rojo
+          {t('section.colorFilter.red')}
         </Button>
         <Button
           type="button"
@@ -139,7 +143,7 @@ const ColorFilterSection = ({
           onClick={onSelectCustomColorFilter}
           $variant={isCustomFilterSelected(filters.green) ? 'secondary' : undefined}
         >
-          Verde
+          {t('section.colorFilter.green')}
         </Button>
         <Button
           type="button"
@@ -147,14 +151,14 @@ const ColorFilterSection = ({
           onClick={onSelectCustomColorFilter}
           $variant={isCustomFilterSelected(filters.monochrome) ? 'secondary' : undefined}
         >
-          Monocromatico
+          {t('section.colorFilter.monochrome')}
         </Button>
         <Button
           type="button"
           onClick={resetColorFilter}
           $variant="warning"
         >
-          Restablecer
+          {t('section.colorFilter.reset')}
         </Button>
       </AutoGrid>
     </section>

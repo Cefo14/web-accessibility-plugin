@@ -1,2 +1,2 @@
-export { type Languages, type I18, translations } from './i18';
-export { type Translations, type TranslationsKeys } from './Translations';
+export { type LanguageCode, type Translation, translations } from './i18';
+export { type TranslationModel } from './TranslationModel';

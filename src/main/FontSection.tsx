@@ -10,6 +10,7 @@ import SpaceBetween from '@/components/SpaceBetween';
 import Select, { type SelectOption } from '@/components/Select';
 
 import type { FontProps } from '@/hooks/useAdjustFont';
+import { useTranslate } from '@/hooks/useTranslate';
 
 import styles from './styles.module.css';
 
@@ -37,83 +38,85 @@ const FontSection = ({
   onIncrementFontProp,
   onDecrementFontProp,
   onChangeFontFamily,
-}: FontSectionProps) => (
-  <section className={styles.section}>
-    <Heading $as="h3" $size="md">
-      Ajustes de Texto
-    </Heading>
+}: FontSectionProps) => {
+  const { t } = useTranslate();
+  return (
+    <section className={styles.section}>
+      <Heading $as="h3" $size="md">
+        {t('section.font.title')}
+      </Heading>
 
-    <SpaceBetween>
-      <Text $size="sm" $as="span">
-        Tamaño
-      </Text>
-      <SwitchButtons
-        $min={-10}
-        $max={10}
-        $now={fontSizeStep}
-        $value={`${fontSizeStep}x`}
-        $onDecrement={onDecrementFontProp}
-        $onIncrement={onIncrementFontProp}
-        $name={fontProps.size}
-      />
-    </SpaceBetween>
+      <SpaceBetween>
+        <Text $size="sm" $as="span">
+          {t('section.font.fontFamily')}
+        </Text>
+        <SwitchButtons
+          $min={-10}
+          $max={10}
+          $now={fontSizeStep}
+          $value={`${fontSizeStep}x`}
+          $onDecrement={onDecrementFontProp}
+          $onIncrement={onIncrementFontProp}
+          $name={fontProps.size}
+        />
+      </SpaceBetween>
 
-    <SpaceBetween>
-      <Text $size="sm" $as="span">
-        Espaciado
-      </Text>
-      <SwitchButtons
-        $min={-10}
-        $max={10}
-        $now={letterSpacingStep}
-        $value={`${letterSpacingStep}x`}
-        $onDecrement={onDecrementFontProp}
-        $onIncrement={onIncrementFontProp}
-        $name={fontProps.letterSpacing}
-      />
-    </SpaceBetween>
+      <SpaceBetween>
+        <Text $size="sm" $as="span">
+          {t('section.font.letterSpacing')}
+        </Text>
+        <SwitchButtons
+          $min={-10}
+          $max={10}
+          $now={letterSpacingStep}
+          $value={`${letterSpacingStep}x`}
+          $onDecrement={onDecrementFontProp}
+          $onIncrement={onIncrementFontProp}
+          $name={fontProps.letterSpacing}
+        />
+      </SpaceBetween>
 
-    <SpaceBetween>
-      <Text $size="sm" $as="span">
-        Altura
-      </Text>
-      <SwitchButtons
-        $min={-10}
-        $max={10}
-        $now={lineHeightStep}
-        $value={`${lineHeightStep}x`}
-        $onDecrement={onDecrementFontProp}
-        $onIncrement={onIncrementFontProp}
-        $name={fontProps.lineHeight}
-      />
-    </SpaceBetween>
+      <SpaceBetween>
+        <Text $size="sm" $as="span">
+          {t('section.font.lineHeight')}
+        </Text>
+        <SwitchButtons
+          $min={-10}
+          $max={10}
+          $now={lineHeightStep}
+          $value={`${lineHeightStep}x`}
+          $onDecrement={onDecrementFontProp}
+          $onIncrement={onIncrementFontProp}
+          $name={fontProps.lineHeight}
+        />
+      </SpaceBetween>
 
-    <SpaceBetween>
-      <Text $size="sm" $as="span">
-        Peso
-      </Text>
-      <SwitchButtons
-        $min={-10}
-        $max={10}
-        $now={fontWeightStep}
-        $value={`${fontWeightStep}x`}
-        $onDecrement={onDecrementFontProp}
-        $onIncrement={onIncrementFontProp}
-        $name={fontProps.weight}
-      />
-    </SpaceBetween>
+      <SpaceBetween>
+        <Text $size="sm" $as="span">
+          {t('section.font.fontWeight')}
+        </Text>
+        <SwitchButtons
+          $min={-10}
+          $max={10}
+          $now={fontWeightStep}
+          $value={`${fontWeightStep}x`}
+          $onDecrement={onDecrementFontProp}
+          $onIncrement={onIncrementFontProp}
+          $name={fontProps.weight}
+        />
+      </SpaceBetween>
 
-    <SpaceBetween>
-      <Text $size="sm" $as="span">
-        Fuente
-      </Text>
-      <Select
-        $options={fontOptions}
-        value={fontFamilySelected}
-        onChange={onChangeFontFamily}
-      />
-    </SpaceBetween>
-  </section>
-);
-
+      <SpaceBetween>
+        <Text $size="sm" $as="span">
+          {t('section.font.fontFamily')}
+        </Text>
+        <Select
+          $options={fontOptions}
+          value={fontFamilySelected}
+          onChange={onChangeFontFamily}
+        />
+      </SpaceBetween>
+    </section>
+  );
+};
 export default memo(FontSection);

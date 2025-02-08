@@ -161,7 +161,7 @@ export const useColorFilter = () => {
       `sepia(${state.sepia}%)`,
       `hue-rotate(${state.hue}deg)`,
     ].join(' ');
-    document.head.style.setProperty('filter', filter);
+    document.documentElement.style.setProperty('filter', filter);
   }, [state]);
 
   return {

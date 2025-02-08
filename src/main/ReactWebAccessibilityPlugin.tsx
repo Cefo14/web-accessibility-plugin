@@ -53,12 +53,11 @@ import { useAdjustFont } from '@/hooks/useAdjustFont';
 import FontSection from './FontSection';
 import ColorFilterSection from './ColorFilterSection';
 import ToolsSection from './ToolsSection';
-// import { useTranslate } from '@/hooks/useTranslate';
 
 type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
 const OPEN_MENU_ID = 'open-menu-button';
-const MENU_ID = 'open-menu-button';
+// const MENU_ID = 'open-menu-button';
 const MENU_TITLE_ID = 'menu-title';
 
 export const ReactWebAccessibilityPlugin = memo(({
@@ -96,7 +95,7 @@ export const ReactWebAccessibilityPlugin = memo(({
     resetTools,
   } = useTools();
 
-  const reset = useCallback(() => {
+  const onReset = useCallback(() => {
     resetTools();
     resetColorFilter();
     resetAdjustFont();
@@ -105,10 +104,6 @@ export const ReactWebAccessibilityPlugin = memo(({
     resetColorFilter,
     resetAdjustFont,
   ]);
-
-  // const {
-  //   t,
-  // } = useTranslate();
 
   const fontOptions = useMemo(() => (
     [{ value: '', label: '-' }].concat(safeFontFamilies.map((fontFamily) => ({
@@ -154,27 +149,20 @@ export const ReactWebAccessibilityPlugin = memo(({
     >
       <OpenMenuButton
         id={OPEN_MENU_ID}
-        title="Abrir Menu"
-        aria-label="Abrir Menu"
-        aria-controls={MENU_ID}
-        aria-hidden={isOpen}
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
         onClick={open}
       />
       <Menu
         $isOpen={isOpen}
-        id={MENU_ID}
         aria-labelledby={MENU_TITLE_ID}
+        aria-modal="true"
+        role="dialog"
       >
         <MenuHeader
-          $title="Accesibilidad"
           $onClose={close}
-          $onReset={reset}
+          $onReset={onReset}
           $titleId={MENU_TITLE_ID}
-          aria-label="header"
         />
-        <MenuBody aria-label="body">
+        <MenuBody>
           <FontSection
             fontProps={fontProps}
             fontOptions={fontOptions}
