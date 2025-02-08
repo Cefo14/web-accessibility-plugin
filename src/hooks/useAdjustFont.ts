@@ -98,7 +98,7 @@ export const useAdjustFont = () => {
   }, [fontFamilySelected, fontSizeStep, fontWeightStep, letterSpacingStep, lineHeightStep]);
 
   useEffect(() => {
-    const STYLE_ID = 'WAP-0open-dyslexic';
+    const STYLE_ID = 'WAP-open-dyslexic';
     const style = document.getElementById(STYLE_ID);
 
     if (style) return;

@@ -1,7 +1,7 @@
 import { useCallback, memo, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { type ElementProps } from '@/types/ElementProps';
+import type { ElementProps } from '@/types/ElementProps';
 import type { ChangeEventInput, ChangeEventSelect } from '@/types/ChangeEvent';
 import type { MouseEventButton } from '@/types/MouseEvent';
 
@@ -11,45 +11,13 @@ import OpenMenuButton from '@/components/OpenMenuButton';
 import Menu from '@/components/Menu';
 import MenuHeader from '@/components/MenuHeader';
 import MenuBody from '@/components/MenuBody';
-// import AutoGrid from '@/components/AutoGrid';
-// import TitleSection from '@/components/TitleSection';
-// import MenuButton from '@/components/MenuButton';
-// import AdjustButton from '@/components/AdjustButton';
-
-// import Heading from '@/components/Heading';
-// import SwitchButtons from '@/components/SwitchButtons';
-// import Text from '@/components/Text';
-// import SpaceBetween from '@/components/SpaceBetween';
-// import Switch from '@/components/Switch';
 import Divider from '@/components/Divider';
-// import Slider from '@/components/Slider';
-// import Button from '@/components/Button';
-// import AutoGrid from '@/components/AutoGrid';
-// import Select from '@/components/Select';
-// import ButtonGroup from '@/components/ButtonGroup';
-
-// import TitleIcon from '@/assets/title-svgrepo-com.svg?react';
-// import LinkIcon from '@/assets/link-svgrepo-com.svg?react';
-// import ColorFilterIcon from '@/assets/color-filter-svgrepo-com.svg?react';
-// import ContrastIcon from '@/assets/contrast-svgrepo-com.svg?react';
-// import SunIcon from '@/assets/sun-svgrepo-com.svg?react';
-// import InvertColorsIcon from '@/assets/invert-color-svgrepo-com.svg?react';
-// import RedSquareIcon from '@/assets/red-square-svgrepo-com.svg?react';
-// import GreenSquareIcon from '@/assets/green-square-svgrepo-com.svg?react';
-// import BlueSquareIcon from '@/assets/blue-square-svgrepo-com.svg?react';
-// import PieChartTwotone50Icon from '@/assets/pie-chart-twotone-50-svgrepo-com.svg?react';
-// import PieChartTwotone25Icon from '@/assets/pie-chart-twotone-25-svgrepo-com.svg?react';
-// import CursorIcon from '@/assets/cursor-svgrepo-com.svg?react';
-// import UnderLineIcon from '@/assets/underline-svgrepo-com.svg?react';
 
 import { useOpen } from '@/hooks/useOpen';
-// import { useModifyFontSize } from '@/hooks/useModifyFontSize';
 import { useColorFilter } from '@/hooks/useColorFilter';
-// import { useModifyLetterSpacing } from '@/hooks/useModifyLetterSpacing';
-// import { useModifyLineHeight } from '@/hooks/useModifyLineHeight';
-// import { useModifyFontWeight } from '@/hooks/useModifyFontWeight';
 import { useTools } from '@/hooks/useTools';
 import { useAdjustFont } from '@/hooks/useAdjustFont';
+
 import FontSection from './FontSection';
 import ColorFilterSection from './ColorFilterSection';
 import ToolsSection from './ToolsSection';
