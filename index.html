@@ -23,10 +23,10 @@
     <script type="module" src="/src/main.tsx"></script>
     <script>
       window.addEventListener('load', function() {
-        if (typeof window.Accessibility === 'undefined') return;
+        if (typeof window.WebAccessibilityPlugin === 'undefined') return;
         var container = document.getElementById('root');
-        var accessibility = new window.Accessibility(container);
-        accessibility.render();
+        var webAccessibilityPlugin = new window.WebAccessibilityPlugin(container);
+        webAccessibilityPlugin.render();
       })
     </script>
   </body>

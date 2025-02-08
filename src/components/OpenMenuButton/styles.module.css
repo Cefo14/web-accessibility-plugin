@@ -3,9 +3,9 @@
   bottom: 16px;
   right: 16px;
 
-  background-color: var(--accessibility-color-info);
-  outline: 4px solid var(--accessibility-color-info);
-  border: 2px solid var(--accessibility-color-info-text);
+  background-color: var(--wap-color-info);
+  outline: 4px solid var(--wap-color-info);
+  border: 2px solid var(--wap-color-info-text);
   border-radius: 50%;
 
   width: 56px;
@@ -20,11 +20,11 @@
 }
 
 .root:focus {
-  background-color: var(--accessibility-color-active);
-  outline: 4px solid var(--accessibility-color-active);
+  background-color: var(--wap-color-active);
+  outline: 4px solid var(--wap-color-active);
 }
 
 .root:hover {
-  background-color: var(--accessibility-color-info-light);
-  outline-color: var(--accessibility-color-info-light);
+  background-color: var(--wap-color-info-light);
+  outline-color: var(--wap-color-info-light);
 }

@@ -3,5 +3,5 @@
   padding: 1em;
   height: 100%;
   max-height: calc(100% - 64px);
-  background-color: var(--accessibility-color-primary);
+  background-color: var(--wap-color-primary);
 }

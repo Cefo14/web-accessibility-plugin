@@ -1,4 +1,4 @@
 import 'sanitize.css';
 import '@/styles/global.css';
 
-export { ReactWebAccessibilityPlugin } from '../main/ReactWebAccessibilityPlugin';
+export { WebAccessibilityPlugin } from '@/WebAccessibilityPlugin';

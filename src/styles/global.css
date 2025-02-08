@@ -1,39 +1,39 @@
 :root {
-  --accessibility-color-primary-light: #fbfbfb;
-  --accessibility-color-primary: #fafafa;
-  --accessibility-color-primary-dark: #bbbbbb;
-  --accessibility-color-primary-text: #000000;
+  --wap-color-primary-light: #fbfbfb;
+  --wap-color-primary: #fafafa;
+  --wap-color-primary-dark: #bbbbbb;
+  --wap-color-primary-text: #000000;
 
-  --accessibility-color-secondary-light: #40404e;
-  --accessibility-color-secondary: #09090b;
-  --accessibility-color-secondary-dark: #060608;
-  --accessibility-color-secondary-text: #ffffff;
+  --wap-color-secondary-light: #40404e;
+  --wap-color-secondary: #09090b;
+  --wap-color-secondary-dark: #060608;
+  --wap-color-secondary-text: #ffffff;
 
-  --accessibility-color-info-light: #2d96ff;
-  --accessibility-color-info: #0073e6;
-  --accessibility-color-info-dark: #0056ac;
-  --accessibility-color-info-text: #ffffff;
+  --wap-color-info-light: #2d96ff;
+  --wap-color-info: #0073e6;
+  --wap-color-info-dark: #0056ac;
+  --wap-color-info-text: #ffffff;
 
-  --accessibility-color-warning-light: #ffd735;
-  --accessibility-color-warning: #f2c300;
-  --accessibility-color-warning-dark: #b59200;
-  --accessibility-color-warning-text: #000000;
+  --wap-color-warning-light: #ffd735;
+  --wap-color-warning: #f2c300;
+  --wap-color-warning-dark: #b59200;
+  --wap-color-warning-text: #000000;
 
-  --accessibility-color-danger-light: #f76f71;
-  --accessibility-color-danger: #f53f42;
-  --accessibility-color-danger-dark: #db0b0e;
+  --wap-color-danger-light: #f76f71;
+  --wap-color-danger: #f53f42;
+  --wap-color-danger-dark: #db0b0e;
 
-  --accessibility-color-active-light: #ec63a7;
-  --accessibility-color-active: #e6308a;
-  --accessibility-color-active-dark: #ba1667;
+  --wap-color-active-light: #ec63a7;
+  --wap-color-active: #e6308a;
+  --wap-color-active-dark: #ba1667;
 }
 
-.Accessibility__root {
+.WAP__root {
   font-size: 16px !important;
-  line-height: 1.5;
-  letter-spacing: 0.015em;
+  line-height: 1.5 !important;
+  letter-spacing: 0.015em !important;
 }
 
-.Accessibility__root * {
+.WAP__root * {
   font-family: Arial, sans-serif !important;
 }

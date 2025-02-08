@@ -5,7 +5,7 @@ type CSSByArgs = keyof Omit<CSSStyleDeclaration, 'length' | 'parentRule'>;
 
 export const modifyPixelProp = (element: HTMLElement, prop: CSSByArgs, multiply = 1) => {
   const propByStr = prop.toString();
-  const DATA_ATTR = `data-accessibility-original-${propByStr.toLowerCase()}`;
+  const DATA_ATTR = `data-wap-original-${propByStr.toLowerCase()}`;
 
   if (multiply === 1) {
     element.style.removeProperty(camelCaseToKebabCase(propByStr));

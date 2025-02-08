@@ -1,16 +1,16 @@
-.highlightTitle h1:not(:global(.Accessibility__root) h1),
-.highlightTitle h2:not(:global(.Accessibility__root) h2),
-.highlightTitle h3:not(:global(.Accessibility__root) h3),
-.highlightTitle h4:not(:global(.Accessibility__root) h4),
-.highlightTitle h5:not(:global(.Accessibility__root) h5),
-.highlightTitle h6:not(:global(.Accessibility__root) h6)
+.highlightTitle h1:not(:global(.WAP__root) h1),
+.highlightTitle h2:not(:global(.WAP__root) h2),
+.highlightTitle h3:not(:global(.WAP__root) h3),
+.highlightTitle h4:not(:global(.WAP__root) h4),
+.highlightTitle h5:not(:global(.WAP__root) h5),
+.highlightTitle h6:not(:global(.WAP__root) h6)
 {
-  outline: 2px solid var(--accessibility-color-danger) !important;
+  outline: 2px solid var(--wap-color-danger) !important;
   outline-offset: 1px !important;
 }
 
-.highlightLink a:not(:global(.Accessibility__root) a) {
-  outline: 2px solid var(--accessibility-color-info) !important;
+.highlightLink a:not(:global(.WAP__root) a) {
+  outline: 2px solid var(--wap-color-info) !important;
   outline-offset: 1px !important;
 }
 

@@ -4,9 +4,9 @@ import { createRoot } from 'react-dom/client';
 import 'sanitize.css';
 import '@/styles/global.css';
 
-import { ReactWebAccessibilityPlugin } from '../main/ReactWebAccessibilityPlugin';
+import { WebAccessibilityPlugin as WebAccessibilityPluginComponent } from '@/WebAccessibilityPlugin';
 
-class Accessibility {
+class WebAccessibilityPlugin {
   private container: HTMLElement;
 
   constructor(container: HTMLElement) {
@@ -18,11 +18,12 @@ class Accessibility {
     const root = createRoot(this.container);
     root.render(
       <StrictMode>
-        <ReactWebAccessibilityPlugin />
+        <WebAccessibilityPluginComponent />
       </StrictMode>,
     );
   }
 }
 
-type WindowWithAccessibility = Window & typeof globalThis & { Accessibility: typeof Accessibility };
-(window as WindowWithAccessibility).Accessibility = Accessibility;
+type CurrentWindow = Window & typeof globalThis;
+type NewWindowProp = { WebAccessibilityPlugin: typeof WebAccessibilityPlugin };
+(window as CurrentWindow & NewWindowProp).WebAccessibilityPlugin = WebAccessibilityPlugin;

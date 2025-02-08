@@ -33,9 +33,9 @@
 }
 
 .primary {
-  color: var(--accessibility-color-primary-text) !important;
+  color: var(--wap-color-primary-text) !important;
 }
 
 .secondary {
-  color: var(--accessibility-color-secondary-text) !important;
+  color: var(--wap-color-secondary-text) !important;
 }

@@ -129,7 +129,7 @@ export class TextElements {
   }
 
   private getAccessibilityRootElement() {
-    return document.getElementById(GLOBALS.ACCESSIBILITY_ID);
+    return document.getElementById(GLOBALS.WAP_ID);
   }
 
   private getExcludeNodes(): Node[] {

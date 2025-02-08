@@ -22,16 +22,16 @@ import FontSection from './FontSection';
 import ColorFilterSection from './ColorFilterSection';
 import ToolsSection from './ToolsSection';
 
-type ReactWebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
+type WebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
 const OPEN_MENU_ID = 'open-menu-button';
 // const MENU_ID = 'open-menu-button';
 const MENU_TITLE_ID = 'menu-title';
 
-export const ReactWebAccessibilityPlugin = memo(({
+export const WebAccessibilityPlugin = memo(({
   className,
   ...props
-}: ReactWebAccessibilityPluginProps) => {
+}: WebAccessibilityPluginProps) => {
   const { isOpen, open, close } = useOpen();
 
   const {
@@ -111,8 +111,8 @@ export const ReactWebAccessibilityPlugin = memo(({
 
   return (
     <section
-      id={GLOBALS.ACCESSIBILITY_ID}
-      className={clsx('Accessibility__root', className)}
+      id={GLOBALS.WAP_ID}
+      className={clsx('WAP__root', className)}
       {...props}
     >
       <OpenMenuButton
