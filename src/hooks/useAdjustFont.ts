@@ -20,7 +20,7 @@ export type FontProps = typeof FONT_PROPS;
 
 const SAFE_FONT_FAMILIES = [
   'Arial',
-  'Open-Dyslexic',
+  'OpenDyslexic',
   'serif',
   'sans-serif',
   'monospace',
@@ -103,17 +103,34 @@ export const useAdjustFont = () => {
 
     if (style) return;
 
+    const fragment = document.createDocumentFragment();
+
     const link = document.createElement('link');
-    link.href = 'https://fonts.cdnfonts.com/css/open-dyslexic';
+    link.href = 'https://fonts.cdnfonts.com/css/opendyslexic';
     link.rel = 'stylesheet';
     link.id = STYLE_ID;
 
-    const preload = document.createElement('link');
-    preload.href = 'https://fonts.cdnfonts.com/s/29616/open-dyslexic.woff';
-    preload.rel = 'preload';
-    preload.as = 'font';
+    fragment.append(link);
 
-    document.head.append(link, preload);
+    const preloadBold = document.createElement('link');
+    preloadBold.href = 'https://fonts.cdnfonts.com/s/19808/OpenDyslexic-Bold.woff';
+    preloadBold.rel = 'preload';
+    preloadBold.as = 'font';
+    preloadBold.type = 'font/woff';
+    preloadBold.crossOrigin = 'anonymous';
+
+    fragment.append(preloadBold);
+
+    const preloadRegular = document.createElement('link');
+    preloadRegular.href = 'https://fonts.cdnfonts.com/s/19808/OpenDyslexic-Regular.woff';
+    preloadRegular.rel = 'preload';
+    preloadRegular.as = 'font';
+    preloadRegular.type = 'font/woff';
+    preloadRegular.crossOrigin = 'anonymous';
+
+    fragment.append(preloadRegular);
+
+    document.head.append(fragment);
   }, []);
 
   return {

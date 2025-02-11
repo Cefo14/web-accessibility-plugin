@@ -160,8 +160,8 @@ const WebAccessibilityPlugin = ({
         />
         <MenuBody>
           <SpaceBetween>
-            <Heading $size="sm" $as="h3">
-              {t('menu.title')}
+            <Heading $size="md" $as="h3">
+              {t('menu.language')}
             </Heading>
             <Select
               $options={languageOptions}
@@ -169,7 +169,9 @@ const WebAccessibilityPlugin = ({
               value={language}
             />
           </SpaceBetween>
+
           <Divider />
+
           <FontSection
             fontProps={fontProps}
             fontOptions={fontOptions}
