@@ -4,6 +4,7 @@ export type TranslationModel = {
   'menu.openMenu': string;
   'menu.reset': string;
   'menu.close': string;
+  'menu.language': string;
 
   'section.font.title': string;
   'section.font.fontStyle': string;

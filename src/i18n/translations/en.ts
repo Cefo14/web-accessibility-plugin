@@ -7,6 +7,7 @@ export const en: TranslationModel = {
   'menu.openMenu': 'Open Menu',
   'menu.reset': 'Reset',
   'menu.close': 'Close Menu',
+  'menu.language': 'Language',
 
   'section.font.title': 'Font Settings',
   'section.font.fontStyle': 'Size',

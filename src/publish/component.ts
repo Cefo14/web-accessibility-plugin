@@ -1,4 +1,4 @@
 import 'sanitize.css';
 import '@/styles/global.css';
 
-export { WebAccessibilityPlugin } from '@/WebAccessibilityPlugin';
+export { default as WebAccessibilityPlugin } from '@/WebAccessibilityPlugin';

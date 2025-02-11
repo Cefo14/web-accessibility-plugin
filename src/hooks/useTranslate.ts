@@ -1,33 +1,36 @@
-import { useCallback, useState } from 'react';
-import { translations, type LanguageCode, type TranslationModel } from '@/i18';
-
-const DEFAULT_LANGUAGE = 'en';
-
-const getLanguage = (): LanguageCode => {
-  const { language } = navigator;
-  const [lang] = language.split('-');
-  if (!lang) return DEFAULT_LANGUAGE;
-  if (lang in translations) return lang as LanguageCode;
-  return DEFAULT_LANGUAGE;
-};
+import { useCallback, useContext, useMemo } from 'react';
+import {
+  type TranslationModel,
+  Translations,
+  LanguageCodes,
+  I18nContext,
+  getSystemLanguage,
+} from '@/i18n';
+import { hasOwnProperty } from '@/helpers/hasOwnProperty';
 
 export const useTranslate = () => {
-  const [language, setLanguage] = useState(getLanguage());
+  const { language, setLanguage } = useContext(I18nContext);
+
+  const translations = useMemo(() => Translations[language], [language]);
 
   const t = useCallback((key: keyof TranslationModel) => {
-    const locale = translations[language];
-    if (!locale[key]) throw new Error(`Translation for ${key} not found in ${locale}`);
-    return locale[key];
-  }, [language]);
+    if (!hasOwnProperty(translations, key)) throw new Error(`Translation for ${key} not found in ${key}`);
+    return translations[key];
+  }, [translations]);
 
-  const changeLanguage = useCallback((lang: LanguageCode) => {
-    if (!(lang in translations)) throw new Error(`Language ${lang} not supported`);
+  const changeLanguage = useCallback((lang: string) => {
+    if (!hasOwnProperty(LanguageCodes, lang)) throw new Error(`Language ${lang} not supported`);
     setLanguage(lang);
-  }, []);
+  }, [setLanguage]);
+
+  const resetLanguage = useCallback(() => {
+    setLanguage(getSystemLanguage());
+  }, [setLanguage]);
 
   return {
     t,
     language,
     changeLanguage,
+    resetLanguage,
   };
 };

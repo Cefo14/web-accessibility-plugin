@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import 'sanitize.css';
 import '@/styles/global.css';
 
-import { WebAccessibilityPlugin as WebAccessibilityPluginComponent } from '@/WebAccessibilityPlugin';
+import { default as WebAccessibilityPluginComponent } from '@/WebAccessibilityPlugin';
 
 class WebAccessibilityPlugin {
   private container: HTMLElement;

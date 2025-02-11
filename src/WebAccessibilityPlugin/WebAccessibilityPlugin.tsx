@@ -17,10 +17,17 @@ import { useOpen } from '@/hooks/useOpen';
 import { useColorFilter } from '@/hooks/useColorFilter';
 import { useTools } from '@/hooks/useTools';
 import { useAdjustFont } from '@/hooks/useAdjustFont';
+import { useTranslate } from '@/hooks/useTranslate';
 
 import FontSection from './FontSection';
 import ColorFilterSection from './ColorFilterSection';
 import ToolsSection from './ToolsSection';
+
+import Heading from '@/components/Heading';
+import Select from '@/components/Select';
+import SpaceBetween from '@/components/SpaceBetween';
+
+import { LanguageCodeTranslations } from '@/i18n';
 
 type WebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
@@ -28,7 +35,7 @@ const OPEN_MENU_ID = 'open-menu-button';
 // const MENU_ID = 'open-menu-button';
 const MENU_TITLE_ID = 'menu-title';
 
-export const WebAccessibilityPlugin = memo(({
+const WebAccessibilityPlugin = ({
   className,
   ...props
 }: WebAccessibilityPluginProps) => {
@@ -63,14 +70,23 @@ export const WebAccessibilityPlugin = memo(({
     resetTools,
   } = useTools();
 
+  const {
+    language,
+    t,
+    changeLanguage,
+    resetLanguage,
+  } = useTranslate();
+
   const onReset = useCallback(() => {
     resetTools();
     resetColorFilter();
     resetAdjustFont();
+    resetLanguage();
   }, [
     resetTools,
     resetColorFilter,
     resetAdjustFont,
+    resetLanguage,
   ]);
 
   const fontOptions = useMemo(() => (
@@ -79,6 +95,13 @@ export const WebAccessibilityPlugin = memo(({
       label: fontFamily.replace(/'/g, ''),
     })))
   ), [safeFontFamilies]);
+
+  const languageOptions = useMemo(() => (
+    Object.entries(LanguageCodeTranslations).map(([value, label]) => ({
+      value,
+      label,
+    }))
+  ), []);
 
   const onIncrementFontProp = useCallback((event: MouseEventButton) => {
     const { name, value } = event.currentTarget;
@@ -109,6 +132,11 @@ export const WebAccessibilityPlugin = memo(({
     toggleTool(name);
   }, [toggleTool]);
 
+  const onChangeLanguage = useCallback((event: ChangeEventSelect) => {
+    const { value } = event.target;
+    changeLanguage(value);
+  }, [changeLanguage]);
+
   return (
     <section
       id={GLOBALS.WAP_ID}
@@ -131,6 +159,17 @@ export const WebAccessibilityPlugin = memo(({
           $titleId={MENU_TITLE_ID}
         />
         <MenuBody>
+          <SpaceBetween>
+            <Heading $size="sm" $as="h3">
+              {t('menu.title')}
+            </Heading>
+            <Select
+              $options={languageOptions}
+              onChange={onChangeLanguage}
+              value={language}
+            />
+          </SpaceBetween>
+          <Divider />
           <FontSection
             fontProps={fontProps}
             fontOptions={fontOptions}
@@ -165,4 +204,6 @@ export const WebAccessibilityPlugin = memo(({
       </Menu>
     </section>
   );
-});
+};
+
+export default memo(WebAccessibilityPlugin);

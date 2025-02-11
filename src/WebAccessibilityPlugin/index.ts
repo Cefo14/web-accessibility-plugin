@@ -1,1 +1,0 @@
-export { WebAccessibilityPlugin } from './WebAccessibilityPlugin';
