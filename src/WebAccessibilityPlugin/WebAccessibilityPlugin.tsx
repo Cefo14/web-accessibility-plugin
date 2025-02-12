@@ -12,22 +12,20 @@ import Menu from '@/components/Menu';
 import MenuHeader from '@/components/MenuHeader';
 import MenuBody from '@/components/MenuBody';
 import Divider from '@/components/Divider';
+import Heading from '@/components/Heading';
+import Select from '@/components/Select';
+import SpaceBetween from '@/components/SpaceBetween';
 
 import { useOpen } from '@/hooks/useOpen';
 import { useColorFilter } from '@/hooks/useColorFilter';
 import { useTools } from '@/hooks/useTools';
 import { useAdjustFont } from '@/hooks/useAdjustFont';
-import { useTranslate } from '@/hooks/useTranslate';
+
+import { LanguageCodeTranslations, useI18n } from '@/i18n';
 
 import FontSection from './FontSection';
 import ColorFilterSection from './ColorFilterSection';
 import ToolsSection from './ToolsSection';
-
-import Heading from '@/components/Heading';
-import Select from '@/components/Select';
-import SpaceBetween from '@/components/SpaceBetween';
-
-import { LanguageCodeTranslations } from '@/i18n';
 
 type WebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
@@ -75,7 +73,7 @@ const WebAccessibilityPlugin = ({
     t,
     changeLanguage,
     resetLanguage,
-  } = useTranslate();
+  } = useI18n();
 
   const onReset = useCallback(() => {
     resetTools();
@@ -159,16 +157,18 @@ const WebAccessibilityPlugin = ({
           $titleId={MENU_TITLE_ID}
         />
         <MenuBody>
-          <SpaceBetween>
-            <Heading $size="md" $as="h3">
-              {t('menu.language')}
-            </Heading>
-            <Select
-              $options={languageOptions}
-              onChange={onChangeLanguage}
-              value={language}
-            />
-          </SpaceBetween>
+          <section>
+            <SpaceBetween>
+              <Heading $size="md" $as="h3">
+                {t('menu.language')}
+              </Heading>
+              <Select
+                $options={languageOptions}
+                onChange={onChangeLanguage}
+                value={language}
+              />
+            </SpaceBetween>
+          </section>
 
           <Divider />
 

@@ -1,14 +1,12 @@
 import { useCallback, useContext, useMemo } from 'react';
-import {
-  type TranslationModel,
-  Translations,
-  LanguageCodes,
-  I18nContext,
-  getSystemLanguage,
-} from '@/i18n';
+
+import type { TranslationModel } from './translations/TranslationModel';
+import { Translations, LanguageCodes } from './i18n';
+import { I18nContext } from './I18nContext';
+import { getSystemLanguage } from './getSystemLanguage';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
 
-export const useTranslate = () => {
+export const useI18n = () => {
   const { language, setLanguage } = useContext(I18nContext);
 
   const translations = useMemo(() => Translations[language], [language]);

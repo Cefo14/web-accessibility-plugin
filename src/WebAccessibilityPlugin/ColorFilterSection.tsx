@@ -11,7 +11,7 @@ import Button from '@/components/Button';
 import AutoGrid from '@/components/AutoGrid';
 
 import type { ColorFilters, ColorFiltersState } from '@/hooks/useColorFilter';
-import { useTranslate } from '@/hooks/useTranslate';
+import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
@@ -30,7 +30,7 @@ const ColorFilterSection = ({
   onSelectCustomColorFilter,
   resetColorFilter,
 }: ColorFilterSectionProps) => {
-  const { t } = useTranslate();
+  const { t } = useI18n();
 
   const isCustomFilterSelected = useCallback((filter: string) => (
     filtersState.customFilterSelected === filter

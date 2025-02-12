@@ -7,7 +7,7 @@ import { type OnClickButton } from '@/types/OnClickButton';
 import ResetIcon from '@/assets/reset-svgrepo-com.svg?react';
 import CloseIcon from '@/assets/close-bold-svgrepo-com.svg?react';
 
-import { useTranslate } from '@/hooks/useTranslate';
+import { useI18n } from '@/i18n';
 
 import Heading from '../Heading';
 import Button from '../Button';
@@ -27,7 +27,7 @@ const MenuHeader = ({
   className,
   ...props
 }: MenuHeaderProps) => {
-  const { t } = useTranslate();
+  const { t } = useI18n();
   return (
     <header
       {...props}

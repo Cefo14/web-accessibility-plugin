@@ -8,7 +8,7 @@ import Text from '@/components/Text';
 import SpaceBetween from '@/components/SpaceBetween';
 
 import type { Tools } from '@/hooks/useTools';
-import { useTranslate } from '@/hooks/useTranslate';
+import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
@@ -23,7 +23,7 @@ const ToolsSection = ({
   onToggleTool,
   isToolActive,
 }: ToolsSectionProps) => {
-  const { t } = useTranslate();
+  const { t } = useI18n();
   return (
     <section className={styles.section}>
       <Heading $as="h3" $size="md">

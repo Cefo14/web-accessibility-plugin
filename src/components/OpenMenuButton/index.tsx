@@ -5,14 +5,14 @@ import { type ButtonProps } from '@/types/ButtonProps';
 
 import AccessibilityIcon from '@/assets/accessibility-svgrepo-com.svg?react';
 
-import { useTranslate } from '@/hooks/useTranslate';
+import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
 type OpenMenuButtonProps = ButtonProps;
 
 const OpenMenuButton = ({ onClick, className, ...props }: OpenMenuButtonProps) => {
-  const { t } = useTranslate();
+  const { t } = useI18n();
   return (
     <button
       {...props}

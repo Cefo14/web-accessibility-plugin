@@ -10,7 +10,7 @@ import SpaceBetween from '@/components/SpaceBetween';
 import Select, { type SelectOption } from '@/components/Select';
 
 import type { FontProps } from '@/hooks/useAdjustFont';
-import { useTranslate } from '@/hooks/useTranslate';
+import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
@@ -39,7 +39,7 @@ const FontSection = ({
   onDecrementFontProp,
   onChangeFontFamily,
 }: FontSectionProps) => {
-  const { t } = useTranslate();
+  const { t } = useI18n();
   return (
     <section className={styles.section}>
       <Heading $as="h3" $size="md">
