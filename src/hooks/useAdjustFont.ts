@@ -1,150 +1,144 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
+
+import type { Mirror } from '@/types/Mirror';
 
 import { TextElements } from '@/helpers/TextElements';
-import {
-  updateFontFamily,
-  updateFontSize,
-  updateFontWeight,
-  updateLetterSpacing,
-  updateLineHeight,
-} from '@/helpers/adjustFont';
+import { hasOwnProperty } from '@/helpers/hasOwnProperty';
+import { fontSizeAdjuster } from '@/helpers/FontSizeAdjuster';
+import { FontWeightAdjuster } from '@/helpers/FontWeightAdjuster';
+import { LetterSpacingAdjuster } from '@/helpers/LetterSpacingAdjuster';
+import { LineHeightAdjuster } from '@/helpers/LineHeightAdjuster';
+import { FontFamilyAdjuster } from '@/helpers/FontFamilyAdjuster';
 
-const FONT_PROPS = {
+import { useAdjustFontFamily } from './useAdjustFontFamily';
+import { useAdjustFontWeight } from './useAdjustFontWeight';
+import { usePercentageAdjuster } from './usePercentageAdjuster';
+
+export type FontProps = 'size' | 'letterSpacing' | 'lineHeight';
+
+export const FONT_PROPS: Mirror<FontProps> = {
   size: 'size',
-  weight: 'weight',
   letterSpacing: 'letterSpacing',
   lineHeight: 'lineHeight',
 } as const;
 
-export type FontProps = typeof FONT_PROPS;
-
-const SAFE_FONT_FAMILIES = [
-  'Arial',
-  'OpenDyslexic',
-  'serif',
-  'sans-serif',
-  'monospace',
-] as const;
+const fontWeightAdjuster = new FontWeightAdjuster();
+const letterSpacingAdjuster = new LetterSpacingAdjuster();
+const lineHeightAdjuster = new LineHeightAdjuster();
+const fontFamilyAdjuster = new FontFamilyAdjuster();
 
 export const useAdjustFont = () => {
-  const [fontSizeStep, setFontSizeStep] = useState<number>(0);
-  const [fontWeightStep, setFontWeightStep] = useState<number>(0);
-  const [letterSpacingStep, setLetterSpacingStep] = useState<number>(0);
-  const [lineHeightStep, setLineHeightStep] = useState<number>(0);
-  const [fontFamilySelected, setFontFamilySelected] = useState<string>('');
+  const {
+    value: fontSizeValue,
+    increment: incrementFontSize,
+    decrement: decrementFontSize,
+    resetElement: resetFontSizeElement,
+  } = usePercentageAdjuster(fontSizeAdjuster);
 
-  const updateFontPropStep = useCallback((prop: string, step: number) => {
-    TextElements.instance.elements.forEach((element) => {
-      if (prop === FONT_PROPS.size) updateFontSize(element, step);
-      else if (prop === FONT_PROPS.weight) updateFontWeight(element, step);
-      else if (prop === FONT_PROPS.letterSpacing) updateLetterSpacing(element, step);
-      else if (prop === FONT_PROPS.lineHeight) updateLineHeight(element, step);
-    });
+  const {
+    value: letterSpacingValue,
+    increment: incrementLetterSpacing,
+    decrement: decrementLetterSpacing,
+    resetElement: resetLetterSpacingElement,
+  } = usePercentageAdjuster(letterSpacingAdjuster);
 
-    if (prop === FONT_PROPS.size) setFontSizeStep(step);
-    else if (prop === FONT_PROPS.weight) setFontWeightStep(step);
-    else if (prop === FONT_PROPS.letterSpacing) setLetterSpacingStep(step);
-    else if (prop === FONT_PROPS.lineHeight) setLineHeightStep(step);
-  }, []);
+  const {
+    value: lineHeightValue,
+    increment: incrementLineHeight,
+    decrement: decrementLineHeight,
+    resetElement: resetLineHeightElement,
+  } = usePercentageAdjuster(lineHeightAdjuster);
 
-  const incrementFontProp = useCallback((prop: string, step: number) => {
-    if (!(prop in FONT_PROPS)) throw new Error('Invalid font prop');
-    const nextStep = step + 1;
-    updateFontPropStep(prop, nextStep);
-  }, [updateFontPropStep]);
+  const {
+    selected: fontFamilySelected,
+    update: updateFontFamily,
+    resetElement: resetFontFamilyElment,
+    resetSelected: resetFontFamilySelected,
+  } = useAdjustFontFamily();
 
-  const decrementFontProp = useCallback((prop: string, step: number) => {
-    if (!(prop in FONT_PROPS)) throw new Error('Invalid font prop');
-    const prevStep = step - 1;
-    updateFontPropStep(prop, prevStep);
-  }, [updateFontPropStep]);
+  const {
+    selected: fontWeightSelected,
+    update: updateFontWeight,
+    resetElement: resetFontWeightElement,
+    resetSelected: resetFontWeightSelected,
+  } = useAdjustFontWeight();
+
+  const incrementFontProp = useCallback((prop: string) => {
+    if (!hasOwnProperty(FONT_PROPS, prop)) throw new Error('Invalid font prop');
+
+    const textElements = TextElements.instance.elements;
+
+    if (prop === FONT_PROPS.size) incrementFontSize(textElements);
+    else if (prop === FONT_PROPS.letterSpacing) incrementLetterSpacing(textElements);
+    else if (prop === FONT_PROPS.lineHeight) incrementLineHeight(textElements);
+  }, [incrementFontSize, incrementLetterSpacing, incrementLineHeight]);
+
+  const decrementFontProp = useCallback((prop: string) => {
+    if (!hasOwnProperty(FONT_PROPS, prop)) throw new Error('Invalid font prop');
+
+    const textElements = TextElements.instance.elements;
+
+    if (prop === FONT_PROPS.size) decrementFontSize(textElements);
+    else if (prop === FONT_PROPS.letterSpacing) decrementLetterSpacing(textElements);
+    else if (prop === FONT_PROPS.lineHeight) decrementLineHeight(textElements);
+  }, [decrementFontSize, decrementLetterSpacing, decrementLineHeight]);
 
   const changeFontFamily = useCallback((fontFamily: string) => {
-    TextElements.instance.elements.forEach((element) => {
-      updateFontFamily(element, fontFamily);
-    });
-    setFontFamilySelected(fontFamily);
-  }, []);
+    const textElements = TextElements.instance.elements;
+    updateFontFamily(textElements, fontFamily);
+  }, [updateFontFamily]);
+
+  const changeFontweight = useCallback((fontWeight: string) => {
+    const textElements = TextElements.instance.elements;
+    updateFontWeight(textElements, fontWeight);
+  }, [updateFontWeight]);
 
   const resetAdjustFont = useCallback(() => {
     TextElements.instance.elements.forEach((element) => {
-      updateFontSize(element, 0);
-      updateFontWeight(element, 0);
-      updateLetterSpacing(element, 0);
-      updateLineHeight(element, 0);
-      updateFontFamily(element, '');
+      resetFontSizeElement(element);
+      resetFontWeightElement(element);
+      resetLetterSpacingElement(element);
+      resetLineHeightElement(element);
+      resetFontFamilyElment(element);
     });
-    setFontSizeStep(0);
-    setFontWeightStep(0);
-    setLetterSpacingStep(0);
-    setLineHeightStep(0);
-    setFontFamilySelected('');
-  }, []);
+    resetFontFamilySelected();
+    resetFontWeightSelected();
+  }, [
+    resetFontSizeElement,
+    resetFontWeightElement,
+    resetLetterSpacingElement,
+    resetLineHeightElement,
+    resetFontFamilyElment,
+    resetFontFamilySelected,
+    resetFontWeightSelected,
+  ]);
 
   useEffect(() => {
     const onMutation = (elements: HTMLElement[]) => {
       elements.forEach((element) => {
-        updateFontSize(element, fontSizeStep);
-        updateFontWeight(element, fontWeightStep);
-        updateLetterSpacing(element, letterSpacingStep);
-        updateLineHeight(element, lineHeightStep);
-        updateFontFamily(element, fontFamilySelected);
+        fontSizeAdjuster.update(element, fontSizeValue);
+        fontWeightAdjuster.update(element, fontWeightSelected);
+        letterSpacingAdjuster.update(element, letterSpacingValue);
+        lineHeightAdjuster.update(element, lineHeightValue);
+        fontFamilyAdjuster.update(element, fontFamilySelected);
       });
     };
     TextElements.instance.subscribe(onMutation);
     return () => {
       TextElements.instance.unsubscribe(onMutation);
     };
-  }, [fontFamilySelected, fontSizeStep, fontWeightStep, letterSpacingStep, lineHeightStep]);
-
-  useEffect(() => {
-    const STYLE_ID = 'WAP-open-dyslexic';
-    const style = document.getElementById(STYLE_ID);
-
-    if (style) return;
-
-    const fragment = document.createDocumentFragment();
-
-    const link = document.createElement('link');
-    link.href = 'https://fonts.cdnfonts.com/css/opendyslexic';
-    link.rel = 'stylesheet';
-    link.id = STYLE_ID;
-
-    fragment.append(link);
-
-    const preloadBold = document.createElement('link');
-    preloadBold.href = 'https://fonts.cdnfonts.com/s/19808/OpenDyslexic-Bold.woff';
-    preloadBold.rel = 'preload';
-    preloadBold.as = 'font';
-    preloadBold.type = 'font/woff';
-    preloadBold.crossOrigin = 'anonymous';
-
-    fragment.append(preloadBold);
-
-    const preloadRegular = document.createElement('link');
-    preloadRegular.href = 'https://fonts.cdnfonts.com/s/19808/OpenDyslexic-Regular.woff';
-    preloadRegular.rel = 'preload';
-    preloadRegular.as = 'font';
-    preloadRegular.type = 'font/woff';
-    preloadRegular.crossOrigin = 'anonymous';
-
-    fragment.append(preloadRegular);
-
-    document.head.append(fragment);
-  }, []);
+  }, [fontSizeValue, letterSpacingValue, lineHeightValue, fontFamilySelected, fontWeightSelected]);
 
   return {
-    fontProps: FONT_PROPS,
-    safeFontFamilies: SAFE_FONT_FAMILIES,
     incrementFontProp,
     decrementFontProp,
-    updateFontFamily,
-    changeFontFamily,
     resetAdjustFont,
-    fontSizeStep,
-    fontWeightStep,
-    letterSpacingStep,
-    lineHeightStep,
+    changeFontFamily,
+    changeFontweight,
+    fontSizeValue,
+    letterSpacingValue,
+    lineHeightValue,
     fontFamilySelected,
+    fontWeightSelected,
   };
 };

@@ -4,4 +4,5 @@
   height: 100%;
   max-height: calc(100% - 64px);
   background-color: var(--wap-color-primary);
+  border: solid 1px var(--wap-color-primary-dark);
 }

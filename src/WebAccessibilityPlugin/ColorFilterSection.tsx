@@ -39,7 +39,7 @@ const ColorFilterSection = ({
   return (
     <section className={styles.section}>
       <Heading $as="h3" $size="md">
-        {t('section.colorFilter.blue')}
+        {t('section.colorFilter.title')}
       </Heading>
 
       <SpaceBetween>

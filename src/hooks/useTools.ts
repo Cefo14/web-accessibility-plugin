@@ -1,22 +1,24 @@
 import { useCallback, useState } from 'react';
 
+import type { Mirror } from '@/types/Mirror';
 import highlightClassNames from '@/styles/tools.module.css';
+import { hasOwnProperty } from '@/helpers/hasOwnProperty';
 
-const TOOL_CLASS_NAMES = {
+type ToolClassName = 'highlightTitles' | 'highlightLinks' | 'highlightCursor' | 'hideImages';
+
+const TOOL_CLASS_NAMES: Mirror<ToolClassName> = {
   highlightTitles: 'highlightTitles',
   highlightLinks: 'highlightLinks',
   highlightCursor: 'highlightCursor',
   hideImages: 'hideImages',
 } as const;
 
-const CLASS_NAMES = {
-  [TOOL_CLASS_NAMES.highlightTitles]: highlightClassNames.highlightTitle,
-  [TOOL_CLASS_NAMES.highlightLinks]: highlightClassNames.highlightLink,
-  [TOOL_CLASS_NAMES.highlightCursor]: highlightClassNames.highlightCursor,
-  [TOOL_CLASS_NAMES.hideImages]: highlightClassNames.hideImages,
+const CLASS_NAMES: Record<ToolClassName, string> = {
+  highlightTitles: highlightClassNames.highlightTitles,
+  highlightLinks: highlightClassNames.highlightLinks,
+  highlightCursor: highlightClassNames.highlightCursor,
+  hideImages: highlightClassNames.hideImages,
 } as const;
-
-type ClassNames = typeof CLASS_NAMES;
 
 const TOOLS = {
   ...TOOL_CLASS_NAMES,
@@ -37,8 +39,8 @@ export const useTools = () => {
   }, [activeTools]);
 
   const toggleTool = useCallback((name: string) => {
-    if (!(name in CLASS_NAMES)) throw new Error('Invalid Tool name');
-    const className: string = CLASS_NAMES[name as keyof ClassNames];
+    if (!hasOwnProperty(CLASS_NAMES, name)) throw new Error('Invalid Tool name');
+    const className: string = CLASS_NAMES[name];
     document.body.classList.toggle(className);
     toggleToolState(name);
   }, [toggleToolState]);

@@ -19,7 +19,7 @@ import SpaceBetween from '@/components/SpaceBetween';
 import { useOpen } from '@/hooks/useOpen';
 import { useColorFilter } from '@/hooks/useColorFilter';
 import { useTools } from '@/hooks/useTools';
-import { useAdjustFont } from '@/hooks/useAdjustFont';
+import { FONT_PROPS, useAdjustFont } from '@/hooks/useAdjustFont';
 
 import { LanguageCodeTranslations, useI18n } from '@/i18n';
 
@@ -30,7 +30,6 @@ import ToolsSection from './ToolsSection';
 type WebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
 
 const OPEN_MENU_ID = 'open-menu-button';
-// const MENU_ID = 'open-menu-button';
 const MENU_TITLE_ID = 'menu-title';
 
 const WebAccessibilityPlugin = ({
@@ -40,16 +39,15 @@ const WebAccessibilityPlugin = ({
   const { isOpen, open, close } = useOpen();
 
   const {
-    fontProps,
-    safeFontFamilies,
-    fontSizeStep,
-    fontWeightStep,
-    letterSpacingStep,
-    lineHeightStep,
+    fontSizeValue,
+    letterSpacingValue,
+    lineHeightValue,
     fontFamilySelected,
+    fontWeightSelected,
     incrementFontProp,
     decrementFontProp,
     changeFontFamily,
+    changeFontweight,
     resetAdjustFont,
   } = useAdjustFont();
 
@@ -87,13 +85,6 @@ const WebAccessibilityPlugin = ({
     resetLanguage,
   ]);
 
-  const fontOptions = useMemo(() => (
-    [{ value: '', label: '-' }].concat(safeFontFamilies.map((fontFamily) => ({
-      value: fontFamily,
-      label: fontFamily.replace(/'/g, ''),
-    })))
-  ), [safeFontFamilies]);
-
   const languageOptions = useMemo(() => (
     Object.entries(LanguageCodeTranslations).map(([value, label]) => ({
       value,
@@ -102,18 +93,22 @@ const WebAccessibilityPlugin = ({
   ), []);
 
   const onIncrementFontProp = useCallback((event: MouseEventButton) => {
-    const { name, value } = event.currentTarget;
-    incrementFontProp(name, Number(value));
+    const { name } = event.currentTarget;
+    incrementFontProp(name);
   }, [incrementFontProp]);
 
   const onDecrementFontProp = useCallback((event: MouseEventButton) => {
-    const { name, value } = event.currentTarget;
-    decrementFontProp(name, Number(value));
+    const { name } = event.currentTarget;
+    decrementFontProp(name);
   }, [decrementFontProp]);
 
   const onChangeFontFamily = useCallback((event: ChangeEventSelect) => {
     changeFontFamily(event.target.value);
   }, [changeFontFamily]);
+
+  const onChangeFontWeight = useCallback((event: ChangeEventSelect) => {
+    changeFontweight(event.target.value);
+  }, [changeFontweight]);
 
   const onChangeColorFilter = useCallback((event: ChangeEventInput) => {
     const { name, value } = event.currentTarget;
@@ -173,16 +168,16 @@ const WebAccessibilityPlugin = ({
           <Divider />
 
           <FontSection
-            fontProps={fontProps}
-            fontOptions={fontOptions}
-            fontSizeStep={fontSizeStep}
-            fontWeightStep={fontWeightStep}
-            letterSpacingStep={letterSpacingStep}
-            lineHeightStep={lineHeightStep}
+            fontProps={FONT_PROPS}
+            fontSizeStep={fontSizeValue}
+            letterSpacingStep={letterSpacingValue}
+            lineHeightStep={lineHeightValue}
             fontFamilySelected={fontFamilySelected}
+            fontWeightSelected={fontWeightSelected}
             onIncrementFontProp={onIncrementFontProp}
             onDecrementFontProp={onDecrementFontProp}
             onChangeFontFamily={onChangeFontFamily}
+            onChangeFontWeight={onChangeFontWeight}
           />
 
           <Divider />

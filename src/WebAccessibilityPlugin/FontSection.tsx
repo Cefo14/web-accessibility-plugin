@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 
 import type { MouseEventButton } from '@/types/MouseEvent';
 import type { ChangeEventSelect } from '@/types/ChangeEvent';
@@ -9,37 +9,55 @@ import Text from '@/components/Text';
 import SpaceBetween from '@/components/SpaceBetween';
 import Select, { type SelectOption } from '@/components/Select';
 
-import type { FontProps } from '@/hooks/useAdjustFont';
+import { FONT_FAMILY } from '@/helpers/FontFamilyAdjuster';
+import { FONT_WEIGHT } from '@/helpers/FontWeightAdjuster';
+
+import type { FONT_PROPS } from '@/hooks/useAdjustFont';
 import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
 type FontSectionProps = {
-  fontProps: FontProps;
-  fontOptions: SelectOption[];
+  fontProps: typeof FONT_PROPS;
   fontSizeStep: number;
-  fontWeightStep: number;
   letterSpacingStep: number;
   lineHeightStep: number;
   fontFamilySelected: string;
+  fontWeightSelected: string;
   onIncrementFontProp: (event: MouseEventButton) => void;
   onDecrementFontProp: (event: MouseEventButton) => void;
   onChangeFontFamily: (event: ChangeEventSelect) => void;
+  onChangeFontWeight: (event: ChangeEventSelect) => void;
 };
 
 const FontSection = ({
   fontProps,
-  fontOptions,
   fontSizeStep,
-  fontWeightStep,
   letterSpacingStep,
   lineHeightStep,
   fontFamilySelected,
+  fontWeightSelected,
   onIncrementFontProp,
   onDecrementFontProp,
   onChangeFontFamily,
-}: FontSectionProps) => {
+  onChangeFontWeight,
+}: Readonly<FontSectionProps>) => {
   const { t } = useI18n();
+
+  const fontFamilieOptions = useMemo<SelectOption[]>(() => (
+    Object.values(FONT_FAMILY).map((fontFamily) => ({
+      value: fontFamily,
+      label: fontFamily.replace(/'/g, ''),
+    }))
+  ), []);
+
+  const fontWeightOptions = useMemo<SelectOption[]>(() => (
+    Object.values(FONT_WEIGHT).map((weight) => ({
+      value: weight,
+      label: weight,
+    }))
+  ), []);
+
   return (
     <section className={styles.section}>
       <Heading $as="h3" $size="md">
@@ -51,10 +69,10 @@ const FontSection = ({
           {t('section.font.fontFamily')}
         </Text>
         <SwitchButtons
-          $min={-10}
-          $max={10}
+          $min={10}
+          $max={200}
           $now={fontSizeStep}
-          $value={`${fontSizeStep}x`}
+          $value={`${fontSizeStep}%`}
           $onDecrement={onDecrementFontProp}
           $onIncrement={onIncrementFontProp}
           $name={fontProps.size}
@@ -66,10 +84,10 @@ const FontSection = ({
           {t('section.font.letterSpacing')}
         </Text>
         <SwitchButtons
-          $min={-10}
-          $max={10}
+          $min={10}
+          $max={200}
           $now={letterSpacingStep}
-          $value={`${letterSpacingStep}x`}
+          $value={`${letterSpacingStep}%`}
           $onDecrement={onDecrementFontProp}
           $onIncrement={onIncrementFontProp}
           $name={fontProps.letterSpacing}
@@ -81,10 +99,10 @@ const FontSection = ({
           {t('section.font.lineHeight')}
         </Text>
         <SwitchButtons
-          $min={-10}
-          $max={10}
+          $min={10}
+          $max={200}
           $now={lineHeightStep}
-          $value={`${lineHeightStep}x`}
+          $value={`${lineHeightStep}%`}
           $onDecrement={onDecrementFontProp}
           $onIncrement={onIncrementFontProp}
           $name={fontProps.lineHeight}
@@ -95,14 +113,10 @@ const FontSection = ({
         <Text $size="sm" $as="span">
           {t('section.font.fontWeight')}
         </Text>
-        <SwitchButtons
-          $min={-10}
-          $max={10}
-          $now={fontWeightStep}
-          $value={`${fontWeightStep}x`}
-          $onDecrement={onDecrementFontProp}
-          $onIncrement={onIncrementFontProp}
-          $name={fontProps.weight}
+        <Select
+          $options={fontWeightOptions}
+          value={fontWeightSelected}
+          onChange={onChangeFontWeight}
         />
       </SpaceBetween>
 
@@ -111,7 +125,7 @@ const FontSection = ({
           {t('section.font.fontFamily')}
         </Text>
         <Select
-          $options={fontOptions}
+          $options={fontFamilieOptions}
           value={fontFamilySelected}
           onChange={onChangeFontFamily}
         />

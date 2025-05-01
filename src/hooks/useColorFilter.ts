@@ -4,9 +4,14 @@ import {
   useReducer,
 } from 'react';
 
+import type { Mirror } from '@/types/Mirror';
+import { hasOwnProperty } from '@/helpers/hasOwnProperty';
+
 import { useDidUpdate } from './useDidUpdate';
 
-const FILTERS = {
+type Filter = 'brightness' | 'contrast' | 'saturate' | 'sepia' | 'hue' | 'invert';
+
+const FILTERS: Mirror<Filter> = {
   brightness: 'brightness',
   contrast: 'contrast',
   saturate: 'saturate',
@@ -15,17 +20,15 @@ const FILTERS = {
   invert: 'invert',
 } as const;
 
-type BaseFilters = typeof FILTERS;
+type CustomFilter = 'red' | 'green' | 'blue' | 'warm' | 'monochrome';
 
-const CUSTOM_FILTERS = {
+const CUSTOM_FILTERS: Mirror<CustomFilter> = {
   red: 'red',
   green: 'green',
   blue: 'blue',
   warm: 'warm',
   monochrome: 'monochrome',
 } as const;
-
-type CustomFilters = typeof CUSTOM_FILTERS;
 
 const ALL_FILTERS = {
   ...FILTERS,
@@ -40,7 +43,7 @@ export type ColorFiltersState = {
   [FILTERS.saturate]: number;
   [FILTERS.sepia]: number;
   [FILTERS.hue]: number;
-  customFilterSelected?: keyof CustomFilters,
+  customFilterSelected?: CustomFilter,
 };
 
 const INITIAL_STATE: ColorFiltersState = {
@@ -61,8 +64,8 @@ const ACTIONS = {
 interface Action {
   type: keyof typeof ACTIONS;
   payload?: {
-    filter?: keyof BaseFilters;
-    customFilter?: keyof CustomFilters;
+    filter?: Filter;
+    customFilter?: CustomFilter;
     value?: number;
   };
 }
@@ -129,22 +132,22 @@ export const useColorFilter = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   const setColorFilter = useCallback((name: string, value: string) => {
-    if (!(name in FILTERS)) throw new Error('Invalid filter');
+    if (!hasOwnProperty(FILTERS, name)) throw new Error('Invalid filter');
     dispatch({
       type: ACTIONS.SET_FILTER,
       payload: {
-        filter: name as keyof BaseFilters,
+        filter: name,
         value: Number(value),
       },
     });
   }, []);
 
   const selectCustomColorFilter = useCallback((name: string) => {
-    if (!(name in CUSTOM_FILTERS)) throw new Error('Invalid custom filter');
+    if (!hasOwnProperty(CUSTOM_FILTERS, name)) throw new Error('Invalid custom filter');
     dispatch({
       type: ACTIONS.SELECT_CUSTOM_FILTER,
       payload: {
-        customFilter: name as keyof CustomFilters,
+        customFilter: name,
       },
     });
   }, []);
