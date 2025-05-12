@@ -27,3 +27,5 @@ export class FontWeightAdjuster implements HTMLElementUpdater {
     element.style.setProperty('font-weight', value);
   }
 }
+
+export const fontWeightAdjuster = new FontWeightAdjuster();

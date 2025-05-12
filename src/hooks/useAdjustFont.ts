@@ -5,14 +5,14 @@ import type { Mirror } from '@/types/Mirror';
 import { TextElements } from '@/helpers/TextElements';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
 import { fontSizeAdjuster } from '@/helpers/FontSizeAdjuster';
-import { FontWeightAdjuster } from '@/helpers/FontWeightAdjuster';
-import { LetterSpacingAdjuster } from '@/helpers/LetterSpacingAdjuster';
-import { LineHeightAdjuster } from '@/helpers/LineHeightAdjuster';
-import { FontFamilyAdjuster } from '@/helpers/FontFamilyAdjuster';
+import { letterSpacingAdjuster } from '@/helpers/LetterSpacingAdjuster';
+import { lineHeightAdjuster } from '@/helpers/LineHeightAdjuster';
+import { fontFamilyAdjuster } from '@/helpers/FontFamilyAdjuster';
+import { fontWeightAdjuster } from '@/helpers/FontWeightAdjuster';
 
 import { useAdjustFontFamily } from './useAdjustFontFamily';
 import { useAdjustFontWeight } from './useAdjustFontWeight';
-import { usePercentageAdjuster } from './usePercentageAdjuster';
+import { useAdjustByStep } from './useAdjustByStep';
 
 export type FontProps = 'size' | 'letterSpacing' | 'lineHeight';
 
@@ -22,45 +22,41 @@ export const FONT_PROPS: Mirror<FontProps> = {
   lineHeight: 'lineHeight',
 } as const;
 
-const fontWeightAdjuster = new FontWeightAdjuster();
-const letterSpacingAdjuster = new LetterSpacingAdjuster();
-const lineHeightAdjuster = new LineHeightAdjuster();
-const fontFamilyAdjuster = new FontFamilyAdjuster();
+const INITIAL_VALUE = 100;
+const STEP = 10;
 
 export const useAdjustFont = () => {
   const {
     value: fontSizeValue,
     increment: incrementFontSize,
     decrement: decrementFontSize,
-    resetElement: resetFontSizeElement,
-  } = usePercentageAdjuster(fontSizeAdjuster);
+    reset: resetFontSize,
+  } = useAdjustByStep(fontSizeAdjuster, INITIAL_VALUE, STEP);
 
   const {
     value: letterSpacingValue,
     increment: incrementLetterSpacing,
     decrement: decrementLetterSpacing,
-    resetElement: resetLetterSpacingElement,
-  } = usePercentageAdjuster(letterSpacingAdjuster);
+    reset: resetLetterSpacing,
+  } = useAdjustByStep(letterSpacingAdjuster, INITIAL_VALUE, STEP);
 
   const {
     value: lineHeightValue,
     increment: incrementLineHeight,
     decrement: decrementLineHeight,
-    resetElement: resetLineHeightElement,
-  } = usePercentageAdjuster(lineHeightAdjuster);
+    reset: resetLineHeight,
+  } = useAdjustByStep(lineHeightAdjuster, INITIAL_VALUE, STEP);
 
   const {
     selected: fontFamilySelected,
     update: updateFontFamily,
-    resetElement: resetFontFamilyElment,
-    resetSelected: resetFontFamilySelected,
+    reset: resetFontFamilySelected,
   } = useAdjustFontFamily();
 
   const {
     selected: fontWeightSelected,
     update: updateFontWeight,
-    resetElement: resetFontWeightElement,
-    resetSelected: resetFontWeightSelected,
+    reset: resetFontWeightSelected,
   } = useAdjustFontWeight();
 
   const incrementFontProp = useCallback((prop: string) => {
@@ -95,26 +91,27 @@ export const useAdjustFont = () => {
 
   const resetAdjustFont = useCallback(() => {
     TextElements.instance.elements.forEach((element) => {
-      resetFontSizeElement(element);
-      resetFontWeightElement(element);
-      resetLetterSpacingElement(element);
-      resetLineHeightElement(element);
-      resetFontFamilyElment(element);
+      fontSizeAdjuster.update(element, INITIAL_VALUE);
+      letterSpacingAdjuster.update(element, INITIAL_VALUE);
+      lineHeightAdjuster.update(element, INITIAL_VALUE);
+      fontWeightAdjuster.update(element, fontWeightAdjuster.default);
+      fontFamilyAdjuster.update(element, fontFamilyAdjuster.default);
     });
+    resetFontSize();
+    resetLetterSpacing();
+    resetLineHeight();
     resetFontFamilySelected();
     resetFontWeightSelected();
   }, [
-    resetFontSizeElement,
-    resetFontWeightElement,
-    resetLetterSpacingElement,
-    resetLineHeightElement,
-    resetFontFamilyElment,
+    resetFontSize,
+    resetLetterSpacing,
+    resetLineHeight,
     resetFontFamilySelected,
     resetFontWeightSelected,
   ]);
 
   useEffect(() => {
-    const onMutation = (elements: HTMLElement[]) => {
+    const onChangeElements = (elements: HTMLElement[]) => {
       elements.forEach((element) => {
         fontSizeAdjuster.update(element, fontSizeValue);
         fontWeightAdjuster.update(element, fontWeightSelected);
@@ -123,9 +120,9 @@ export const useAdjustFont = () => {
         fontFamilyAdjuster.update(element, fontFamilySelected);
       });
     };
-    TextElements.instance.subscribe(onMutation);
+    TextElements.instance.subscribe(onChangeElements);
     return () => {
-      TextElements.instance.unsubscribe(onMutation);
+      TextElements.instance.unsubscribe(onChangeElements);
     };
   }, [fontSizeValue, letterSpacingValue, lineHeightValue, fontFamilySelected, fontWeightSelected]);
 

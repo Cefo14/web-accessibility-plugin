@@ -1,9 +1,7 @@
 import { useCallback, useState } from 'react';
 
-import { FontWeightAdjuster, type FontWeight, FONT_WEIGHT } from '@/helpers/FontWeightAdjuster';
+import { fontWeightAdjuster, type FontWeight, FONT_WEIGHT } from '@/helpers/FontWeightAdjuster';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
-
-const fontWeightAdjuster = new FontWeightAdjuster();
 
 export const useAdjustFontWeight = () => {
   const [selected, setSelected] = useState<FontWeight>(fontWeightAdjuster.default);
@@ -17,18 +15,13 @@ export const useAdjustFontWeight = () => {
     setSelected(value);
   }, []);
 
-  const resetElement = useCallback((element: HTMLElement) => {
-    fontWeightAdjuster.update(element, fontWeightAdjuster.default);
-  }, []);
-
-  const resetSelected = useCallback(() => {
+  const reset = useCallback(() => {
     setSelected(fontWeightAdjuster.default);
   }, []);
 
   return {
     update,
-    resetElement,
-    resetSelected,
+    reset,
     selected,
   };
 };

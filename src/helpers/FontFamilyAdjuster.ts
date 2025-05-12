@@ -29,3 +29,5 @@ export class FontFamilyAdjuster implements HTMLElementUpdater {
     element.style.setProperty('font-family', value);
   }
 }
+
+export const fontFamilyAdjuster = new FontFamilyAdjuster();

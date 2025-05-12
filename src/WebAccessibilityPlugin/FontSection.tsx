@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 
 import type { MouseEventButton } from '@/types/MouseEvent';
 import type { ChangeEventSelect } from '@/types/ChangeEvent';
@@ -7,7 +7,7 @@ import Heading from '@/components/Heading';
 import SwitchButtons from '@/components/SwitchButtons';
 import Text from '@/components/Text';
 import SpaceBetween from '@/components/SpaceBetween';
-import Select, { type SelectOption } from '@/components/Select';
+import Select from '@/components/Select';
 
 import { FONT_FAMILY } from '@/helpers/FontFamilyAdjuster';
 import { FONT_WEIGHT } from '@/helpers/FontWeightAdjuster';
@@ -43,20 +43,6 @@ const FontSection = ({
   onChangeFontWeight,
 }: Readonly<FontSectionProps>) => {
   const { t } = useI18n();
-
-  const fontFamilieOptions = useMemo<SelectOption[]>(() => (
-    Object.values(FONT_FAMILY).map((fontFamily) => ({
-      value: fontFamily,
-      label: fontFamily.replace(/'/g, ''),
-    }))
-  ), []);
-
-  const fontWeightOptions = useMemo<SelectOption[]>(() => (
-    Object.values(FONT_WEIGHT).map((weight) => ({
-      value: weight,
-      label: weight,
-    }))
-  ), []);
 
   return (
     <section className={styles.section}>
@@ -114,10 +100,17 @@ const FontSection = ({
           {t('section.font.fontWeight')}
         </Text>
         <Select
-          $options={fontWeightOptions}
           value={fontWeightSelected}
           onChange={onChangeFontWeight}
-        />
+        >
+          {
+            Object.values(FONT_WEIGHT).map((value) => (
+              <Select.Option key={value} value={value}>
+                {value}
+              </Select.Option>
+            ))
+          }
+        </Select>
       </SpaceBetween>
 
       <SpaceBetween>
@@ -125,10 +118,17 @@ const FontSection = ({
           {t('section.font.fontFamily')}
         </Text>
         <Select
-          $options={fontFamilieOptions}
           value={fontFamilySelected}
           onChange={onChangeFontFamily}
-        />
+        >
+          {
+            Object.values(FONT_FAMILY).map((value) => (
+              <Select.Option key={value} value={value}>
+                {value.replace(/'/g, '')}
+              </Select.Option>
+            ))
+          }
+        </Select>
       </SpaceBetween>
     </section>
   );

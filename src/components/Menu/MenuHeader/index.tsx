@@ -9,8 +9,8 @@ import CloseIcon from '@/assets/close-bold-svgrepo-com.svg?react';
 
 import { useI18n } from '@/i18n';
 
-import Heading from '../Heading';
-import Button from '../Button';
+import Heading from '../../Heading';
+import Button from '../../Button';
 
 import styles from './styles.module.css';
 

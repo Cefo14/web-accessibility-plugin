@@ -1,4 +1,4 @@
-import { useCallback, memo, useMemo } from 'react';
+import { useCallback, memo } from 'react';
 import clsx from 'clsx';
 
 import type { ElementProps } from '@/types/ElementProps';
@@ -9,8 +9,6 @@ import { GLOBALS } from '@/constants/Globals';
 
 import OpenMenuButton from '@/components/OpenMenuButton';
 import Menu from '@/components/Menu';
-import MenuHeader from '@/components/MenuHeader';
-import MenuBody from '@/components/MenuBody';
 import Divider from '@/components/Divider';
 import Heading from '@/components/Heading';
 import Select from '@/components/Select';
@@ -85,13 +83,6 @@ const WebAccessibilityPlugin = ({
     resetLanguage,
   ]);
 
-  const languageOptions = useMemo(() => (
-    Object.entries(LanguageCodeTranslations).map(([value, label]) => ({
-      value,
-      label,
-    }))
-  ), []);
-
   const onIncrementFontProp = useCallback((event: MouseEventButton) => {
     const { name } = event.currentTarget;
     incrementFontProp(name);
@@ -146,22 +137,29 @@ const WebAccessibilityPlugin = ({
         aria-modal="true"
         role="dialog"
       >
-        <MenuHeader
+        <Menu.Header
           $onClose={close}
           $onReset={onReset}
           $titleId={MENU_TITLE_ID}
         />
-        <MenuBody>
+        <Menu.Body>
           <section>
             <SpaceBetween>
               <Heading $size="md" $as="h3">
                 {t('menu.language')}
               </Heading>
               <Select
-                $options={languageOptions}
                 onChange={onChangeLanguage}
                 value={language}
-              />
+              >
+                {
+                  Object.entries(LanguageCodeTranslations).map(([key, value]) => (
+                    <Select.Option key={key} value={key}>
+                      {value}
+                    </Select.Option>
+                  ))
+                }
+              </Select>
             </SpaceBetween>
           </section>
 
@@ -197,7 +195,7 @@ const WebAccessibilityPlugin = ({
             onToggleTool={onToggleTool}
             isToolActive={isToolActive}
           />
-        </MenuBody>
+        </Menu.Body>
       </Menu>
     </section>
   );

@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 
-import { FontFamilyAdjuster, type FontFamily, FONT_FAMILY } from '@/helpers/FontFamilyAdjuster';
+import { fontFamilyAdjuster, type FontFamily, FONT_FAMILY } from '@/helpers/FontFamilyAdjuster';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
-
-const fontFamilyAdjuster = new FontFamilyAdjuster();
 
 export const useAdjustFontFamily = () => {
   const [selected, setSelected] = useState<FontFamily>(
@@ -19,11 +17,7 @@ export const useAdjustFontFamily = () => {
     setSelected(value);
   }, []);
 
-  const resetElement = useCallback((element: HTMLElement) => {
-    fontFamilyAdjuster.update(element, fontFamilyAdjuster.default);
-  }, []);
-
-  const resetSelected = useCallback(() => {
+  const reset = useCallback(() => {
     setSelected(fontFamilyAdjuster.default);
   }, []);
 
@@ -65,8 +59,7 @@ export const useAdjustFontFamily = () => {
 
   return {
     update,
-    resetElement,
-    resetSelected,
+    reset,
     selected,
   };
 };

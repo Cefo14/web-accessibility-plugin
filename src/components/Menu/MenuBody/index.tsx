@@ -10,12 +10,12 @@ const MenuBody = ({
   className,
   ...props
 }: ElementProps) => (
-  <div
+  <main
     {...props}
     className={clsx(styles.root, className)}
   >
     { children }
-  </div>
+  </main>
 );
 
 export default memo(MenuBody);

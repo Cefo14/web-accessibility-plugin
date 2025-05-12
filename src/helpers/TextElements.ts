@@ -1,6 +1,6 @@
 import { GLOBALS } from '@/constants/Globals';
 
-type NotifyFN = (elements: HTMLElement[]) => void;
+type Notifier = (elements: HTMLElement[]) => void;
 
 export class TextElements {
   private nodes: Set<Node>;
@@ -11,7 +11,7 @@ export class TextElements {
 
   private mutationObserver: MutationObserver;
 
-  private observers: Set<NotifyFN>;
+  private observers: Set<Notifier>;
 
   static #instance: TextElements;
 
@@ -59,11 +59,11 @@ export class TextElements {
     this.mutationObserver.observe(document.body, { childList: true, subtree: true });
   }
 
-  public subscribe = (observer: NotifyFN) => {
+  public subscribe = (observer: Notifier) => {
     this.observers.add(observer);
   };
 
-  public unsubscribe = (observer: NotifyFN) => {
+  public unsubscribe = (observer: Notifier) => {
     this.observers.delete(observer);
   };
 
@@ -123,7 +123,7 @@ export class TextElements {
         if (addedNodes.length > 0) this.addNodes(addedNodes);
         if (removedNodes.length > 0) this.removeNodes(removedNodes);
       });
-      if (this.elemenstChanged()) this.notifyMutation();
+      if (this.elemenstChanged()) this.notifyChanges();
     });
     return observer;
   }
@@ -170,7 +170,7 @@ export class TextElements {
     return this.currentElements;
   }
 
-  private notifyMutation = () => {
+  private notifyChanges = () => {
     this.observers.forEach((observer) => {
       const elements = this.getElements();
       observer(elements);

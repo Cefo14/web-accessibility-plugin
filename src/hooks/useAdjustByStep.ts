@@ -2,42 +2,41 @@ import { useCallback, useState } from 'react';
 
 import type { HTMLElementUpdater } from '@/helpers/HTMLElementUpdater';
 
-const INITIAL_VALUE = 100;
-const STEP = 10;
-
-export const usePercentageAdjuster = (
+export const useAdjustByStep = (
   updater: HTMLElementUpdater,
+  initialValue: number = 0,
+  step: number = 1,
 ) => {
-  const [value, setValue] = useState<number>(INITIAL_VALUE);
+  const [value, setValue] = useState<number>(initialValue);
 
   const increment = useCallback((elements: HTMLElement[]) => {
     setValue((prev) => {
-      const next = prev + STEP;
+      const next = prev + step;
       elements.forEach((element) => {
         updater.update(element, next);
       });
       return next;
     });
-  }, [updater]);
+  }, [step, updater]);
 
   const decrement = useCallback((elements: HTMLElement[]) => {
     setValue((prev) => {
-      const next = prev - STEP;
+      const next = prev - step;
       elements.forEach((element) => {
         updater.update(element, next);
       });
       return next;
     });
-  }, [updater]);
+  }, [step, updater]);
 
-  const resetElement = useCallback((element: HTMLElement) => {
-    updater.update(element, INITIAL_VALUE);
-  }, [updater]);
+  const reset = useCallback(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   return {
     value,
     increment,
     decrement,
-    resetElement,
+    reset,
   };
 };
