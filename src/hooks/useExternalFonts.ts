@@ -1,26 +1,6 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
-import { fontFamilyAdjuster, type FontFamily, FONT_FAMILY } from '@/helpers/FontFamilyAdjuster';
-import { hasOwnProperty } from '@/helpers/hasOwnProperty';
-
-export const useAdjustFontFamily = () => {
-  const [selected, setSelected] = useState<FontFamily>(
-    fontFamilyAdjuster.default,
-  );
-
-  const update = useCallback((elements: HTMLElement[], value: string) => {
-    if (!hasOwnProperty(FONT_FAMILY, value)) throw new Error('Invalid font family value');
-
-    elements.forEach((element) => {
-      fontFamilyAdjuster.update(element, value);
-    });
-    setSelected(value);
-  }, []);
-
-  const reset = useCallback(() => {
-    setSelected(fontFamilyAdjuster.default);
-  }, []);
-
+export const useExternalFonts = () => {
   useEffect(() => {
     const STYLE_ID = 'WAP-open-dyslexic';
     const style = document.getElementById(STYLE_ID);
@@ -56,10 +36,4 @@ export const useAdjustFontFamily = () => {
 
     document.head.append(fragment);
   }, []);
-
-  return {
-    update,
-    reset,
-    selected,
-  };
 };

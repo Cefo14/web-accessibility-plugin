@@ -1,17 +1,21 @@
-import type { HTMLElementUpdater } from './HTMLElementUpdater';
+import type { CSSUpdater } from './CSSUpdater';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
 import { getCSSUnitValue } from './getCSSUnitValue';
 import { toFixed } from './toFixed';
 
-export class LineHeightAdjuster implements HTMLElementUpdater {
-  public update(element: HTMLElement, step: number): undefined {
+export class LineHeightAdjuster implements CSSUpdater {
+  readonly defaultValue = 100;
+
+  public update(element: HTMLElement, value: number): undefined {
     const originalValue = getInitialComputedStyle(element, 'lineHeight');
     const parsedValue = getCSSUnitValue(originalValue);
 
     if (parsedValue === null) return;
 
-    const newValue = parsedValue * (step / 100);
-    element.style.setProperty('line-height', `${toFixed(newValue, 2)}px`);
+    let newValue = parsedValue * (value / 100);
+    newValue = toFixed(newValue, 2);
+
+    element.style.setProperty('line-height', `${newValue}px`);
   }
 }
 

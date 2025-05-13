@@ -1,6 +1,6 @@
 import type { Mirror } from '@/types/Mirror';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
-import type { HTMLElementUpdater } from './HTMLElementUpdater';
+import type { CSSUpdater } from './CSSUpdater';
 
 const DEFAULT = '-' as const;
 type Default = typeof DEFAULT;
@@ -14,18 +14,14 @@ export const FONT_WEIGHT: Mirror<FontWeight> = {
   bold: 'bold',
 };
 
-export class FontWeightAdjuster implements HTMLElementUpdater {
-  public readonly default: Default;
-
-  constructor() {
-    this.default = DEFAULT;
-  }
+export class FontWeightAdjuster implements CSSUpdater {
+  public readonly defaultValue = DEFAULT;
 
   public update(element: HTMLElement, fontWeight: FontWeight) : undefined {
     const originalValue = getInitialComputedStyle(element, 'fontWeight');
-    const value = fontWeight === this.default ? originalValue : fontWeight;
+    const value = fontWeight === this.defaultValue ? originalValue : fontWeight;
     element.style.setProperty('font-weight', value);
   }
 }
 
-export const fontWeightAdjuster = new FontWeightAdjuster();
+export const fontWeightAdjuster = Object.freeze(new FontWeightAdjuster());

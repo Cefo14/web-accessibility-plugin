@@ -22,8 +22,8 @@ type FontSectionProps = {
   fontSizeStep: number;
   letterSpacingStep: number;
   lineHeightStep: number;
-  fontFamilySelected: string;
-  fontWeightSelected: string;
+  fontFamilyValue: string;
+  fontWeightValue: string;
   onIncrementFontProp: (event: MouseEventButton) => void;
   onDecrementFontProp: (event: MouseEventButton) => void;
   onChangeFontFamily: (event: ChangeEventSelect) => void;
@@ -35,8 +35,8 @@ const FontSection = ({
   fontSizeStep,
   letterSpacingStep,
   lineHeightStep,
-  fontFamilySelected,
-  fontWeightSelected,
+  fontFamilyValue,
+  fontWeightValue,
   onIncrementFontProp,
   onDecrementFontProp,
   onChangeFontFamily,
@@ -100,7 +100,7 @@ const FontSection = ({
           {t('section.font.fontWeight')}
         </Text>
         <Select
-          value={fontWeightSelected}
+          value={fontWeightValue}
           onChange={onChangeFontWeight}
         >
           {
@@ -118,7 +118,7 @@ const FontSection = ({
           {t('section.font.fontFamily')}
         </Text>
         <Select
-          value={fontFamilySelected}
+          value={fontFamilyValue}
           onChange={onChangeFontFamily}
         >
           {

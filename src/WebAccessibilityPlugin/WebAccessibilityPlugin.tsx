@@ -8,7 +8,7 @@ import type { MouseEventButton } from '@/types/MouseEvent';
 import { GLOBALS } from '@/constants/Globals';
 
 import OpenMenuButton from '@/components/OpenMenuButton';
-import Menu from '@/components/Menu';
+import { Menu, MenuHeader, MenuBody } from '@/components/Menu';
 import Divider from '@/components/Divider';
 import Heading from '@/components/Heading';
 import Select from '@/components/Select';
@@ -40,8 +40,8 @@ const WebAccessibilityPlugin = ({
     fontSizeValue,
     letterSpacingValue,
     lineHeightValue,
-    fontFamilySelected,
-    fontWeightSelected,
+    fontFamilyValue,
+    fontWeightValue,
     incrementFontProp,
     decrementFontProp,
     changeFontFamily,
@@ -137,12 +137,12 @@ const WebAccessibilityPlugin = ({
         aria-modal="true"
         role="dialog"
       >
-        <Menu.Header
+        <MenuHeader
           $onClose={close}
           $onReset={onReset}
           $titleId={MENU_TITLE_ID}
         />
-        <Menu.Body>
+        <MenuBody>
           <section>
             <SpaceBetween>
               <Heading $size="md" $as="h3">
@@ -170,8 +170,8 @@ const WebAccessibilityPlugin = ({
             fontSizeStep={fontSizeValue}
             letterSpacingStep={letterSpacingValue}
             lineHeightStep={lineHeightValue}
-            fontFamilySelected={fontFamilySelected}
-            fontWeightSelected={fontWeightSelected}
+            fontFamilyValue={fontFamilyValue}
+            fontWeightValue={fontWeightValue}
             onIncrementFontProp={onIncrementFontProp}
             onDecrementFontProp={onDecrementFontProp}
             onChangeFontFamily={onChangeFontFamily}
@@ -195,7 +195,7 @@ const WebAccessibilityPlugin = ({
             onToggleTool={onToggleTool}
             isToolActive={isToolActive}
           />
-        </Menu.Body>
+        </MenuBody>
       </Menu>
     </section>
   );
