@@ -1,33 +1,202 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + React + TS</title>
 
-  </head>
-  <body>
-    <main>
-      <header>
-        <h1>
-          A simple accessibility plugin alternative
-        </h1>
-        <p>
-          lightweight, fast and easy to integrate.
-        </p>
-      </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Accessibility Plugin - Lightweight accessibility solution</title>
+  <meta name="description"
+    content="A simple, lightweight accessibility plugin alternative. Easy to integrate with customizable text options, visual filters, and navigation tools.">
+
+  <link rel="stylesheet" href="./public.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
+</head>
+
+
+<body>
+  <div class="wrapper">
+    <header role="banner">
+      <div class="container header-container">
+        <div class="logo">
+          <span>web-accessibility-plugin</span>
+        </div>
+        <nav role="navigation" aria-label="Main navigation">
+          <ul>
+            <li><a href="#features" aria-describedby="features-desc">Features</a></li>
+            <li><a href="#installation" aria-describedby="installation-desc">Installation</a></li>
+            <li><a href="https://github.com/Cefo14/web-accessibility-plugin/tree/dev" class="github-button"
+                aria-label="View project on GitHub" rel="noopener noreferrer" target="_blank">
+                <i class="fab fa-github" aria-hidden="true"></i>
+                <span>GitHub</span>
+              </a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-button" aria-expanded="false" aria-controls="mobile-menu"
+          aria-label="Toggle navigation menu">
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+          <span class="hamburger-line"></span>
+        </button>
+
+        <!-- Mobile menu -->
+        <nav id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile navigation" aria-hidden="true">
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="https://github.com/Cefo14/web-accessibility-plugin/tree/dev" rel="noopener noreferrer"
+                target="_blank">GitHub</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content" role="main">
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <h1 id="hero-heading">A simple accessibility plugin alternative</h1>
+          <p class="hero-description">
+            Lightweight, fast and easy to integrate. Enhance web accessibility with customizable text options, visual
+            filters, and navigation tools.
+          </p>
+          <div class="button-group" role="group" aria-label="Primary actions">
+            <a href="https://github.com/Cefo14/web-accessibility-plugin/tree/dev" class="button primary"
+              rel="noopener noreferrer" target="_blank" aria-describedby="github-desc">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>Get Started</span>
+            </a>
+            <a href="#installation" class="button secondary" aria-describedby="installation-desc">
+              <i class="fas fa-code" aria-hidden="true"></i>
+              <span>Installation</span>
+            </a>
+          </div>
+
+          <!-- Hidden descriptions for screen readers -->
+          <div class="sr-only">
+            <span id="github-desc">Opens GitHub repository in a new tab</span>
+            <span id="features-desc">Navigate to features section</span>
+            <span id="installation-desc">Navigate to installation instructions</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features" aria-labelledby="features-heading">
+        <div class="container">
+          <h2 id="features-heading">Key Features</h2>
+          <div class="features-grid" role="list">
+            <article class="feature-card" role="listitem">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-font"></i>
+              </div>
+              <h3>Font Customization</h3>
+              <p>Adjust font size, weight, spacing, and line height to improve readability.</p>
+            </article>
+
+            <article class="feature-card" role="listitem">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-sliders-h"></i>
+              </div>
+              <h3>Visual Filters</h3>
+              <p>Apply filters to reduce visual fatigue with brightness, contrast, saturation, and sepia adjustments.
+              </p>
+            </article>
+
+            <article class="feature-card" role="listitem">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <h3>Content Highlighting</h3>
+              <p>Highlight headings and links to improve navigation and content scanning.</p>
+            </article>
+
+            <article class="feature-card" role="listitem">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-image"></i>
+              </div>
+              <h3>Image Controls</h3>
+              <p>Hide images to reduce distractions and improve focus on text content.</p>
+            </article>
+
+            <article class="feature-card" role="listitem">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3>Easy Integration</h3>
+              <p>Simple to implement in any website with minimal configuration required.</p>
+            </article>
+
+            <article class="feature-card" role="listitem">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-external-link-alt"></i>
+              </div>
+              <h3>Open Source</h3>
+              <p>Free and open source under GPL-3.0 license. Contributions welcome.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation Section -->
+      <section id="installation" class="installation" aria-labelledby="installation-heading">
+        <div class="container">
+          <h2 id="installation-heading">Installation</h2>
+          <p class="section-description">
+            Get started with web-accessibility-plugin in just a few steps via CDN.
+          </p>
+
+          <div class="installation-card">
+            <h3 id="step1-heading">1. Include the CDN script</h3>
+            <div class="code-block" role="region" aria-labelledby="step1-heading">
+              <code aria-label="HTML script tag for CDN installation">
+&lt;script src="https://cdn.jsdelivr.net/gh/Cefo14/web-accessibility-plugin/release/web-accessibility-plugin.min.js"&gt;&lt;/script&gt;
+              </code>
+            </div>
+
+            <h3 id="step2-heading">2. Initialize the plugin</h3>
+            <div class="code-block" role="region" aria-labelledby="step2-heading">
+              <code aria-label="JavaScript code to initialize the plugin">
+&lt;script&gt;
+    window.addEventListener('load', function () {
+      if (typeof window.WebAccessibilityPlugin === 'undefined') return;
+      var container = document.getElementById('root');
+      var webAccessibilityPlugin = new window.WebAccessibilityPlugin(container);
+      webAccessibilityPlugin.render();
+    });
+&lt;/script&gt;
+              </code>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <a href="https://github.com/Cefo14/web-accessibility-plugin/tree/dev" class="button primary"
+              rel="noopener noreferrer" target="_blank" aria-label="View documentation on GitHub (opens in new tab)">
+              <i class="fab fa-github" aria-hidden="true"></i>
+              <span>View Documentation</span>
+            </a>
+          </div>
+        </div>
+      </section>
     </main>
 
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-    <script>
-      window.addEventListener('load', function() {
-        if (typeof window.WebAccessibilityPlugin === 'undefined') return;
-        var container = document.getElementById('root');
-        var webAccessibilityPlugin = new window.WebAccessibilityPlugin(container);
-        webAccessibilityPlugin.render();
-      })
-    </script>
-  </body>
+    <footer role="contentinfo">
+      <div class="container">
+        <p>web-accessibility-plugin is licensed under GPL-3.0</p>
+        <div class="social-links" role="list" aria-label="Social media links">
+          <a href="https://github.com/Cefo14/web-accessibility-plugin/tree/dev" aria-label="Visit our GitHub repository"
+            rel="noopener noreferrer" target="_blank" role="listitem">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+
 </html>

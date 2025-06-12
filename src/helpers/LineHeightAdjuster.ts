@@ -1,14 +1,20 @@
-import type { CSSUpdater } from './CSSUpdater';
+import type { FontUpdater } from './FontUpdater';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
 import { getCSSUnitValue } from './getCSSUnitValue';
 import { toFixed } from './toFixed';
 
-export class LineHeightAdjuster implements CSSUpdater {
+export class LineHeightAdjuster implements FontUpdater {
   readonly defaultValue = 100;
 
   public update(element: HTMLElement, value: number): undefined {
     const originalValue = getInitialComputedStyle(element, 'lineHeight');
-    const parsedValue = getCSSUnitValue(originalValue);
+
+    if (value === this.defaultValue) {
+      element.style.setProperty('line-height', originalValue);
+      return;
+    }
+
+    const parsedValue = originalValue === 'normal' ? 20 : getCSSUnitValue(originalValue);
 
     if (parsedValue === null) return;
 

@@ -10,11 +10,11 @@ export const en: TranslationModel = {
   'menu.language': 'Language',
 
   'section.font.title': 'Font Settings',
-  'section.font.fontStyle': 'Size',
+  'section.font.size': 'Size',
   'section.font.letterSpacing': 'Letter Spacing',
   'section.font.lineHeight': 'Line Height',
   'section.font.fontWeight': 'Weight',
-  'section.font.fontFamily': 'Font Family',
+  'section.font.fontFamily': 'Font',
 
   'section.colorFilter.title': 'Color Filters',
   'section.colorFilter.brightness': 'Brightness',

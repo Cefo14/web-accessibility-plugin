@@ -20,8 +20,8 @@
 }
 
 .root:focus {
-  background-color: var(--wap-color-active);
-  outline: 4px solid var(--wap-color-active);
+  background-color: var(--wap-color-info-dark);
+  outline: 4px solid var(--wap-color-info-dark);;
 }
 
 .root:hover {

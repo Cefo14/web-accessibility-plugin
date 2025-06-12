@@ -3,6 +3,7 @@ import { useCallback, useState } from 'react';
 import type { Mirror } from '@/types/Mirror';
 import highlightClassNames from '@/styles/tools.module.css';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
+import { InvalidPropError } from '@/errors/InvalidPropError';
 
 type ToolClassName = 'highlightTitles' | 'highlightLinks' | 'highlightCursor' | 'hideImages';
 
@@ -39,7 +40,7 @@ export const useTools = () => {
   }, [activeTools]);
 
   const toggleTool = useCallback((name: string) => {
-    if (!hasOwnProperty(CLASS_NAMES, name)) throw new Error('Invalid Tool name');
+    if (!hasOwnProperty(CLASS_NAMES, name)) throw new InvalidPropError(`Invalid tool name "${name}"`);
     const className: string = CLASS_NAMES[name];
     document.body.classList.toggle(className);
     toggleToolState(name);

@@ -52,7 +52,7 @@ const FontSection = ({
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          {t('section.font.fontFamily')}
+          {t('section.font.size')}
         </Text>
         <SwitchButtons
           $min={10}

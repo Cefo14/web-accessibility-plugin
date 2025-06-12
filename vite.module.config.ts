@@ -28,12 +28,13 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
-        app: './src/publish/module.tsx',
+        app: './src/module.tsx',
       },
       output: [
         {
           entryFileNames: 'web-accessibility-plugin.min.[format].js',
           format: 'cjs',
+          dir: path.resolve(__dirname, './release'),
         },
       ],
     },

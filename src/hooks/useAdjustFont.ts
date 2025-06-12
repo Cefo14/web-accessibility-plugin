@@ -14,6 +14,7 @@ import { useExternalFonts } from './useExternalFonts';
 import { useSteper } from '@/hooks/useSteper';
 import { useOnChange } from './useOnChange';
 import { useDidUpdate } from './useDidUpdate';
+import { InvalidPropError } from '@/errors/InvalidPropError';
 
 export type FontProps = 'size' | 'letterSpacing' | 'lineHeight';
 
@@ -67,7 +68,7 @@ export const useAdjustFont = () => {
   useExternalFonts();
 
   const incrementFontProp = useCallback((prop: string) => {
-    if (!hasOwnProperty(FONT_PROPS, prop)) throw new Error('Invalid font prop');
+    if (!hasOwnProperty(FONT_PROPS, prop)) throw new InvalidPropError(`Invalid font property "${prop}"`);
 
     if (prop === FONT_PROPS.size) incrementFontSize();
     else if (prop === FONT_PROPS.letterSpacing) incrementLetterSpacing();
@@ -75,7 +76,7 @@ export const useAdjustFont = () => {
   }, [incrementFontSize, incrementLetterSpacing, incrementLineHeight]);
 
   const decrementFontProp = useCallback((prop: string) => {
-    if (!hasOwnProperty(FONT_PROPS, prop)) throw new Error('Invalid font prop');
+    if (!hasOwnProperty(FONT_PROPS, prop)) throw new InvalidPropError(`Invalid font property "${prop}"`);
 
     if (prop === FONT_PROPS.size) decrementFontSize();
     else if (prop === FONT_PROPS.letterSpacing) decrementLetterSpacing();
@@ -83,12 +84,12 @@ export const useAdjustFont = () => {
   }, [decrementFontSize, decrementLetterSpacing, decrementLineHeight]);
 
   const changeFontFamily = useCallback((value: string) => {
-    if (!hasOwnProperty(FONT_FAMILY, value)) throw new Error('Invalid font family value');
+    if (!hasOwnProperty(FONT_FAMILY, value)) throw new InvalidPropError(`Invalid font family "${value}"`);
     updateFontFamily(value);
   }, [updateFontFamily]);
 
   const changeFontweight = useCallback((value: string) => {
-    if (!hasOwnProperty(FONT_WEIGHT, value)) throw new Error('Invalid font weight value');
+    if (!hasOwnProperty(FONT_WEIGHT, value)) throw new InvalidPropError(`Invalid font weight "${value}"`);
     updateFontWeight(value);
   }, [updateFontWeight]);
 

@@ -10,11 +10,11 @@ export const zh: TranslationModel = {
   'menu.language': '语言',
 
   'section.font.title': '字体设置',
-  'section.font.fontStyle': '大小',
+  'section.font.size': '大小',
   'section.font.letterSpacing': '字母间距',
   'section.font.lineHeight': '行高',
   'section.font.fontWeight': '粗细',
-  'section.font.fontFamily': '字体族',
+  'section.font.fontFamily': '字体',
 
   'section.colorFilter.title': '颜色滤镜',
   'section.colorFilter.brightness': '亮度',

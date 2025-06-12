@@ -10,7 +10,7 @@ export const es: TranslationModel = {
   'menu.language': 'Idioma',
 
   'section.font.title': 'Ajustes de Texto',
-  'section.font.fontStyle': 'Tamaño',
+  'section.font.size': 'Tamaño',
   'section.font.letterSpacing': 'Espaciado',
   'section.font.lineHeight': 'Altura',
   'section.font.fontWeight': 'Peso',

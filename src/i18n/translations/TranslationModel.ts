@@ -7,7 +7,7 @@ export type TranslationModel = {
   'menu.language': string;
 
   'section.font.title': string;
-  'section.font.fontStyle': string;
+  'section.font.size': string;
   'section.font.letterSpacing': string;
   'section.font.lineHeight': string;
   'section.font.fontWeight': string;

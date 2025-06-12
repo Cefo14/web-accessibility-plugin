@@ -50,8 +50,7 @@ const WebAccessibilityPlugin = ({
   } = useAdjustFont();
 
   const {
-    colorFilters,
-    colorfiltersState,
+    colorfilterState,
     setColorFilter,
     selectCustomColorFilter,
     resetColorFilter,
@@ -181,11 +180,9 @@ const WebAccessibilityPlugin = ({
           <Divider />
 
           <ColorFilterSection
-            filters={colorFilters}
-            filtersState={colorfiltersState}
+            state={colorfilterState}
             onChangeColorFilter={onChangeColorFilter}
             onSelectCustomColorFilter={onSelectCustomColorFilter}
-            resetColorFilter={resetColorFilter}
           />
 
           <Divider />

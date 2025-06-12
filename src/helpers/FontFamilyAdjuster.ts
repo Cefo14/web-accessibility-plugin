@@ -1,6 +1,6 @@
 import type { Mirror } from '@/types/Mirror';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
-import type { CSSUpdater } from './CSSUpdater';
+import type { FontUpdater } from './FontUpdater';
 
 const DEFAULT = '-' as const;
 type Default = typeof DEFAULT;
@@ -16,7 +16,7 @@ export const FONT_FAMILY: Mirror<FontFamily> = {
   'sans-serif': 'sans-serif',
 };
 
-export class FontFamilyAdjuster implements CSSUpdater {
+export class FontFamilyAdjuster implements FontUpdater {
   public readonly defaultValue: Default;
 
   constructor() {
