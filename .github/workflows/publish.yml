@@ -37,7 +37,7 @@ jobs:
       run: pnpm install --frozen-lockfile
 
     - name: Build
-      run: pnpm build
+      run: pnpm build - --base=/web-accessibility-plugin/
 
     - name: Deploy to GitHub Pages
       uses: JamesIves/github-pages-deploy-action@v4
