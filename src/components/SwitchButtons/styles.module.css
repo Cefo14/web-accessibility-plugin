@@ -1,0 +1,24 @@
+.root {
+  display: flex;
+  place-items: center;
+  gap: 0.5em;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 2em;
+  height: 2em;
+  font-size: inherit;
+  padding: 0px;
+}
+
+.value {
+  width: 2em;
+  height: 2em;
+  display: flex;
+  place-content: center;
+  place-items: center;
+}

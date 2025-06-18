@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Accessibility Plugin - Lightweight accessibility solution</title>
+  <meta name="description" content="A simple, lightweight accessibility plugin alternative. Easy to integrate with customizable text options, visual filters, and navigation tools.">
+  <link rel="stylesheet" href="./public.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
+</head>
+<body>
+  <div class="wrapper">
+    <header role="banner">
+      <div class="container header-container">
+        <div class="logo">
+          <span>web-accessibility-plugin</span>
+        </div>
+        
+        <!-- Desktop navigation -->
+        <nav class="desktop-nav" role="navigation" aria-label="Main navigation">
+          <ul>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#installation">Installation</a></li>
+            <li><a href="https://github.com/Cefo14/web-accessibility-plugin" 
+                   class="github-button" 
+                   target="_blank"
+                   rel="noopener noreferrer">
+              <i class="fab fa-github" aria-hidden="true"></i> 
+              <span>GitHub</span>
+            </a></li>
+          </ul>
+        </nav>
+        
+        <!-- Mobile menu (CSS-only) -->
+        <div class="mobile-menu-container">
+          <input type="checkbox" id="mobile-menu-toggle" class="mobile-menu-checkbox">
+          <label for="mobile-menu-toggle" class="mobile-menu-button" aria-label="Toggle navigation menu">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </label>
+          
+          <nav class="mobile-menu" role="navigation" aria-label="Mobile navigation">
+            <ul>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#installation">Installation</a></li>
+              <li><a href="https://github.com/Cefo14/web-accessibility-plugin" 
+                     target="_blank"
+                     rel="noopener noreferrer">GitHub</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" role="main">
+      <!-- Hero Section -->
+      <section class="hero" aria-labelledby="hero-heading">
+        <div class="container">
+          <h1 id="hero-heading">A simple accessibility plugin alternative</h1>
+          <p class="hero-description">
+            Lightweight, fast and easy to integrate. Enhance web accessibility with customizable text options, visual filters, and navigation tools.
+          </p>
+          <div class="button-group">
+            <a href="https://github.com/Cefo14/web-accessibility-plugin" 
+               class="button primary"
+               target="_blank"
+               rel="noopener noreferrer">
+              <i class="fab fa-github" aria-hidden="true"></i> 
+              <span>Get Started</span>
+            </a>
+            <a href="#installation" class="button secondary">
+              <i class="fas fa-code" aria-hidden="true"></i> 
+              <span>Installation</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Features Section -->
+      <section id="features" class="features" aria-labelledby="features-heading">
+        <div class="container">
+          <h2 id="features-heading">Key Features</h2>
+          <div class="features-grid">
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-font"></i>
+              </div>
+              <h3>Font Customization</h3>
+              <p>Adjust font size, weight, spacing, and line height to improve readability.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-sliders-h"></i>
+              </div>
+              <h3>Visual Filters</h3>
+              <p>Apply filters to reduce visual fatigue with brightness, contrast, saturation, and sepia adjustments.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <h3>Content Highlighting</h3>
+              <p>Highlight headings and links to improve navigation and content scanning.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-image"></i>
+              </div>
+              <h3>Image Controls</h3>
+              <p>Hide images to reduce distractions and focus on text content.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-code"></i>
+              </div>
+              <h3>Easy Integration</h3>
+              <p>Simple to implement in any website with minimal configuration required.</p>
+            </article>
+
+            <article class="feature-card">
+              <div class="feature-icon" aria-hidden="true">
+                <i class="fas fa-external-link-alt"></i>
+              </div>
+              <h3>Open Source</h3>
+              <p>Free and open source under GPL-3.0 license. Contributions welcome.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Installation Section -->
+      <section id="installation" class="installation" aria-labelledby="installation-heading">
+        <div class="container">
+          <h2 id="installation-heading">Installation</h2>
+          <p class="section-description">
+            Get started with web-accessibility-plugin in just a few steps via CDN.
+          </p>
+
+          <div class="installation-card">
+            <h3 id="step1-heading">1. Include the CDN script</h3>
+            <div class="code-block" role="region" aria-labelledby="step1-heading">
+              <code>
+&lt;script src="https://cdn.jsdelivr.net/gh/Cefo14/web-accessibility-plugin@master/release/web-accessibility-plugin.min.cjs.js"&gt;&lt;/script&gt;
+              </code>
+            </div>
+
+            <h3 id="step2-heading">2. Initialize the plugin</h3>
+            <div class="code-block" role="region" aria-labelledby="step2-heading">
+              <code>
+&lt;script&gt;
+  window.addEventListener('load', function () {
+    if (typeof window.WebAccessibilityPlugin === 'undefined') return;
+    var container = document.getElementById('root');
+    var webAccessibilityPlugin = new window.WebAccessibilityPlugin(container);
+    webAccessibilityPlugin.render();
+  });
+&lt;/script&gt;
+              </code>
+            </div>
+          </div>
+
+          <div class="button-container">
+            <a href="https://github.com/Cefo14/web-accessibility-plugin" 
+               class="button primary"
+               target="_blank"
+               rel="noopener noreferrer">
+              <i class="fab fa-github" aria-hidden="true"></i> 
+              <span>View Documentation</span>
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div class="container">
+        <p>web-accessibility-plugin is licensed under GPL-3.0</p>
+        <div class="social-links">
+          <a href="https://github.com/Cefo14/web-accessibility-plugin" 
+             target="_blank"
+             rel="noopener noreferrer"
+             aria-label="Visit our GitHub repository">
+            <i class="fab fa-github" aria-hidden="true"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- React root element -->
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
+</body>
+</html>

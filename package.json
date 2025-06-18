@@ -1,0 +1,92 @@
+{
+  "name": "web-accessibility-plugin",
+  "version": "1.0.0",
+  "description": "A simple web accessibility plugin for browsers",
+  "author": "Cefo14 <cefo14@protonmail.com>",
+  "license": "GPL-3.0-or-later",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Cefo14/web-accessibility-plugin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Cefo14/web-accessibility-plugin/issues"
+  },
+  "homepage": "https://github.com/Cefo14/web-accessibility-plugin#readme",
+  "keywords": [
+    "open source",
+    "web",
+    "accessibility",
+    "pluig",
+    "module",
+    "script",
+    "tool",
+    "react",
+    "javascript",
+    "typescript",
+    "vite"
+  ],
+  "main": "dist/react-web-accessibility-plugin.cjs.js",
+  "module": "dist/react-web-accessibility-plugin.es.js",
+  "types": "dist/react-web-accessibility-plugin.es.d.ts",
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "build:module": "tsc -b && vite build --config vite.module.config.ts",
+    "build:component": "tsc -b && vite build --config vite.component.config.ts",
+    "preview": "vite preview",
+    "prepare": "husky",
+    "commit": "cz",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "peerDependencies": {
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "28.0.6",
+    "@vitejs/plugin-react": "4.5.2",
+    "clsx": "2.1.1",
+    "cssnano": "7.0.7",
+    "postcss-discard-comments": "7.0.4",
+    "postcss-flexbugs-fixes": "5.0.2",
+    "postcss-preset-env": "10.2.3",
+    "postcss-url": "10.1.3",
+    "preact": "10.26.9",
+    "preact-compat": "3.19.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "sanitize.css": "13.0.0",
+    "typescript": "5.8.3",
+    "vite": "6.3.5",
+    "vite-plugin-css-injected-by-js": "3.5.2",
+    "vite-plugin-dts": "4.5.4",
+    "vite-plugin-svgr": "4.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "19.4.1",
+    "@commitlint/config-conventional": "19.2.2",
+    "@types/node": "24.0.3",
+    "@types/react": "19.1.8",
+    "@types/react-dom": "19.1.6",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "commitizen": "4.3.1",
+    "cz-conventional-changelog": "3.3.0",
+    "eslint": "8.57.1",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-import-resolver-alias": "1.1.2",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jsx-a11y": "6.10.0",
+    "eslint-plugin-react": "7.36.1",
+    "eslint-plugin-react-hooks": "4.6.2",
+    "globals": "16.2.0",
+    "husky": "9.1.7"
+  }
+}

@@ -1,0 +1,9 @@
+.root {
+  min-width: 128px;
+  height: 32px;
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--wap-color-primary);
+  border: solid 1px var(--wap-color-primary-dark);
+  border-radius: 4px;
+}

@@ -1,0 +1,31 @@
+.xxl {
+  font-size: 2em !important;
+}
+
+.xl {
+  font-size: 1.75em !important;
+}
+
+.lg {
+  font-size: 1.50em !important;
+}
+
+.md {
+  font-size: 1.25em !important;
+}
+
+.sm {
+  font-size: 1em !important;
+}
+
+.noMargin {
+  margin: 0 !important;
+}
+
+.primary {
+  color: var(--wap-color-primary-text) !important;
+}
+
+.secondary {
+  color: var(--wap-color-secondary-text) !important;
+}

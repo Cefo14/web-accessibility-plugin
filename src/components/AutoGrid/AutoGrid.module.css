@@ -1,0 +1,8 @@
+.root {
+  display: grid;
+}
+
+.root > * {
+  max-width: initial !important;
+  width: initial !important;
+}

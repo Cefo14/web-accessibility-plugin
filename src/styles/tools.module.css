@@ -1,0 +1,23 @@
+.highlightTitles h1:not(:global(.WAP__root) h1),
+.highlightTitles h2:not(:global(.WAP__root) h2),
+.highlightTitles h3:not(:global(.WAP__root) h3),
+.highlightTitles h4:not(:global(.WAP__root) h4),
+.highlightTitles h5:not(:global(.WAP__root) h5),
+.highlightTitles h6:not(:global(.WAP__root) h6)
+{
+  outline: 2px solid var(--wap-color-danger) !important;
+  outline-offset: 1px !important;
+}
+
+.highlightLinks a:not(:global(.WAP__root) a) {
+  outline: 2px solid var(--wap-color-info) !important;
+  outline-offset: 1px !important;
+}
+
+.highlightCursor * {
+  cursor: url('../assets/cursor-svgrepo-com.svg'), auto !important;
+}
+
+.hideImages img {
+  display: none !important;
+}

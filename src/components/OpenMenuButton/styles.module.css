@@ -1,0 +1,30 @@
+.root {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+
+  background-color: var(--wap-color-info);
+  outline: 4px solid var(--wap-color-info);
+  border: 2px solid var(--wap-color-info-text);
+  border-radius: 50%;
+
+  width: 56px;
+  height: 56px;
+  padding: 0;
+
+  display: flex;
+  place-content: center;
+  place-items: center;
+
+  cursor: pointer;
+}
+
+.root:focus {
+  background-color: var(--wap-color-info-dark);
+  outline: 4px solid var(--wap-color-info-dark);;
+}
+
+.root:hover {
+  background-color: var(--wap-color-info-light);
+  outline-color: var(--wap-color-info-light);
+}
