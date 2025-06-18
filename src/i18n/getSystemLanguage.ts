@@ -1,5 +1,5 @@
-import { LanguageCodes, type LanguageCode } from './i18n';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
+import { LanguageCodes, type LanguageCode } from './i18n';
 
 const DEFAULT_LANGUAGE = LanguageCodes.es;
 

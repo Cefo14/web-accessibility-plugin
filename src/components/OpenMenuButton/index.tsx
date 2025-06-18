@@ -3,9 +3,9 @@ import clsx from 'clsx';
 
 import { type ButtonProps } from '@/types/ButtonProps';
 
-import AccessibilityIcon from '@/assets/accessibility-svgrepo-com.svg?react';
-
 import { useI18n } from '@/i18n';
+
+import AccessibilityIcon from '@/assets/accessibility-svgrepo-com.svg?react';
 
 import styles from './styles.module.css';
 

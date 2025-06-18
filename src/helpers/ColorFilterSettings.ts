@@ -1,5 +1,5 @@
-import type { ColorFilter } from './ColorFilterUpdater';
 import type { Mirror } from '@/types/Mirror';
+import type { ColorFilter } from './ColorFilterUpdater';
 
 export type ColorFilterSettings = Record<ColorFilter, number>;
 

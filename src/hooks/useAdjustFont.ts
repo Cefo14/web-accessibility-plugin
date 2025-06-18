@@ -10,11 +10,12 @@ import { lineHeightAdjuster } from '@/helpers/LineHeightAdjuster';
 import { type FontFamily, FONT_FAMILY, fontFamilyAdjuster } from '@/helpers/FontFamilyAdjuster';
 import { type FontWeight, FONT_WEIGHT, fontWeightAdjuster } from '@/helpers/FontWeightAdjuster';
 
+import { InvalidPropError } from '@/errors/InvalidPropError';
+
+import { useSteper } from './useSteper';
 import { useExternalFonts } from './useExternalFonts';
-import { useSteper } from '@/hooks/useSteper';
 import { useOnChange } from './useOnChange';
 import { useDidUpdate } from './useDidUpdate';
-import { InvalidPropError } from '@/errors/InvalidPropError';
 
 export type FontProps = 'size' | 'letterSpacing' | 'lineHeight';
 
@@ -108,34 +109,48 @@ export const useAdjustFont = () => {
   ]);
 
   useDidUpdate(() => {
+    const isUndefined = (value: unknown): value is undefined => value === undefined;
+
+    const isFontSizeChanged = (
+      !isUndefined(prevFontSizeValue)
+      && prevFontSizeValue !== fontSizeValue
+    );
+
+    const isLetterSpacingChanged = (
+      !isUndefined(prevLetterSpacingValue)
+      && prevLetterSpacingValue !== letterSpacingValue
+    );
+
+    const isLineHeightChanged = (
+      !isUndefined(prevLineHeightValue)
+      && prevLineHeightValue !== lineHeightValue
+    );
+
+    const isFontFamilyChanged = (
+      !isUndefined(prevFontFamilyValue)
+      && prevFontFamilyValue !== fontFamilyValue
+    );
+
+    const isFontWeightChanged = (
+      !isUndefined(prevFontWeightValue)
+      && prevFontWeightValue !== fontWeightValue
+    );
+
     TextElements.instance.elements.forEach((element) => {
-      if (prevFontSizeValue !== fontSizeValue) {
-        fontSizeAdjuster.update(element, fontSizeValue);
-      }
-      if (prevLetterSpacingValue !== letterSpacingValue) {
-        letterSpacingAdjuster.update(element, letterSpacingValue);
-      }
-
-      if (prevLineHeightValue !== lineHeightValue) {
-        lineHeightAdjuster.update(element, lineHeightValue);
-      }
-
-      if (prevFontFamilyValue !== fontFamilyValue) {
-        fontFamilyAdjuster.update(element, fontFamilyValue);
-      }
-
-      if (prevFontWeightValue !== fontWeightValue) {
-        fontWeightAdjuster.update(element, fontWeightValue);
-      }
+      if (isFontSizeChanged) fontSizeAdjuster.update(element, fontSizeValue);
+      if (isLetterSpacingChanged) letterSpacingAdjuster.update(element, letterSpacingValue);
+      if (isLineHeightChanged) lineHeightAdjuster.update(element, lineHeightValue);
+      if (isFontFamilyChanged) fontFamilyAdjuster.update(element, fontFamilyValue);
+      if (isFontWeightChanged) fontWeightAdjuster.update(element, fontWeightValue);
     });
 
     const onChangeElements = (elements: HTMLElement[]) => {
       elements.forEach((element) => {
         fontSizeAdjuster.update(element, fontSizeValue);
-        fontWeightAdjuster.update(element, fontWeightValue);
         letterSpacingAdjuster.update(element, letterSpacingValue);
         lineHeightAdjuster.update(element, lineHeightValue);
         fontFamilyAdjuster.update(element, fontFamilyValue);
+        fontWeightAdjuster.update(element, fontWeightValue);
       });
     };
     TextElements.instance.subscribe(onChangeElements);

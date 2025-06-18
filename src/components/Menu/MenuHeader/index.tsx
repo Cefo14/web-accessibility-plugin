@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { type ElementProps } from '@/types/ElementProps';
 import { type OnClickButton } from '@/types/OnClickButton';
 
+import { useI18n } from '@/i18n';
+
 import ResetIcon from '@/assets/reset-svgrepo-com.svg?react';
 import CloseIcon from '@/assets/close-bold-svgrepo-com.svg?react';
-
-import { useI18n } from '@/i18n';
 
 import Heading from '../../Heading';
 import Button from '../../Button';
