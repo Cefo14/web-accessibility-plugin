@@ -62,7 +62,7 @@ const ToolsSection = ({
           name={tools.hideImages}
           onChange={onToggleTool}
           checked={isToolActive(tools.hideImages)}
-          aria-label="Resaltar cursor"
+          aria-label="Ocultar imágenes"
           $enterabled
         />
       </SpaceBetween>
