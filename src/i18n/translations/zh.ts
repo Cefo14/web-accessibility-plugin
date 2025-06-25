@@ -32,6 +32,6 @@ export const zh: TranslationModel = {
   'section.tools.title': '工具',
   'section.tools.highlightTitles': '高亮标题',
   'section.tools.highlightLinks': '高亮链接',
-  'section.tools.highlightCursor': '高亮光标',
   'section.tools.hideImages': '隐藏图像',
+  'section.tools.stopAnimations': '停止动画',
 };

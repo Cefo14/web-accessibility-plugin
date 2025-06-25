@@ -1,31 +1,28 @@
 import { useCallback, useState } from 'react';
 
 import type { Mirror } from '@/types/Mirror';
-import highlightClassNames from '@/styles/tools.module.css';
 import { hasOwnProperty } from '@/helpers/hasOwnProperty';
 import { InvalidPropError } from '@/errors/InvalidPropError';
 
-type ToolClassName = 'highlightTitles' | 'highlightLinks' | 'highlightCursor' | 'hideImages';
+import styles from '@/styles/tools.module.css';
+
+type ToolClassName = 'highlightTitles' | 'highlightLinks' | 'hideImages' | 'stopAnimations';
 
 const TOOL_CLASS_NAMES: Mirror<ToolClassName> = {
   highlightTitles: 'highlightTitles',
   highlightLinks: 'highlightLinks',
-  highlightCursor: 'highlightCursor',
   hideImages: 'hideImages',
+  stopAnimations: 'stopAnimations',
 } as const;
 
 const CLASS_NAMES: Record<ToolClassName, string> = {
-  highlightTitles: highlightClassNames.highlightTitles,
-  highlightLinks: highlightClassNames.highlightLinks,
-  highlightCursor: highlightClassNames.highlightCursor,
-  hideImages: highlightClassNames.hideImages,
+  highlightTitles: styles.highlightTitles,
+  highlightLinks: styles.highlightLinks,
+  hideImages: styles.hideImages,
+  stopAnimations: styles.stopAnimations,
 } as const;
 
-const TOOLS = {
-  ...TOOL_CLASS_NAMES,
-};
-
-export type Tools = typeof TOOLS;
+export type Tools = typeof TOOL_CLASS_NAMES;
 
 const EMPTY_ACTIVE_TOOLS = new Set<string>();
 
@@ -57,7 +54,7 @@ export const useTools = () => {
   }, []);
 
   return {
-    tools: TOOLS,
+    tools: TOOL_CLASS_NAMES,
     toggleTool,
     isToolActive,
     resetTools,

@@ -29,6 +29,6 @@ export type TranslationModel = {
   'section.tools.title': string;
   'section.tools.highlightTitles': string;
   'section.tools.highlightLinks': string;
-  'section.tools.highlightCursor': string;
   'section.tools.hideImages': string;
+  'section.tools.stopAnimations': string;
 };

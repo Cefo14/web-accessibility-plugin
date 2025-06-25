@@ -56,19 +56,6 @@ const ToolsSection = ({
 
       <SpaceBetween>
         <Text $size="sm" $as="span">
-          {t('section.tools.highlightCursor')}
-        </Text>
-        <Switch
-          name={tools.highlightCursor}
-          onChange={onToggleTool}
-          checked={isToolActive(tools.highlightCursor)}
-          aria-label="Resaltar cursor"
-          $enterabled
-        />
-      </SpaceBetween>
-
-      <SpaceBetween>
-        <Text $size="sm" $as="span">
           {t('section.tools.hideImages')}
         </Text>
         <Switch
@@ -76,6 +63,19 @@ const ToolsSection = ({
           onChange={onToggleTool}
           checked={isToolActive(tools.hideImages)}
           aria-label="Resaltar cursor"
+          $enterabled
+        />
+      </SpaceBetween>
+
+      <SpaceBetween>
+        <Text $size="sm" $as="span">
+          {t('section.tools.stopAnimations')}
+        </Text>
+        <Switch
+          name={tools.stopAnimations}
+          onChange={onToggleTool}
+          checked={isToolActive(tools.stopAnimations)}
+          aria-label="Detener animaciones"
           $enterabled
         />
       </SpaceBetween>

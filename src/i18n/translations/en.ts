@@ -32,6 +32,6 @@ export const en: TranslationModel = {
   'section.tools.title': 'Tools',
   'section.tools.highlightTitles': 'Highlight Titles',
   'section.tools.highlightLinks': 'Highlight Links',
-  'section.tools.highlightCursor': 'Highlight Cursor',
   'section.tools.hideImages': 'Hide Images',
+  'section.tools.stopAnimations': 'Stop Animations',
 } as const;

@@ -32,6 +32,6 @@ export const es: TranslationModel = {
   'section.tools.title': 'Herramientas',
   'section.tools.highlightTitles': 'Resaltar Títulos',
   'section.tools.highlightLinks': 'Resaltar enlaces',
-  'section.tools.highlightCursor': 'Resaltar cursor',
   'section.tools.hideImages': 'Ocultar imágenes',
+  'section.tools.stopAnimations': 'Detener animaciones',
 } as const;

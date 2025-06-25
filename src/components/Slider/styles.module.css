@@ -1,0 +1,151 @@
+/* Slider container */
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Base slider styling - normalize appearance across browsers */
+.slider {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--wap-color-primary-dark);
+  outline: none;
+  padding: 0;
+  margin: 8px 0;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+/* Hover state for track */
+.slider:hover {
+  background: #a8a8a8;
+}
+
+/* Focus state for accessibility */
+.slider:focus {
+  outline: 2px solid var(--wap-color-info);
+  outline-offset: 2px;
+}
+
+/* Disabled state */
+.slider:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* WebKit browsers (Chrome, Safari, Edge) - Track */
+.slider::-webkit-slider-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--wap-color-primary-dark);
+  border: none;
+  cursor: pointer;
+}
+
+/* WebKit browsers - Thumb */
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--wap-color-info);
+  border: 2px solid var(--wap-color-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+/* WebKit browsers - Thumb hover */
+.slider::-webkit-slider-thumb:hover {
+  background: var(--wap-color-info-light);
+  transform: scale(1.1);
+}
+
+/* WebKit browsers - Thumb active */
+.slider::-webkit-slider-thumb:active {
+  background: var(--wap-color-info-dark);
+  transform: scale(0.95);
+}
+
+/* Firefox - Track */
+.slider::-moz-range-track {
+  width: 100%;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--wap-color-primary-dark);
+  border: none;
+  cursor: pointer;
+}
+
+/* Firefox - Thumb */
+.slider::-moz-range-thumb {
+  -moz-appearance: none;
+  appearance: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: var(--wap-color-info);
+  border: 2px solid var(--wap-color-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Firefox - Thumb hover */
+.slider::-moz-range-thumb:hover {
+  background: var(--wap-color-info-light);
+  transform: scale(1.1);
+}
+
+/* Firefox - Thumb active */
+.slider::-moz-range-thumb:active {
+  background: var(--wap-color-info-dark);
+  transform: scale(0.95);
+}
+
+/* Firefox - Remove default border/outline */
+.slider::-moz-focus-outer {
+  border: 0;
+}
+
+/* Internet Explorer/Edge Legacy - Track */
+.slider::-ms-track {
+  width: 100%;
+  height: 6px;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+/* Internet Explorer/Edge Legacy - Fill (left side) */
+.slider::-ms-fill-lower {
+  background: var(--wap-color-primary-dark);
+  border-radius: 3px;
+}
+
+/* Internet Explorer/Edge Legacy - Fill (right side) */
+.slider::-ms-fill-upper {
+  background: var(--wap-color-primary-dark);
+  border-radius: 3px;
+}
+
+/* Internet Explorer/Edge Legacy - Thumb */
+.slider::-ms-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: var(--wap-color-info);
+  border: 2px solid var(--wap-color-primary);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+

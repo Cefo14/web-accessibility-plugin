@@ -11,7 +11,7 @@
 - **📄 Content Highlighting**: Highlight headings and links to improve navigation and content scanning
 - **🖼️ Image Controls**: Hide images to reduce distractions and focus on text content
 - **⚡ Easy Integration**: Simple to implement in any website with minimal configuration required
-- **🪶 Lightweight**: Only 58KB minified (20KB gzipped) - minimal impact on your website's performance
+- **🪶 Lightweight**: Only 60KB minified (20KB gzipped) - minimal impact on your website's performance
 - **🔓 Open Source**: Free and open source under GPL-3.0 license
 
 ## 🚀 Quick Start

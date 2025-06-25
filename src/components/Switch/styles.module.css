@@ -45,7 +45,7 @@
 }
 
 .input:checked + .slider {
-  background-color: var(--wap-color-secondary);
+  background-color: var(--wap-color-info);
 }
 
 .input:checked + .slider:before {
