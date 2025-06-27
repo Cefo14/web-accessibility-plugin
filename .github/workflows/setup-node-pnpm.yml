@@ -1,0 +1,40 @@
+name: Setup Node.js and pnpm
+
+# Reusable workflow for setting up Node.js and pnpm environment
+
+on:
+  workflow_call:
+    outputs:
+      node-version:
+        description: "The Node.js version that was set up"
+        value: ${{ jobs.setup.outputs.node-version }}
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    
+    outputs:
+      node-version: ${{ steps.node-setup.outputs.node-version }}
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Set up pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: 10
+
+    - name: Set up Node.js
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+         node-version-file: '.nvmrc'
+         cache: 'pnpm'
+         cache-dependency-path: 'pnpm-lock.yaml'
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile
