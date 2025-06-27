@@ -11,17 +11,15 @@ permissions:
   pages: write # to deploy to GitHub Pages
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup-node-pnpm.yml
-    secrets: inherit
-
   build:
-    needs: setup
     runs-on: ubuntu-latest
 
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
+
+    - name: Setup Node.js and pnpm
+      uses: ./.github/actions/setup-node-pnpm
 
     - name: Build GitHub Page
       run: pnpm build - --base=/web-accessibility-plugin/

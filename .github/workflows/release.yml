@@ -17,12 +17,7 @@ permissions:
   pull-requests: write # to comment on PRs
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup-node-pnpm.yml
-    secrets: inherit
-
   release:
-    needs: setup
     runs-on: ubuntu-latest
 
     steps:
@@ -31,6 +26,9 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         fetch-depth: 0
+
+    - name: Setup Node.js and pnpm
+      uses: ./.github/actions/setup-node-pnpm
 
     - name: Build module
       run: pnpm build:module

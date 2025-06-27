@@ -1,0 +1,58 @@
+name: 'Setup Node.js and pnpm'
+description: 'Set up Node.js and pnpm environment with dependency installation'
+author: 'Cefo14'
+
+inputs:
+  pnpm-version:
+    description: 'Version of pnpm to install'
+    required: false
+    default: '10'
+  node-version-file:
+    description: 'File containing the Node.js version'
+    required: false
+    default: '.nvmrc'
+  cache-dependency-path:
+    description: 'Path to the dependency file for caching'
+    required: false
+    default: 'pnpm-lock.yaml'
+  frozen-lockfile:
+    description: 'Install dependencies using frozen lockfile'
+    required: false
+    default: 'true'
+
+outputs:
+  node-version:
+    description: 'The Node.js version that was installed'
+    value: ${{ steps.node-setup.outputs.node-version }}
+  pnpm-cache-hit:
+    description: 'Whether there was a cache hit for pnpm dependencies'
+    value: ${{ steps.node-setup.outputs.cache-hit }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up pnpm
+      uses: pnpm/action-setup@v4
+      with:
+        version: ${{ inputs.pnpm-version }}
+
+    - name: Set up Node.js
+      id: node-setup
+      uses: actions/setup-node@v4
+      with:
+        node-version-file: ${{ inputs.node-version-file }}
+        cache: 'pnpm'
+        cache-dependency-path: ${{ inputs.cache-dependency-path }}
+
+    - name: Install dependencies
+      shell: bash
+      run: |
+        if [ "${{ inputs.frozen-lockfile }}" = "true" ]; then
+          pnpm install --frozen-lockfile
+        else
+          pnpm install
+        fi
+
+branding:
+  icon: 'package'
+  color: 'blue'
