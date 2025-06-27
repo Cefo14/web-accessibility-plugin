@@ -33,24 +33,7 @@ jobs:
     - name: Build module
       run: pnpm build:module
 
-    - name: Commit and push release folder
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add release/
-        if git diff --staged --quiet; then
-          echo "No changes to commit in release folder"
-        else
-          git commit -m "build: update release files [skip ci]"
-          git push
-        fi
-
     - name: Semantic Release
       uses: cycjimmy/semantic-release-action@v4
-      with:
-        extra_plugins: |
-          @semantic-release/changelog
-          @semantic-release/git
-          @semantic-release/github
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
