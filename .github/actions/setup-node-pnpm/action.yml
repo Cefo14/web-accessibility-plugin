@@ -1,5 +1,5 @@
 name: 'Setup Node.js and pnpm'
-description: 'Set up Node.js and pnpm environment with dependency installation'
+description: 'Set up Node.js and pnpm environment with caching support'
 author: 'Cefo14'
 
 inputs:
@@ -15,10 +15,6 @@ inputs:
     description: 'Path to the dependency file for caching'
     required: false
     default: 'pnpm-lock.yaml'
-  frozen-lockfile:
-    description: 'Install dependencies using frozen lockfile'
-    required: false
-    default: 'true'
 
 outputs:
   node-version:
@@ -43,15 +39,6 @@ runs:
         node-version-file: ${{ inputs.node-version-file }}
         cache: 'pnpm'
         cache-dependency-path: ${{ inputs.cache-dependency-path }}
-
-    - name: Install dependencies
-      shell: bash
-      run: |
-        if [ "${{ inputs.frozen-lockfile }}" = "true" ]; then
-          pnpm install --frozen-lockfile
-        else
-          pnpm install
-        fi
 
 branding:
   icon: 'package'

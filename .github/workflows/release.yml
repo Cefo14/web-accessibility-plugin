@@ -30,6 +30,9 @@ jobs:
     - name: Setup Node.js and pnpm
       uses: ./.github/actions/setup-node-pnpm
 
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile --prod
+
     - name: Build module
       run: pnpm build:module
 

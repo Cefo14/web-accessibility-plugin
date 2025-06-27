@@ -11,7 +11,7 @@ permissions:
   pages: write # to deploy to GitHub Pages
 
 jobs:
-  build:
+  publish:
     runs-on: ubuntu-latest
 
     steps:
@@ -20,6 +20,9 @@ jobs:
 
     - name: Setup Node.js and pnpm
       uses: ./.github/actions/setup-node-pnpm
+
+    - name: Install dependencies
+      run: pnpm install --frozen-lockfile --prod
 
     - name: Build GitHub Page
       run: pnpm build - --base=/web-accessibility-plugin/
