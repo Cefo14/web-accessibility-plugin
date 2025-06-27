@@ -1,0 +1,58 @@
+name: Release
+
+# This workflow handles versioning, building the module, and creating releases
+
+on:
+  push:
+    branches: [ "master" ]
+    paths-ignore:
+      - 'CHANGELOG.md'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'release/**'
+
+permissions:
+  contents: write # to create releases and commit files
+  issues: write # to comment on issues
+  pull-requests: write # to comment on PRs
+
+jobs:
+  setup:
+    uses: ./.github/workflows/setup-node-pnpm.yml
+    secrets: inherit
+
+  release:
+    needs: setup
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
+
+    - name: Build module
+      run: pnpm build:module
+
+    - name: Commit and push release folder
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add release/
+        if git diff --staged --quiet; then
+          echo "No changes to commit in release folder"
+        else
+          git commit -m "build: update release files [skip ci]"
+          git push
+        fi
+
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v4
+      with:
+        extra_plugins: |
+          @semantic-release/changelog
+          @semantic-release/git
+          @semantic-release/github
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
