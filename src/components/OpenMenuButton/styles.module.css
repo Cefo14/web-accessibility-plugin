@@ -1,12 +1,12 @@
 .root {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: var(--wap-spacing-md);
+  right: var(--wap-spacing-md);
 
   background-color: var(--wap-color-info);
-  outline: 4px solid var(--wap-color-info);
-  border: 2px solid var(--wap-color-info-text);
-  border-radius: 50%;
+  outline: var(--wap-border-width-thick) solid var(--wap-color-info);
+  border: var(--wap-border-width-base) solid var(--wap-color-info-text);
+  border-radius: var(--wap-radius-full);
 
   width: 56px;
   height: 56px;
@@ -21,7 +21,7 @@
 
 .root:focus {
   background-color: var(--wap-color-info-dark);
-  outline: 4px solid var(--wap-color-info-dark);;
+  outline: var(--wap-border-width-thick) solid var(--wap-color-info-dark);
 }
 
 .root:hover {

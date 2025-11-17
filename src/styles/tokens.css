@@ -92,51 +92,51 @@
   /* ============================================
      COLOR SYSTEM - LIGHT THEME (DEFAULT)
      These colors are optimized for WCAG AA compliance
+     
+     SEMANTIC USAGE:
+     - Primary: Light backgrounds, surfaces, and borders (not brand color)
+     - Secondary: Dark backgrounds and elements (high contrast text)
+     - Info: Primary action color (buttons, interactive elements) - BLUE
+     - Warning: Warning states and alerts - YELLOW
+     - Danger: Error states and destructive actions - RED
+     - Disabled: Disabled/inactive elements
+     - Neutral: Hover states and subtle backgrounds
      ============================================ */
   
-  /* Primary - Background and borders */
+  /* Primary - Light backgrounds and borders (Surface colors) */
   --wap-color-primary-light: #fbfbfb;
   --wap-color-primary: #fafafa;
   --wap-color-primary-dark: #bbbbbb;
   --wap-color-primary-text: #000000;
 
-  /* Secondary - Dark elements */
-  --wap-color-secondary-light: #40404e;
+  /* Secondary - Dark backgrounds and elements */
   --wap-color-secondary: #09090b;
   --wap-color-secondary-dark: #060608;
   --wap-color-secondary-text: #ffffff;
 
-  /* Info - Informational elements */
+  /* Info - Primary action color (Interactive elements) */
   --wap-color-info-light: #2d96ff;
   --wap-color-info: #0073e6;
   --wap-color-info-dark: #0056ac;
   --wap-color-info-text: #ffffff;
 
-  /* Warning - Warning elements */
+  /* Warning - Warning states */
   --wap-color-warning-light: #ffd735;
   --wap-color-warning: #f2c300;
   --wap-color-warning-dark: #b59200;
   --wap-color-warning-text: #000000;
 
-  /* Danger - Error and danger elements */
+  /* Danger - Error and destructive actions */
   --wap-color-danger-light: #f76f71;
   --wap-color-danger: #f53f42;
   --wap-color-danger-dark: #db0b0e;
   --wap-color-danger-text: #ffffff;
 
-  /* Active - Active state elements */
-  --wap-color-active-light: #ec63a7;
-  --wap-color-active: #e6308a;
-  --wap-color-active-dark: #ba1667;
-  --wap-color-active-text: #ffffff;
-
-  /* Disabled - For disabled elements */
+  /* Disabled - Inactive elements */
   --wap-color-disabled: #d3d3d3;
   --wap-color-disabled-text: #666666;
 
-  /* Neutral - Additional neutral colors */
-  --wap-color-neutral-light: #f5f5f5;
-  --wap-color-neutral: #e0e0e0;
+  /* Neutral - Hover states and subtle backgrounds */
   --wap-color-neutral-dark: #a8a8a8;
 }
 
