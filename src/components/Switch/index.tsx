@@ -1,4 +1,4 @@
-/* eslint-disable jsx-a11y/label-has-associated-control */
+ 
 import { type InputHTMLAttributes, type KeyboardEvent, memo } from 'react';
 import clsx from 'clsx';
 import styles from './styles.module.css';

@@ -1,7 +1,7 @@
 import { type CSSProperties, memo, useMemo } from 'react';
 import clsx from 'clsx';
 
-import { type ElementProps } from '@/types/ElementProps';
+import type { ElementProps } from '@/types/ElementProps';
 
 import classNames from './AutoGrid.module.css';
 

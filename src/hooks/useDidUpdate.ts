@@ -7,6 +7,5 @@ export const useDidUpdate = (effect: EffectCallback, deps?: DependencyList) => {
   useEffect(() => {
     if (!mounted.current) mounted.current = true;
     else effect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deps]);
 };

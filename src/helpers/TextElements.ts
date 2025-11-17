@@ -159,7 +159,7 @@ export class TextElements {
       .filter(Boolean);
   }
 
-  private elemenstChanged(): Boolean {
+  private elemenstChanged(): boolean {
     const currentSize = this.nodes.size - this.excludedNodes.size;
     return this.currentElements.length !== currentSize;
   }

@@ -1,7 +1,7 @@
 import type { FontUpdater } from './FontUpdater';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
 import { getCSSUnitValue } from './getCSSUnitValue';
-import { toFixed } from './toFixed';
+import { lineHeightCalculator } from './LineHeightCalculator';
 
 export class LineHeightAdjuster implements FontUpdater {
   readonly defaultValue = 100;
@@ -18,8 +18,7 @@ export class LineHeightAdjuster implements FontUpdater {
 
     if (parsedValue === null) return;
 
-    let newValue = parsedValue * (value / 100);
-    newValue = toFixed(newValue, 2);
+    const newValue = lineHeightCalculator.calculate(parsedValue, value);
 
     element.style.setProperty('line-height', `${newValue}px`);
   }

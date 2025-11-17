@@ -8,5 +8,6 @@
     "typescript",
     "typescriptreact"
   ],
-  "editor.linkedEditing": true
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true
 }

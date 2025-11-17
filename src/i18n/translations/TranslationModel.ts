@@ -1,4 +1,4 @@
-export type TranslationModel = {
+export interface TranslationModel {
   'menu.title': string;
   'menu.description': string;
   'menu.openMenu': string;
@@ -31,4 +31,4 @@ export type TranslationModel = {
   'section.tools.highlightLinks': string;
   'section.tools.hideImages': string;
   'section.tools.stopAnimations': string;
-};
+}

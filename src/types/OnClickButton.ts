@@ -1,3 +1,3 @@
-import { type ButtonProps } from './ButtonProps';
+import type { ButtonProps } from './ButtonProps';
 
 export type OnClickButton = ButtonProps['onClick'];

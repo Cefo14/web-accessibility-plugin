@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import { clsx } from 'clsx';
 
-import { type ElementProps } from '@/types/ElementProps';
+import type { ElementProps } from '@/types/ElementProps';
 
 import styles from './styles.module.css';
 

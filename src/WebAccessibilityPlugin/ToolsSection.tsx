@@ -12,11 +12,11 @@ import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
-type ToolsSectionProps = {
+interface ToolsSectionProps {
   tools: Tools;
   onToggleTool: (event: ChangeEventInput) => void;
   isToolActive: (name: string) => boolean;
-};
+}
 
 const ToolsSection = ({
   tools,

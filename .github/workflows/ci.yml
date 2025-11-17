@@ -1,0 +1,34 @@
+name: CI
+
+description: Continuous Integration Pipeline for pull requests to master
+
+on:
+  pull_request:
+    branches: [ master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js and pnpm
+        uses: ./.github/actions/setup-node-pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run quality checks
+        uses: ./.github/actions/quality
+
+      - name: Build Module
+        run: pnpm build:module
+
+      - name: Build demo (smoke test)
+        run: pnpm build
