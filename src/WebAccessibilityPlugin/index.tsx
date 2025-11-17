@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 
-// import 'sanitize.css';
+// Import design tokens first, then global styles
+import '@/styles/tokens.css';
 import '@/styles/global.css';
 
 import { I18nProvider } from '@/i18n';

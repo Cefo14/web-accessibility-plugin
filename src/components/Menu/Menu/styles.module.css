@@ -2,13 +2,13 @@
   position: fixed;
   right: 0;
   bottom: 1px;
-  z-index: 2147483647;
+  z-index: var(--wap-z-modal);
 
   width: 400px;
   height: 75vh;
 
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-top-left-radius: var(--wap-radius-lg);
+  border-top-right-radius: var(--wap-radius-lg);
   border-top: none;
   border-bottom: none;
 
