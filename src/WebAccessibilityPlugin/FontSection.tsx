@@ -17,7 +17,7 @@ import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
-type FontSectionProps = {
+interface FontSectionProps {
   fontProps: typeof FONT_PROPS;
   fontSizeStep: number;
   letterSpacingStep: number;
@@ -28,7 +28,7 @@ type FontSectionProps = {
   onDecrementFontProp: (event: MouseEventButton) => void;
   onChangeFontFamily: (event: ChangeEventSelect) => void;
   onChangeFontWeight: (event: ChangeEventSelect) => void;
-};
+}
 
 const FontSection = ({
   fontProps,

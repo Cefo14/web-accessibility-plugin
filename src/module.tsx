@@ -24,5 +24,5 @@ class WebAccessibilityPlugin {
 }
 
 type CurrentWindow = Window & typeof globalThis;
-type NewWindowProp = { WebAccessibilityPlugin: typeof WebAccessibilityPlugin };
+interface NewWindowProp { WebAccessibilityPlugin: typeof WebAccessibilityPlugin }
 (window as CurrentWindow & NewWindowProp).WebAccessibilityPlugin = WebAccessibilityPlugin;

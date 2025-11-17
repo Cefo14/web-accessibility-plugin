@@ -3,14 +3,14 @@
 import type { ErrorInfo, ReactNode } from 'react';
 import { Component, memo } from 'react';
 
-type ErrorBoundaryState = {
+interface ErrorBoundaryState {
   hasError: boolean;
   error?: Error;
-};
+}
 
-type ErrorBoundaryProps = {
+interface ErrorBoundaryProps {
   children: ReactNode;
-};
+}
 
 class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
   constructor(props: ErrorBoundaryProps) {
@@ -21,11 +21,11 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     return { hasError: true, error };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
+  override componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('WebAccessibilityErrorBoundary', error, errorInfo);
   }
 
-  render() {
+  override render() {
     const { children } = this.props;
     return children;
   }

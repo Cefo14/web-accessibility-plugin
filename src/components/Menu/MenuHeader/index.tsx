@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { type ElementProps } from '@/types/ElementProps';
-import { type OnClickButton } from '@/types/OnClickButton';
+import type { ElementProps } from '@/types/ElementProps';
+import type { OnClickButton } from '@/types/OnClickButton';
 
 import { useI18n } from '@/i18n';
 

@@ -131,3 +131,7 @@ dist
 
 # build
 build/
+
+# Github Copilot
+.github/copilot/
+.github/instructions/

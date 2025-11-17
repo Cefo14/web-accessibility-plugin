@@ -3,13 +3,13 @@ import {
   useMemo,
   useState,
 } from 'react';
-import { type LanguageCode } from './i18n';
+import type { LanguageCode } from './i18n';
 import { I18nContext } from './I18nContext';
 import { getSystemLanguage } from './getSystemLanguage';
 
-type I18nProviderProps = {
+interface I18nProviderProps {
   children: ReactNode;
-};
+}
 
 export const I18nProvider = ({ children }: I18nProviderProps) => {
   const [language, setLanguage] = useState<LanguageCode>(getSystemLanguage());

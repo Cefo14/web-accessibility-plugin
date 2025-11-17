@@ -18,11 +18,11 @@ import { useI18n } from '@/i18n';
 
 import styles from './styles.module.css';
 
-type ColorFilterSectionProps = {
+interface ColorFilterSectionProps {
   state: ColorFilterState;
   onChangeColorFilter: (event: ChangeEventInput) => void;
   onSelectCustomColorFilter: (event: MouseEventButton) => void;
-};
+}
 
 const ColorFilterSection = ({
   state,

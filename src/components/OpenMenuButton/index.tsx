@@ -1,7 +1,7 @@
 import { memo } from 'react';
 import clsx from 'clsx';
 
-import { type ButtonProps } from '@/types/ButtonProps';
+import type { ButtonProps } from '@/types/ButtonProps';
 
 import { useI18n } from '@/i18n';
 
