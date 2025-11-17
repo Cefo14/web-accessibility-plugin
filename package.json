@@ -39,9 +39,9 @@
     "build:module": "tsc -b && vite build --config vite.module.config.ts",
     "preview": "vite preview",
     "test": "vitest",
+    "test:run": "vitest run",
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
-    "commit": "cz",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
      "typecheck": "tsc --noEmit"
