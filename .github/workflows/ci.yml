@@ -1,5 +1,5 @@
 name: CI
-author: 'Cefo14'
+
 description: Continuous Integration Pipeline for staging and pull requests
 
 on:
