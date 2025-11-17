@@ -1,0 +1,39 @@
+name: 'Quality'
+description: 'Run type checking, linting, and tests'
+author: 'Cefo14'
+
+inputs:
+  install-deps:
+    description: 'Whether to install dependencies before running checks'
+    required: false
+    default: 'false'
+
+outputs:
+  passed:
+    description: 'Whether all quality checks passed'
+    value: ${{ steps.final-check.outputs.passed }}
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install dependencies
+      if: inputs.install-deps == 'true'
+      shell: bash
+      run: pnpm install --frozen-lockfile
+
+    - name: Type checking
+      shell: bash
+      run: pnpm typecheck
+
+    - name: Lint code
+      shell: bash
+      run: pnpm lint
+
+    - name: Run tests
+      shell: bash
+      run: pnpm test:run
+
+    - name: Mark as passed
+      id: final-check
+      shell: bash
+      run: echo "passed=true" >> $GITHUB_OUTPUT
