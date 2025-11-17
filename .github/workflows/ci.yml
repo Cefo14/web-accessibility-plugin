@@ -1,10 +1,8 @@
 name: CI
 
-description: Continuous Integration Pipeline for staging and pull requests
+description: Continuous Integration Pipeline for pull requests to master
 
 on:
-  push:
-    branches: [ dev ]
   pull_request:
     branches: [ master ]
 
