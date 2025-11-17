@@ -1,7 +1,7 @@
 import type { FontUpdater } from './FontUpdater';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
 import { getCSSUnitValue } from './getCSSUnitValue';
-import { toFixed } from './toFixed';
+import { fontSizeCalculator } from './FontSizeCalculator';
 
 export class FontSizeAdjuster implements FontUpdater {
   public readonly defaultValue: number = 100;
@@ -18,8 +18,7 @@ export class FontSizeAdjuster implements FontUpdater {
 
     if (parsedValue === null) return;
 
-    let newValue = parsedValue * (value / 100);
-    newValue = toFixed(newValue, 2);
+    const newValue = fontSizeCalculator.calculate(parsedValue, value);
 
     element.style.setProperty('font-size', `${newValue}px`);
   }

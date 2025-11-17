@@ -1,9 +1,10 @@
 import type { Mirror } from '@/types/Mirror';
 import type { StyleUpdater } from './StyleUpdater';
+import { colorFilterStringBuilder, type ColorFilterUnit } from './ColorFilterStringBuilder';
 
 export type ColorFilter = 'brightness' | 'contrast' | 'saturate' | 'sepia' | 'hue-rotate';
 
-export type ColorFilterUnit = '%' | 'deg';
+export type { ColorFilterUnit };
 
 export const COLOR_FILTERS: Mirror<ColorFilter> = {
   brightness: 'brightness',
@@ -24,13 +25,14 @@ export class ColorFilterUpdater implements StyleUpdater<number> {
   }
 
   public update(element: HTMLElement, value: number): void {
-    let { filter } = element.style;
-    if (!filter.includes(this.name)) {
-      element.style.setProperty('filter', `${filter} ${this.name}(${value}${this.unit})`);
-      return;
-    }
-    filter = filter.replace(new RegExp(`${this.name}\\(-?\\d+${this.unit}?\\)`), `${this.name}(${value}${this.unit})`);
-    element.style.setProperty('filter', filter);
+    const currentFilter = element.style.filter;
+    const newFilter = colorFilterStringBuilder.updateFilterString(
+      currentFilter,
+      this.name,
+      value,
+      this.unit,
+    );
+    element.style.setProperty('filter', newFilter);
   }
 }
 

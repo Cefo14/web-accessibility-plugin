@@ -1,7 +1,7 @@
 import type { FontUpdater } from './FontUpdater';
 import { getInitialComputedStyle } from './getInitialComputedStyle';
 import { getCSSUnitValue } from './getCSSUnitValue';
-import { toFixed } from './toFixed';
+import { letterSpacingCalculator } from './LetterSpacingCalculator';
 
 export class LetterSpacingAdjuster implements FontUpdater {
   readonly defaultValue = 100;
@@ -18,8 +18,7 @@ export class LetterSpacingAdjuster implements FontUpdater {
 
     if (parsedValue === null) return;
 
-    let newValue = parsedValue + (value - 100) / 10;
-    newValue = toFixed(newValue, 2);
+    const newValue = letterSpacingCalculator.calculate(parsedValue, value);
 
     element.style.setProperty('letter-spacing', `${newValue}px`);
   }
