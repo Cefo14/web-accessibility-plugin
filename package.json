@@ -39,6 +39,9 @@
     "build:module": "tsc -b && vite build --config vite.module.config.ts",
     "build:component": "tsc -b && vite build --config vite.component.config.ts",
     "preview": "vite preview",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
     "commit": "cz",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix"
@@ -74,9 +77,13 @@
     "@commitlint/cli": "20.1.0",
     "@commitlint/config-conventional": "20.0.0",
     "@eslint/js": "9.39.1",
+    "@testing-library/jest-dom": "6.9.1",
+    "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "14.6.1",
     "@types/eslint-plugin-jsx-a11y": "6.10.1",
     "@typescript-eslint/eslint-plugin": "8.46.4",
     "@typescript-eslint/parser": "8.46.4",
+    "@vitest/ui": "4.0.9",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "9.39.1",
     "eslint-config-airbnb": "19.0.4",
@@ -89,6 +96,8 @@
     "globals": "16.5.0",
     "husky": "9.1.7",
     "jiti": "2.6.1",
-    "typescript-eslint": "8.46.4"
+    "jsdom": "27.2.0",
+    "typescript-eslint": "8.46.4",
+    "vitest": "4.0.9"
   }
 }
