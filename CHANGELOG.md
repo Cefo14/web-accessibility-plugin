@@ -1,3 +1,20 @@
+# [1.1.0](https://github.com/Cefo14/web-accessibility-plugin/compare/v1.0.0...v1.1.0) (2025-11-17)
+
+
+### Bug Fixes
+
+* remove --prod flag from pnpm install in workflows ([6d7c6f5](https://github.com/Cefo14/web-accessibility-plugin/commit/6d7c6f5942b6b37cd8c12783c67bf1a1b3ecf945))
+* update test scripts in package.json for clarity and functionality ([3115ecd](https://github.com/Cefo14/web-accessibility-plugin/commit/3115ecdf31d3f3507d3a20a3a0c616fbf7834f6d))
+
+
+### Features
+
+* add CI workflow and quality action for automated checks ([e06ea72](https://github.com/Cefo14/web-accessibility-plugin/commit/e06ea7228ab79a308a0135c6502b3f3761513f75))
+* add lint staged config ([faa926c](https://github.com/Cefo14/web-accessibility-plugin/commit/faa926c6076924c032501707612cf492d5f2b757))
+* add unit tests config ([b2f3c1d](https://github.com/Cefo14/web-accessibility-plugin/commit/b2f3c1ddd8631d3d92bced539b6341f72fae1cb7))
+* clean calculators ([dbb7407](https://github.com/Cefo14/web-accessibility-plugin/commit/dbb7407b5d54d912c67c1eae08d5a98b0a5b97bf))
+* update CI description and remove push trigger; add pnpm workspace configuration ([14c9574](https://github.com/Cefo14/web-accessibility-plugin/commit/14c9574338d1d4b95861958112a55c42888cb888))
+
 # 1.0.0 (2025-06-27)
 
 

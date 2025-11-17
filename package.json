@@ -1,6 +1,6 @@
 {
   "name": "web-accessibility-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A simple web accessibility plugin for browsers",
   "author": "Cefo14 <cefo14@protonmail.com>",
   "license": "GPL-3.0-or-later",
@@ -44,7 +44,7 @@
     "test:coverage": "vitest --coverage",
     "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
-     "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit"
   },
   "peerDependencies": {
     "react": "19.2.0",
