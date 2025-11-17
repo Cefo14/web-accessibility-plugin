@@ -10,9 +10,13 @@ export const useExternalFonts = () => {
     const fragment = document.createDocumentFragment();
 
     const link = document.createElement('link');
-    link.href = 'https://fonts.cdnfonts.com/css/opendyslexic';
-    link.rel = 'stylesheet';
     link.id = STYLE_ID;
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.cdnfonts.com/css/opendyslexic';
+    link.media = 'print';
+    link.onload = () => {
+      link.media = 'all';
+    };
 
     fragment.append(link);
 
