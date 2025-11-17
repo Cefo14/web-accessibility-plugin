@@ -22,7 +22,7 @@ jobs:
       uses: ./.github/actions/setup-node-pnpm
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile --prod
+      run: pnpm install --frozen-lockfile
 
     - name: Build GitHub Page
       run: pnpm build - --base=/web-accessibility-plugin/

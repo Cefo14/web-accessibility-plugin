@@ -31,7 +31,7 @@ jobs:
       uses: ./.github/actions/setup-node-pnpm
 
     - name: Install dependencies
-      run: pnpm install --frozen-lockfile --prod
+      run: pnpm install --frozen-lockfile
 
     - name: Build module
       run: pnpm build:module
