@@ -1,3 +1,20 @@
+# [1.2.0](https://github.com/Cefo14/web-accessibility-plugin/compare/v1.1.0...v1.2.0) (2025-11-18)
+
+
+### Bug Fixes
+
+* ensure slider has a maximum width for better layout consistency ([edc0c44](https://github.com/Cefo14/web-accessibility-plugin/commit/edc0c444df19c54eedbc6758a01dde55708af1b3))
+* reorder link attributes for external font loading ([217dcaf](https://github.com/Cefo14/web-accessibility-plugin/commit/217dcaf46a5e184484b41deb37612dc33116a479))
+* replace generic error with custom RenderError for root element check ([1d36866](https://github.com/Cefo14/web-accessibility-plugin/commit/1d36866c9dbf17d16e5414ff9a0d9614e1afe85b))
+
+
+### Features
+
+* add customizable color configuration for the accessibility plugin ([6936c5c](https://github.com/Cefo14/web-accessibility-plugin/commit/6936c5ceef1ed330a589c8d85f952aac79b574c6))
+* enhance accessibility with ARIA attributes and focus management in components ([d6bcb48](https://github.com/Cefo14/web-accessibility-plugin/commit/d6bcb485649bcbc73e3f34c1fdb8ed614b54b7ab))
+* enhance accessibility with skip to main content link and improved meta tags ([5c8d5b8](https://github.com/Cefo14/web-accessibility-plugin/commit/5c8d5b8840366fed861de604233f745d3e9a592a))
+* implement design tokens for consistent styling and improve accessibility across components ([3f1082d](https://github.com/Cefo14/web-accessibility-plugin/commit/3f1082d65e5fd7285f3184eb0642a1f2d3745e01))
+
 # [1.1.0](https://github.com/Cefo14/web-accessibility-plugin/compare/v1.0.0...v1.1.0) (2025-11-17)
 
 
