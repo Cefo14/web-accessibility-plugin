@@ -27,7 +27,6 @@ const Menu = ({
         { [styles.rootHidde]: !$isOpen },
         className,
       )}
-      aria-hidden={!$isOpen}
     >
       { children }
     </article>
