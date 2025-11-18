@@ -20,6 +20,7 @@
   margin: var(--wap-spacing-sm) 0;
   cursor: pointer;
   transition: background-color var(--wap-transition-base);
+  max-width: fit-content;
 }
 
 /* Hover state for track */
