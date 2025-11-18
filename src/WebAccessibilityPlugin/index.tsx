@@ -1,6 +1,5 @@
 import { StrictMode } from 'react';
 
-// Import design tokens first, then global styles
 import '@/styles/tokens.css';
 import '@/styles/global.css';
 

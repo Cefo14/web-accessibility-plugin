@@ -24,7 +24,8 @@
 
 /* Hover state for track */
 .slider:hover {
-  background: var(--wap-color-neutral-dark);
+  background: var(--wap-color-primary-dark);
+  opacity: var(--wap-opacity-hover);
 }
 
 /* Focus state for accessibility */

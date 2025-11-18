@@ -1,143 +1,166 @@
 /**
  * Design Tokens - Web Accessibility Plugin
  * 
- * This file contains all the foundational design tokens used throughout the plugin.
- * These tokens ensure consistency and make theming easier.
+ * This file contains the foundational design system tokens.
+ * Organized by category following best practices for design systems.
+ * 
+ * Structure:
+ * 1. Non-color tokens (spacing, typography, etc.) - Fixed values
+ * 2. Color tokens - Configurable via plugin constructor
+ * 3. Motion preferences - Responsive to user settings
  */
 
 :root {
   /* ============================================
      SPACING SCALE
-     Based on 4px base unit (0.25rem)
+     Consistent spacing based on 4px (0.25rem) base unit
+     Usage: margin, padding, gap
      ============================================ */
-  --wap-spacing-xs: 0.25rem;   /* 4px */
-  --wap-spacing-sm: 0.5rem;    /* 8px */
-  --wap-spacing-md: 1rem;      /* 16px */
-  --wap-spacing-lg: 1.5rem;    /* 24px */
-  --wap-spacing-xl: 2rem;      /* 32px */
-  --wap-spacing-2xl: 3rem;     /* 48px */
+  --wap-spacing-xs: 0.25rem;   /* 4px  - Minimal spacing */
+  --wap-spacing-sm: 0.5rem;    /* 8px  - Small spacing */
+  --wap-spacing-md: 1rem;      /* 16px - Standard spacing */
+  --wap-spacing-lg: 1.5rem;    /* 24px - Large spacing */
+  --wap-spacing-xl: 2rem;      /* 32px - Extra large spacing */
+  --wap-spacing-2xl: 3rem;     /* 48px - Maximum spacing */
 
   /* ============================================
      BORDER RADIUS
+     Consistent corner rounding
      ============================================ */
-  --wap-radius-sm: 4px;
-  --wap-radius-md: 8px;
-  --wap-radius-lg: 16px;
-  --wap-radius-full: 50%;
-  --wap-radius-round: 9999px;
+  --wap-radius-sm: 4px;        /* Small elements (buttons, inputs) */
+  --wap-radius-md: 8px;        /* Medium elements (cards) */
+  --wap-radius-lg: 16px;       /* Large elements (modals, menus) */
+  --wap-radius-full: 50%;      /* Circles (when width === height) */
+  --wap-radius-round: 9999px;  /* Pills (any aspect ratio) */
 
   /* ============================================
      SHADOWS
+     Depth and elevation system
      ============================================ */
-  --wap-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);
-  --wap-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.2);
-  --wap-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.3);
-  --wap-shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.4);
+  --wap-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.1);   /* Subtle depth */
+  --wap-shadow-md: 0 2px 4px rgba(0, 0, 0, 0.2);   /* Standard elevation */
+  --wap-shadow-lg: 0 4px 8px rgba(0, 0, 0, 0.3);   /* Prominent elements */
+  --wap-shadow-xl: 0 8px 16px rgba(0, 0, 0, 0.4);  /* Maximum elevation */
 
   /* ============================================
      TRANSITIONS & ANIMATIONS
+     Consistent motion timing
      ============================================ */
-  --wap-transition-fast: 150ms ease-in-out;
-  --wap-transition-base: 250ms ease-in-out;
-  --wap-transition-slow: 400ms ease-in-out;
-  --wap-transition-slowest: 600ms ease-in-out;
+  --wap-transition-fast: 150ms ease-in-out;        /* Quick interactions */
+  --wap-transition-base: 250ms ease-in-out;        /* Standard transitions */
+  --wap-transition-slow: 400ms ease-in-out;        /* Deliberate animations */
+  --wap-transition-slowest: 600ms ease-in-out;     /* Emphasis animations */
 
   /* ============================================
      Z-INDEX SCALE
-     Predefined layers to avoid z-index conflicts
+     Layering system to prevent z-index conflicts
      ============================================ */
-  --wap-z-base: 0;
-  --wap-z-dropdown: 1000;
-  --wap-z-sticky: 1100;
-  --wap-z-fixed: 1200;
-  --wap-z-overlay: 1300;
-  --wap-z-modal: 2147483647;
+  --wap-z-base: 0;             /* Default layer */
+  --wap-z-dropdown: 1000;      /* Dropdowns, tooltips */
+  --wap-z-sticky: 1100;        /* Sticky headers */
+  --wap-z-fixed: 1200;         /* Fixed position elements */
+  --wap-z-overlay: 1300;       /* Overlays, modals backdrop */
+  --wap-z-modal: 2147483647;   /* Maximum z-index for modals */
 
   /* ============================================
      TYPOGRAPHY
+     Font definitions and scales
      ============================================ */
+  /* Font families */
   --wap-font-family-base: Arial, sans-serif;
   --wap-font-family-mono: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
 
+  /* Font sizes - Type scale */
   --wap-font-size-xs: 0.75rem;   /* 12px */
   --wap-font-size-sm: 0.875rem;  /* 14px */
-  --wap-font-size-base: 1rem;    /* 16px */
+  --wap-font-size-base: 1rem;    /* 16px - Base size */
   --wap-font-size-lg: 1.125rem;  /* 18px */
   --wap-font-size-xl: 1.25rem;   /* 20px */
   --wap-font-size-2xl: 1.5rem;   /* 24px */
 
-  --wap-font-weight-normal: 400;
-  --wap-font-weight-medium: 500;
-  --wap-font-weight-semibold: 600;
-  --wap-font-weight-bold: 700;
+  /* Font weights */
+  --wap-font-weight-normal: 400;     /* Regular text */
+  --wap-font-weight-medium: 500;     /* Slightly emphasized */
+  --wap-font-weight-semibold: 600;   /* Headings */
+  --wap-font-weight-bold: 700;       /* Strong emphasis */
 
-  --wap-line-height-tight: 1.25;
-  --wap-line-height-normal: 1.5;
-  --wap-line-height-relaxed: 1.75;
+  /* Line heights */
+  --wap-line-height-tight: 1.25;     /* Dense text */
+  --wap-line-height-normal: 1.5;     /* Standard readability */
+  --wap-line-height-relaxed: 1.75;   /* Comfortable reading */
 
   /* ============================================
      BORDERS
+     Border width tokens
      ============================================ */
-  --wap-border-width-thin: 1px;
-  --wap-border-width-base: 2px;
-  --wap-border-width-thick: 4px;
+  --wap-border-width-thin: 1px;   /* Subtle borders */
+  --wap-border-width-base: 2px;   /* Standard borders */
+  --wap-border-width-thick: 4px;  /* Emphasized borders */
 
   /* ============================================
      OPACITY
+     Transparency levels for states
      ============================================ */
-  --wap-opacity-disabled: 0.5;
-  --wap-opacity-muted: 0.6;
-  --wap-opacity-hover: 0.8;
+  --wap-opacity-disabled: 0.5;    /* Disabled elements */
+  --wap-opacity-muted: 0.6;       /* Muted/secondary content */
+  --wap-opacity-hover: 0.8;       /* Hover state transparency */
 
   /* ============================================
-     COLOR SYSTEM - LIGHT THEME (DEFAULT)
-     These colors are optimized for WCAG AA compliance
+     COLOR SYSTEM
      
-     SEMANTIC USAGE:
-     - Primary: Light backgrounds, surfaces, and borders (not brand color)
-     - Secondary: Dark backgrounds and elements (high contrast text)
-     - Info: Primary action color (buttons, interactive elements) - BLUE
-     - Warning: Warning states and alerts - YELLOW
-     - Danger: Error states and destructive actions - RED
-     - Disabled: Disabled/inactive elements
-     - Neutral: Hover states and subtle backgrounds
+     CONFIGURABLE COLORS (via plugin constructor):
+     These colors can be customized by developers
+     
+     USAGE GUIDE:
+     - Primary: Main background color (typically light)
+     - Primary Dark: Borders, dividers, hover states
+     - Primary Text: Text color on primary background
+     - Secondary: Alternate background (typically dark)
+     - Secondary Text: Text color on secondary background
+     
+     STATE COLORS (optional overrides):
+     - Info: Action buttons, interactive elements (default: blue)
+     - Warning: Caution, alerts (default: yellow)
+     - Danger: Errors, destructive actions (default: red)
+     
+     All colors are WCAG AA compliant by default.
      ============================================ */
   
-  /* Primary - Light backgrounds and borders (Surface colors) */
-  --wap-color-primary-light: #fbfbfb;
-  --wap-color-primary: #fafafa;
-  --wap-color-primary-dark: #bbbbbb;
-  --wap-color-primary-text: #000000;
+  /* Primary Color Family - Main theme colors */
+  --wap-color-primary-light: #fbfbfb;   /* Lighter variant for subtle backgrounds */
+  --wap-color-primary: #fafafa;         /* Main background/surface color */
+  --wap-color-primary-dark: #bbbbbb;    /* Borders, hover states, dividers */
+  --wap-color-primary-text: #000000;    /* Text on primary background */
 
-  /* Secondary - Dark backgrounds and elements */
-  --wap-color-secondary: #09090b;
-  --wap-color-secondary-dark: #060608;
-  --wap-color-secondary-text: #ffffff;
+  /* Secondary Color Family - Brand/Accent theme colors */
+  --wap-color-secondary-light: #1a8cff;  /* Lighter variant for hover states */
+  --wap-color-secondary: #0073e6;        /* Brand/accent color (blue) */
+  --wap-color-secondary-dark: #005bb5;   /* Darker variant for active states */
+  --wap-color-secondary-text: #ffffff;   /* Text on secondary background */
 
-  /* Info - Primary action color (Interactive elements) */
-  --wap-color-info-light: #2d96ff;
-  --wap-color-info: #0073e6;
-  --wap-color-info-dark: #0056ac;
-  --wap-color-info-text: #ffffff;
+  /* Status Colors - Interactive and state indicators */
+  /* Info - Primary interactive color (buttons, links, accents) */
+  --wap-color-info-light: #1a8cff;      /* Hover state - slightly brighter blue */
+  --wap-color-info: #0073e6;            /* Base action color */
+  --wap-color-info-dark: #005bb5;       /* Active/pressed state - darker blue */
+  --wap-color-info-text: #ffffff;       /* Text on info background */
 
-  /* Warning - Warning states */
-  --wap-color-warning-light: #ffd735;
-  --wap-color-warning: #f2c300;
-  --wap-color-warning-dark: #b59200;
-  --wap-color-warning-text: #000000;
+  /* Warning - Caution and alert states */
+  --wap-color-warning-light: #ffd735;   /* Hover state */
+  --wap-color-warning: #f2c300;         /* Base warning color */
+  --wap-color-warning-dark: #b59200;    /* Active/pressed state */
+  --wap-color-warning-text: #000000;    /* Text on warning background */
 
-  /* Danger - Error and destructive actions */
-  --wap-color-danger-light: #f76f71;
-  --wap-color-danger: #f53f42;
-  --wap-color-danger-dark: #db0b0e;
-  --wap-color-danger-text: #ffffff;
+  /* Danger - Error and destructive action states */
+  --wap-color-danger-light: #f76f71;    /* Hover state */
+  --wap-color-danger: #f53f42;          /* Base danger color */
+  --wap-color-danger-dark: #db0b0e;     /* Active/pressed state */
+  --wap-color-danger-text: #ffffff;     /* Text on danger background */
 
-  /* Disabled - Inactive elements */
-  --wap-color-disabled: #d3d3d3;
-  --wap-color-disabled-text: #666666;
-
-  /* Neutral - Hover states and subtle backgrounds */
-  --wap-color-neutral-dark: #a8a8a8;
+  /* Utility Colors - Fixed utility colors */
+  --wap-color-disabled: #d3d3d3;        /* Disabled element backgrounds */
+  --wap-color-disabled-text: #666666;   /* Disabled text */
+  --wap-color-neutral-dark: #a8a8a8;    /* Neutral hover/focus states */
 }
 
 /* ============================================
