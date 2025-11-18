@@ -7,6 +7,8 @@ import type { OnClickButton } from '@/types/OnClickButton';
 import Text from '@/components/Text';
 import Button from '@/components/Button';
 
+import { useI18n } from '@/i18n';
+
 import MinusIcon from '@/assets/minus-svgrepo-com.svg?react';
 import PlusIcon from '@/assets/plus-svgrepo-com.svg?react';
 
@@ -21,6 +23,7 @@ interface SwitchButtonsProps extends ElementProps {
   $onIncrement?: OnClickButton;
   $id?: string;
   $name?: string;
+  $ariaLabelledBy?: string;
 }
 
 const SwitchButtons = ({
@@ -31,39 +34,46 @@ const SwitchButtons = ({
   $onIncrement,
   $onDecrement,
   $name,
+  $ariaLabelledBy,
   className,
   ...props
-}: SwitchButtonsProps) => (
-  <div
-    className={clsx(styles.root, className)}
-    {...props}
-  >
-    <Button
-      name={$name}
-      type="button"
-      className={clsx(styles.button)}
-      onClick={$onDecrement}
-      disabled={$now === $min}
-      aria-label="Decrement value"
-      value={$now}
+}: SwitchButtonsProps) => {
+  const { t } = useI18n();
+  
+  return (
+    <div
+      className={clsx(styles.root, className)}
+      role="group"
+      aria-labelledby={$ariaLabelledBy}
+      {...props}
     >
-      <MinusIcon width={24} height={24} />
-    </Button>
-    <Text $as="span" $size="sm" className={styles.value}>
-      {$value}
-    </Text>
-    <Button
-      name={$name}
-      type="button"
-      className={clsx(styles.button)}
-      onClick={$onIncrement}
-      disabled={$now === $max}
-      aria-label="Increment value"
-      value={$now}
-    >
-      <PlusIcon width={24} height={24} />
-    </Button>
-  </div>
-);
+      <Button
+        name={$name}
+        type="button"
+        className={clsx(styles.button)}
+        onClick={$onDecrement}
+        disabled={$now === $min}
+        aria-label={t('aria.decrement')}
+        value={$now}
+      >
+        <MinusIcon width={24} height={24} />
+      </Button>
+      <Text $as="span" $size="sm" className={styles.value}>
+        {$value}
+      </Text>
+      <Button
+        name={$name}
+        type="button"
+        className={clsx(styles.button)}
+        onClick={$onIncrement}
+        disabled={$now === $max}
+        aria-label={t('aria.increment')}
+        value={$now}
+      >
+        <PlusIcon width={24} height={24} />
+      </Button>
+    </div>
+  );
+};
 
 export default memo(SwitchButtons);

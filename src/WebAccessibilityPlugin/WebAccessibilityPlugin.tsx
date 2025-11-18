@@ -130,6 +130,18 @@ const WebAccessibilityPlugin = ({
     if (config?.colors) applyThemeColors(config.colors);
   }, [config]);
 
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        close();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, close]);
+
   return (
     <section
       id={GLOBALS.WAP_ID}
@@ -160,6 +172,7 @@ const WebAccessibilityPlugin = ({
               <Select
                 onChange={onChangeLanguage}
                 value={language}
+                aria-label={t('aria.languageSelect')}
               >
                 {
                   Object.entries(LanguageCodeTranslations).map(([key, value]) => (

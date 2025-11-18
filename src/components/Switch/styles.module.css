@@ -51,3 +51,9 @@
 .input:checked + .slider:before {
   transform: translate(calc(100% + var(--wap-spacing-xs)), -50%);
 }
+
+.input:focus-visible {
+  outline: solid 2px var(--wap-color-secondary);
+  outline-offset: 2px;
+  border-radius: var(--wap-radius-lg);
+}

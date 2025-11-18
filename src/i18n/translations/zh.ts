@@ -34,4 +34,18 @@ export const zh: TranslationModel = {
   'section.tools.highlightLinks': '高亮链接',
   'section.tools.hideImages': '隐藏图像',
   'section.tools.stopAnimations': '停止动画',
+
+  'aria.increment': '增加',
+  'aria.decrement': '减少',
+  'aria.switchOn': '开启',
+  'aria.switchOff': '关闭',
+  'aria.languageSelect': '选择语言',
+  'aria.fontFamilySelect': '选择字体',
+  'aria.fontWeightSelect': '选择字体粗细',
+  'aria.colorFilterGroup': '颜色滤镜预设',
+  'aria.brightnessSlider': '调整亮度',
+  'aria.contrastSlider': '调整对比度',
+  'aria.saturationSlider': '调整饱和度',
+  'aria.sepiaSlider': '调整棕褐色',
+  'aria.hueSlider': '调整色相旋转',
 };

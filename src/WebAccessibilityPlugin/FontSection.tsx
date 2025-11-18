@@ -51,7 +51,7 @@ const FontSection = ({
       </Heading>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="font-size-label">
           {t('section.font.size')}
         </Text>
         <SwitchButtons
@@ -62,11 +62,12 @@ const FontSection = ({
           $onDecrement={onDecrementFontProp}
           $onIncrement={onIncrementFontProp}
           $name={fontProps.size}
+          $ariaLabelledBy="font-size-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="letter-spacing-label">
           {t('section.font.letterSpacing')}
         </Text>
         <SwitchButtons
@@ -77,11 +78,12 @@ const FontSection = ({
           $onDecrement={onDecrementFontProp}
           $onIncrement={onIncrementFontProp}
           $name={fontProps.letterSpacing}
+          $ariaLabelledBy="letter-spacing-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="line-height-label">
           {t('section.font.lineHeight')}
         </Text>
         <SwitchButtons
@@ -92,16 +94,18 @@ const FontSection = ({
           $onDecrement={onDecrementFontProp}
           $onIncrement={onIncrementFontProp}
           $name={fontProps.lineHeight}
+          $ariaLabelledBy="line-height-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="font-weight-select-label">
           {t('section.font.fontWeight')}
         </Text>
         <Select
           value={fontWeightValue}
           onChange={onChangeFontWeight}
+          aria-labelledby="font-weight-select-label"
         >
           {
             Object.values(FONT_WEIGHT).map((value) => (
@@ -114,12 +118,13 @@ const FontSection = ({
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="font-family-select-label">
           {t('section.font.fontFamily')}
         </Text>
         <Select
           value={fontFamilyValue}
           onChange={onChangeFontFamily}
+          aria-labelledby="font-family-select-label"
         >
           {
             Object.values(FONT_FAMILY).map((value) => (

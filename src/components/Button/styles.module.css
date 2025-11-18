@@ -7,24 +7,22 @@
   transition: background-color var(--wap-transition-fast);
   cursor: pointer;
 }
-
 .button:disabled {
   opacity: var(--wap-opacity-disabled);
   background-color: var(--wap-color-disabled);
   border-color: var(--wap-color-disabled);
   cursor: not-allowed;
 }
-
 .button:focus:not(:disabled) {
   outline: solid 2px Highlight;
   outline: solid 2px -webkit-focus-ring-color;
+  outline-offset: 2px;
 }
-
 .button:active:not(:disabled) {
   outline: solid 2px Highlight;
   outline: solid 2px -webkit-focus-ring-color;
+  outline-offset: 2px;
 }
-
 .button:hover:not(:disabled) {
   background-color: var(--wap-color-primary-dark);
 }
@@ -34,7 +32,6 @@
   background-color: var(--wap-color-secondary);
   color: var(--wap-color-secondary-text);
 }
-
 .button--secondary:hover:not(:disabled) {
   background-color: var(--wap-color-secondary-dark);
   border-color: var(--wap-color-secondary-dark);
@@ -45,7 +42,6 @@
   border-color: var(--wap-color-info);
   color: var(--wap-color-info-text);
 }
-
 .button--info:hover:not(:disabled) {
   background-color: var(--wap-color-info-dark);
   border-color: var(--wap-color-info-dark);
@@ -57,10 +53,15 @@
   color: var(--wap-color-warning-text);
   font-weight: bold;
 }
-
 .button--warning:hover:not(:disabled) {
   background-color: var(--wap-color-warning-dark);
   border-color: var(--wap-color-warning-dark);
+}
+.button--warning:active:not(:disabled) {
+  outline-color: var(--wap-color-warning-dark);
+}
+.button--warning:focus:not(:disabled) {
+  outline-color: var(--wap-color-warning-dark);
 }
 
 .button--danger {
@@ -68,9 +69,14 @@
   border-color: var(--wap-color-danger);
   color: var(--wap-color-danger-text);
 }
-
 .button--danger:hover:not(:disabled) {
   background-color: var(--wap-color-danger-dark);
   border-color: var(--wap-color-danger-dark);
   color: var(--wap-color-danger-text);
+}
+.button--danger:active:not(:disabled) {
+  outline-color: var(--wap-color-danger-dark);
+}
+.button--danger:focus:not(:disabled) {
+  outline-color: var(--wap-color-danger-dark);
 }
