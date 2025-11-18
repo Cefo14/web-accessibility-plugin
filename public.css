@@ -366,6 +366,20 @@ header {
   margin-top: 0;
 }
 
+.installation-card h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--color-foreground);
+}
+
+.code-description {
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 .code-block {
   background-color: var(--color-background);
   padding: 1rem;
