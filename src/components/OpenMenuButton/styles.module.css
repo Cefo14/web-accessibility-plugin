@@ -3,9 +3,9 @@
   bottom: var(--wap-spacing-md);
   right: var(--wap-spacing-md);
 
-  background-color: var(--wap-color-info);
-  outline: var(--wap-border-width-thick) solid var(--wap-color-info);
-  border: var(--wap-border-width-base) solid var(--wap-color-info-text);
+  background-color: var(--wap-color-secondary);
+  outline: var(--wap-border-width-thick) solid var(--wap-color-secondary);
+  border: var(--wap-border-width-base) solid var(--wap-color-secondary-text);
   border-radius: var(--wap-radius-full);
 
   width: 56px;
@@ -20,11 +20,11 @@
 }
 
 .root:focus {
-  background-color: var(--wap-color-info-dark);
-  outline: var(--wap-border-width-thick) solid var(--wap-color-info-dark);
+  background-color: var(--wap-color-secondary-dark);
+  outline: var(--wap-border-width-thick) solid var(--wap-color-secondary-dark);
 }
 
 .root:hover {
-  background-color: var(--wap-color-info-light);
-  outline-color: var(--wap-color-info-light);
+  background-color: var(--wap-color-secondary-light);
+  outline-color: var(--wap-color-secondary-light);
 }

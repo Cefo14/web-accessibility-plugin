@@ -30,7 +30,7 @@
 
 /* Focus state for accessibility */
 .slider:focus {
-  outline: var(--wap-border-width-base) solid var(--wap-color-info);
+  outline: var(--wap-border-width-base) solid var(--wap-color-secondary);
   outline-offset: var(--wap-border-width-base);
 }
 
@@ -57,7 +57,7 @@
   height: 20px;
   width: 20px;
   border-radius: var(--wap-radius-full);
-  background: var(--wap-color-info);
+  background: var(--wap-color-secondary);
   border: var(--wap-border-width-base) solid var(--wap-color-primary);
   cursor: pointer;
   box-shadow: var(--wap-shadow-md);
@@ -66,13 +66,13 @@
 
 /* WebKit browsers - Thumb hover */
 .slider::-webkit-slider-thumb:hover {
-  background: var(--wap-color-info-light);
+  background: var(--wap-color-secondary-light);
   transform: scale(1.1);
 }
 
 /* WebKit browsers - Thumb active */
 .slider::-webkit-slider-thumb:active {
-  background: var(--wap-color-info-dark);
+  background: var(--wap-color-secondary-dark);
   transform: scale(0.95);
 }
 
@@ -93,7 +93,7 @@
   height: 16px;
   width: 16px;
   border-radius: var(--wap-radius-full);
-  background: var(--wap-color-info);
+  background: var(--wap-color-secondary);
   border: var(--wap-border-width-base) solid var(--wap-color-primary);
   cursor: pointer;
   box-shadow: var(--wap-shadow-md);
@@ -102,13 +102,13 @@
 
 /* Firefox - Thumb hover */
 .slider::-moz-range-thumb:hover {
-  background: var(--wap-color-info-light);
+  background: var(--wap-color-secondary-light);
   transform: scale(1.1);
 }
 
 /* Firefox - Thumb active */
 .slider::-moz-range-thumb:active {
-  background: var(--wap-color-info-dark);
+  background: var(--wap-color-secondary-dark);
   transform: scale(0.95);
 }
 
@@ -144,7 +144,7 @@
   height: 20px;
   width: 20px;
   border-radius: var(--wap-radius-full);
-  background: var(--wap-color-info);
+  background: var(--wap-color-secondary);
   border: var(--wap-border-width-base) solid var(--wap-color-primary);
   cursor: pointer;
   box-shadow: var(--wap-shadow-md);
