@@ -3,20 +3,81 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Web Accessibility Plugin - Lightweight accessibility solution</title>
-  <meta name="description" content="A simple, lightweight accessibility plugin alternative. Easy to integrate with customizable text options, visual filters, and navigation tools.">
+  
+  <!-- Primary Meta Tags -->
+  <title>Web Accessibility Plugin - Free & Open Source Accessibility Tool | WAP</title>
+  <meta name="title" content="Web Accessibility Plugin - Free & Open Source Accessibility Tool | WAP">
+  <meta name="description" content="Lightweight web accessibility plugin with customizable fonts, visual filters, content highlighting and image controls. Easy integration via CDN">
   <meta name="author" content="Cefo14">
-  <meta name="keywords" content="web accessibility, accessibility plugin, lightweight plugin, web development, open source, customizable text options, visual filters, navigation tools">
+  <meta name="keywords" content="web accessibility, accessibility plugin, WCAG compliance, font customization, visual filters, lightweight plugin, open source accessibility, a11y, inclusive design, accessible web development">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://cefo14.github.io/web-accessibility-plugin/">
+  <meta property="og:title" content="Web Accessibility Plugin - Free & Open Source Accessibility Tool">
+  <meta property="og:description" content="Lightweight web accessibility plugin with customizable fonts, visual filters, and navigation tools.">
+  <meta property="og:locale" content="en_US">
+  <meta property="og:site_name" content="Web Accessibility Plugin">
+  
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://cefo14.github.io/web-accessibility-plugin/">
+  <meta name="twitter:title" content="Web Accessibility Plugin - Free & Open Source Accessibility Tool">
+  <meta name="twitter:description" content="Lightweight web accessibility plugin with customizable fonts, visual filters, and navigation tools.">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  
+  
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+  
+  <!-- Stylesheets -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'; this.onload=null;">
-  <script type="module" crossorigin src="/web-accessibility-plugin/assets/index-zflhf2eW.js"></script>
-  <link rel="stylesheet" crossorigin href="/web-accessibility-plugin/assets/index-B51bEGJv.css">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+  
+  <!-- Schema.org markup for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Web Accessibility Plugin",
+    "applicationCategory": "DeveloperApplication",
+    "applicationSubCategory": "Web Accessibility Tool",
+    "operatingSystem": "Web Browser",
+    "description": "A lightweight web accessibility plugin that helps improve website accessibility with customizable font options, visual filters, content highlighting, and navigation tools.",
+    "author": {
+      "@type": "Person",
+      "name": "Cefo14",
+      "url": "https://github.com/Cefo14"
+    },
+    "publisher": {
+      "@type": "Person",
+      "name": "Cefo14"
+    },
+    "url": "https://cefo14.github.io/web-accessibility-plugin/",
+    "downloadUrl": "https://cdn.jsdelivr.net/gh/Cefo14/web-accessibility-plugin@master/release/web-accessibility-plugin.min.cjs.js",
+    "codeRepository": "https://github.com/Cefo14/web-accessibility-plugin",
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+  }
+  </script>
+
+  <script type="module" crossorigin src="/web-accessibility-plugin/assets/index-d4a-4eQa.js"></script>
+  <link rel="stylesheet" crossorigin href="/web-accessibility-plugin/assets/index-BLXWHTwN.css">
 </head>
 <body>
+  <!-- Skip to main content link for keyboard navigation -->
+  <a href="#main-content" class="skip-to-main">Skip to main content</a>
+  
   <div class="wrapper">
     <header role="banner">
       <div class="container header-container">
         <div class="logo">
-          <span>WAP</span>
+          <span aria-label="Web Accessibility Plugin">WAP</span>
         </div>
         
         <!-- Desktop navigation -->
@@ -60,7 +121,7 @@
       <!-- Hero Section -->
       <section class="hero" aria-labelledby="hero-heading">
         <div class="container">
-          <h1 id="hero-heading">A simple accessibility plugin alternative</h1>
+          <h1 id="hero-heading">A Simple Accessibility Plugin Alternative</h1>
           <p class="hero-description">
             Lightweight, fast and easy to integrate. Enhance web accessibility with customizable text options, visual filters, and navigation tools.
           </p>
@@ -90,7 +151,7 @@
                 <i class="fas fa-font"></i>
               </div>
               <h3>Font Customization</h3>
-              <p>Adjust font size, weight, spacing, and line height to improve readability.</p>
+              <p>Adjust font size, weight, spacing, and line height to improve readability for users with visual impairments or reading difficulties.</p>
             </article>
 
             <article class="feature-card">
@@ -98,7 +159,7 @@
                 <i class="fas fa-sliders-h"></i>
               </div>
               <h3>Visual Filters</h3>
-              <p>Apply filters to reduce visual fatigue with brightness, contrast, saturation, and sepia adjustments.</p>
+              <p>Apply filters to reduce visual fatigue and support users with photosensitivity. Includes brightness, contrast, saturation, and sepia adjustments.</p>
             </article>
 
             <article class="feature-card">
@@ -106,7 +167,7 @@
                 <i class="fas fa-file-alt"></i>
               </div>
               <h3>Content Highlighting</h3>
-              <p>Highlight headings and links to improve navigation and content scanning.</p>
+              <p>Highlight headings and links to improve navigation and content scanning for users with cognitive disabilities.</p>
             </article>
 
             <article class="feature-card">
@@ -114,7 +175,7 @@
                 <i class="fas fa-image"></i>
               </div>
               <h3>Image Controls</h3>
-              <p>Hide images to reduce distractions and focus on text content.</p>
+              <p>Hide images to reduce distractions, save bandwidth, and help users focus on essential text content.</p>
             </article>
 
             <article class="feature-card">
@@ -122,7 +183,7 @@
                 <i class="fas fa-code"></i>
               </div>
               <h3>Easy Integration</h3>
-              <p>Simple to implement in any website with minimal configuration required.</p>
+              <p>Simple CDN-based implementation in any website with minimal configuration. No build tools required.</p>
             </article>
 
             <article class="feature-card">
@@ -130,7 +191,7 @@
                 <i class="fas fa-external-link-alt"></i>
               </div>
               <h3>Open Source</h3>
-              <p>Free and open source under GPL-3.0 license. Contributions welcome.</p>
+              <p>Free and open source under GPL-3.0 license. Community-driven development with contributions welcome.</p>
             </article>
           </div>
         </div>
@@ -139,9 +200,9 @@
       <!-- Installation Section -->
       <section id="installation" class="installation" aria-labelledby="installation-heading">
         <div class="container">
-          <h2 id="installation-heading">Installation</h2>
+          <h2 id="installation-heading">Installation Guide</h2>
           <p class="section-description">
-            Get started with web-accessibility-plugin in just a few steps via CDN.
+            Get started with Web Accessibility Plugin in just two simple steps via CDN. No build process or npm packages required.
           </p>
 
           <div class="installation-card">
@@ -182,7 +243,7 @@
 
     <footer role="contentinfo">
       <div class="container">
-        <p>web-accessibility-plugin is licensed under GPL-3.0</p>
+        <p>&copy; 2025 Web Accessibility Plugin. Licensed under <a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="noopener noreferrer">GPL-3.0</a>.</p>
         <div class="social-links">
           <a href="https://github.com/Cefo14/web-accessibility-plugin" 
              target="_blank"
