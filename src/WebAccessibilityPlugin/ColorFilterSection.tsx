@@ -42,7 +42,7 @@ const ColorFilterSection = ({
       </Heading>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="brightness-slider-label">
           {t('section.colorFilter.brightness')}
         </Text>
         <Slider
@@ -52,11 +52,12 @@ const ColorFilterSection = ({
           max={150}
           step={1}
           value={state.brightness}
+          aria-labelledby="brightness-slider-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="contrast-slider-label">
           {t('section.colorFilter.contrast')}
         </Text>
         <Slider
@@ -66,11 +67,12 @@ const ColorFilterSection = ({
           max={180}
           step={1}
           value={state.contrast}
+          aria-labelledby="contrast-slider-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="saturation-slider-label">
           {t('section.colorFilter.saturation')}
         </Text>
         <Slider
@@ -80,11 +82,12 @@ const ColorFilterSection = ({
           max={180}
           step={1}
           value={state.saturate}
+          aria-labelledby="saturation-slider-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="sepia-slider-label">
           {t('section.colorFilter.sepia')}
         </Text>
         <Slider
@@ -94,11 +97,12 @@ const ColorFilterSection = ({
           max={100}
           step={1}
           value={state.sepia}
+          aria-labelledby="sepia-slider-label"
         />
       </SpaceBetween>
 
       <SpaceBetween>
-        <Text $size="sm" $as="span">
+        <Text $size="sm" $as="span" id="hue-slider-label">
           {t('section.colorFilter.hue')}
         </Text>
         <Slider
@@ -108,10 +112,11 @@ const ColorFilterSection = ({
           max={360}
           step={1}
           value={state['hue-rotate']}
+          aria-labelledby="hue-slider-label"
         />
       </SpaceBetween>
 
-      <AutoGrid $gap="0.5em" $columnWidth="6em" $rows={2} $rowWidth="2rem">
+      <AutoGrid $gap="0.5em" $columnWidth="6em" $rows={2} $rowWidth="2rem" role="group" aria-label={t('aria.colorFilterGroup')}>
         <Button
           type="button"
           name={COLOR_FILTER_SETTING_NAMES.warm}

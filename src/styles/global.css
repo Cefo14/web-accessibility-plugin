@@ -1,39 +1,22 @@
-:root {
-  --wap-color-primary-light: #fbfbfb;
-  --wap-color-primary: #fafafa;
-  --wap-color-primary-dark: #bbbbbb;
-  --wap-color-primary-text: #000000;
+/**
+ * Global Styles - Web Accessibility Plugin
+ * 
+ * This file contains base styles applied to the plugin root.
+ * All design tokens (colors, spacing, etc.) are defined in tokens.css
+ */
 
-  --wap-color-secondary-light: #40404e;
-  --wap-color-secondary: #09090b;
-  --wap-color-secondary-dark: #060608;
-  --wap-color-secondary-text: #ffffff;
-
-  --wap-color-info-light: #2d96ff;
-  --wap-color-info: #0073e6;
-  --wap-color-info-dark: #0056ac;
-  --wap-color-info-text: #ffffff;
-
-  --wap-color-warning-light: #ffd735;
-  --wap-color-warning: #f2c300;
-  --wap-color-warning-dark: #b59200;
-  --wap-color-warning-text: #000000;
-
-  --wap-color-danger-light: #f76f71;
-  --wap-color-danger: #f53f42;
-  --wap-color-danger-dark: #db0b0e;
-
-  --wap-color-active-light: #ec63a7;
-  --wap-color-active: #e6308a;
-  --wap-color-active-dark: #ba1667;
-}
 
 .WAP__root {
-  font-size: 16px !important;
-  line-height: 1.5 !important;
+  /* Typography using design tokens */
+  font-family: var(--wap-font-family-base) !important;
+  font-size: var(--wap-font-size-base) !important;
+  line-height: var(--wap-line-height-normal) !important;
   letter-spacing: 0.015em !important;
+  
+  /* Ensure plugin is always on top */
+  z-index: var(--wap-z-modal) !important;
 }
 
 .WAP__root * {
-  font-family: Arial, sans-serif !important;
+  font-family: var(--wap-font-family-base) !important;
 }

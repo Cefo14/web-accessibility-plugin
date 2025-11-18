@@ -2,6 +2,7 @@ import { memo } from 'react';
 import { clsx } from 'clsx';
 
 import type { ElementProps } from '@/types/ElementProps';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
 
 import styles from './styles.module.css';
 
@@ -14,18 +15,22 @@ const Menu = ({
   children,
   className,
   ...props
-}: MenuProps) => (
-  <article
-    {...props}
-    className={clsx(
-      styles.root,
-      { [styles.rootHidde]: !$isOpen },
-      className,
-    )}
-    aria-hidden={!$isOpen}
-  >
-    { children }
-  </article>
-);
+}: MenuProps) => {
+  const focusTrapRef = useFocusTrap($isOpen);
+
+  return (
+    <article
+      {...props}
+      ref={focusTrapRef}
+      className={clsx(
+        styles.root,
+        { [styles.rootHidde]: !$isOpen },
+        className,
+      )}
+    >
+      { children }
+    </article>
+  );
+};
 
 export default memo(Menu);

@@ -31,4 +31,18 @@ export interface TranslationModel {
   'section.tools.highlightLinks': string;
   'section.tools.hideImages': string;
   'section.tools.stopAnimations': string;
+
+  'aria.increment': string;
+  'aria.decrement': string;
+  'aria.switchOn': string;
+  'aria.switchOff': string;
+  'aria.languageSelect': string;
+  'aria.fontFamilySelect': string;
+  'aria.fontWeightSelect': string;
+  'aria.colorFilterGroup': string;
+  'aria.brightnessSlider': string;
+  'aria.contrastSlider': string;
+  'aria.saturationSlider': string;
+  'aria.sepiaSlider': string;
+  'aria.hueSlider': string;
 }

@@ -34,4 +34,18 @@ export const en: TranslationModel = {
   'section.tools.highlightLinks': 'Highlight Links',
   'section.tools.hideImages': 'Hide Images',
   'section.tools.stopAnimations': 'Stop Animations',
+
+  'aria.increment': 'Increment',
+  'aria.decrement': 'Decrement',
+  'aria.switchOn': 'On',
+  'aria.switchOff': 'Off',
+  'aria.languageSelect': 'Select language',
+  'aria.fontFamilySelect': 'Select font family',
+  'aria.fontWeightSelect': 'Select font weight',
+  'aria.colorFilterGroup': 'Color filter presets',
+  'aria.brightnessSlider': 'Adjust brightness',
+  'aria.contrastSlider': 'Adjust contrast',
+  'aria.saturationSlider': 'Adjust saturation',
+  'aria.sepiaSlider': 'Adjust sepia',
+  'aria.hueSlider': 'Adjust hue rotation',
 } as const;

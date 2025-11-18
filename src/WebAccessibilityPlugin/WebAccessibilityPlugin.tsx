@@ -1,9 +1,12 @@
-import { useCallback, memo } from 'react';
+import { useCallback, useEffect, memo } from 'react';
 import clsx from 'clsx';
 
 import type { ElementProps } from '@/types/ElementProps';
 import type { ChangeEventInput, ChangeEventSelect } from '@/types/ChangeEvent';
 import type { MouseEventButton } from '@/types/MouseEvent';
+import type { WebAccessibilityPluginConfig } from '@/types/WebAccessibilityPluginConfig';
+
+import { applyThemeColors } from '@/helpers/applyThemeColors';
 
 import { GLOBALS } from '@/constants/Globals';
 
@@ -25,12 +28,15 @@ import FontSection from './FontSection';
 import ColorFilterSection from './ColorFilterSection';
 import ToolsSection from './ToolsSection';
 
-type WebAccessibilityPluginProps = Omit<ElementProps, 'children'>;
+interface WebAccessibilityPluginProps extends Omit<ElementProps, 'children'> {
+  config?: WebAccessibilityPluginConfig;
+}
 
 const OPEN_MENU_ID = 'open-menu-button';
 const MENU_TITLE_ID = 'menu-title';
 
 const WebAccessibilityPlugin = ({
+  config,
   className,
   ...props
 }: WebAccessibilityPluginProps) => {
@@ -120,6 +126,22 @@ const WebAccessibilityPlugin = ({
     changeLanguage(value);
   }, [changeLanguage]);
 
+  useEffect(() => {
+    if (config?.colors) applyThemeColors(config.colors);
+  }, [config]);
+
+  // Handle Escape key to close modal
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && isOpen) {
+        close();
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    return () => document.removeEventListener('keydown', handleEscape);
+  }, [isOpen, close]);
+
   return (
     <section
       id={GLOBALS.WAP_ID}
@@ -150,6 +172,7 @@ const WebAccessibilityPlugin = ({
               <Select
                 onChange={onChangeLanguage}
                 value={language}
+                aria-label={t('aria.languageSelect')}
               >
                 {
                   Object.entries(LanguageCodeTranslations).map(([key, value]) => (

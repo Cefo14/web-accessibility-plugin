@@ -1,35 +1,27 @@
 import { type InputHTMLAttributes, memo, useId } from 'react';
 import clsx from 'clsx';
-import Text from '../Text';
 
 import styles from './styles.module.css';
 
-interface SliderProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'type'> {
-  $label?: string;
-}
+type SliderProps = Omit<InputHTMLAttributes<HTMLInputElement>, 'type'>
 
-const Slider = ({ $label, className, ...props }: SliderProps) => {
+const Slider = ({ className, ...props }: SliderProps) => {
   const id = useId();
   const currentId = props.id ?? id;
-
+  const value = props.value ?? props.defaultValue ?? props.min ?? 0;
+  const ariaLabel = props['aria-label'];
   return (
-    <div>
-      {
-        $label && (
-          <label htmlFor={currentId}>
-            <Text $size="sm" $as="span">
-              {$label}
-            </Text>
-          </label>
-        )
-      }
-      <input
-        {...props}
-        type="range"
-        id={currentId}
-        className={clsx(styles.slider, className)}
-      />
-    </div>
+    <input
+      {...props}
+      type="range"
+      id={currentId}
+      className={clsx(styles.slider, className)}
+      aria-label={ariaLabel}
+      aria-valuemin={props.min ? Number(props.min) : undefined}
+      aria-valuemax={props.max ? Number(props.max) : undefined}
+      aria-valuenow={Number(value)}
+      aria-valuetext={value.toString()}
+    />
   );
 };
 

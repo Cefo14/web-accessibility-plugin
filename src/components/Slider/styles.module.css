@@ -2,7 +2,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: var(--wap-spacing-sm);
   width: 100%;
 }
 
@@ -13,29 +13,36 @@
   appearance: none;
   width: 100%;
   height: 6px;
-  border-radius: 3px;
+  border-radius: var(--wap-radius-sm);
   background: var(--wap-color-primary-dark);
   outline: none;
   padding: 0;
-  margin: 8px 0;
+  margin: var(--wap-spacing-sm) 0;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color var(--wap-transition-base);
+  max-width: fit-content;
 }
 
 /* Hover state for track */
 .slider:hover {
-  background: #a8a8a8;
+  background: var(--wap-color-primary-dark);
+  opacity: var(--wap-opacity-hover);
 }
 
 /* Focus state for accessibility */
 .slider:focus {
-  outline: 2px solid var(--wap-color-info);
-  outline-offset: 2px;
+  outline: var(--wap-border-width-base) solid var(--wap-color-secondary);
+  outline-offset: var(--wap-border-width-base);
+}
+
+.slider:focus-visible {
+  outline: 2px solid var(--wap-color-secondary);
+  outline-offset: 7px;
 }
 
 /* Disabled state */
 .slider:disabled {
-  opacity: 0.5;
+  opacity: var(--wap-opacity-disabled);
   cursor: not-allowed;
 }
 
@@ -43,7 +50,7 @@
 .slider::-webkit-slider-track {
   width: 100%;
   height: 6px;
-  border-radius: 3px;
+  border-radius: var(--wap-radius-sm);
   background: var(--wap-color-primary-dark);
   border: none;
   cursor: pointer;
@@ -55,23 +62,23 @@
   appearance: none;
   height: 20px;
   width: 20px;
-  border-radius: 50%;
-  background: var(--wap-color-info);
-  border: 2px solid var(--wap-color-primary);
+  border-radius: var(--wap-radius-full);
+  background: var(--wap-color-secondary);
+  border: var(--wap-border-width-base) solid var(--wap-color-primary);
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
+  box-shadow: var(--wap-shadow-md);
+  transition: all var(--wap-transition-base);
 }
 
 /* WebKit browsers - Thumb hover */
 .slider::-webkit-slider-thumb:hover {
-  background: var(--wap-color-info-light);
+  background: var(--wap-color-secondary-light);
   transform: scale(1.1);
 }
 
 /* WebKit browsers - Thumb active */
 .slider::-webkit-slider-thumb:active {
-  background: var(--wap-color-info-dark);
+  background: var(--wap-color-secondary-dark);
   transform: scale(0.95);
 }
 
@@ -79,7 +86,7 @@
 .slider::-moz-range-track {
   width: 100%;
   height: 6px;
-  border-radius: 3px;
+  border-radius: var(--wap-radius-sm);
   background: var(--wap-color-primary-dark);
   border: none;
   cursor: pointer;
@@ -91,23 +98,23 @@
   appearance: none;
   height: 16px;
   width: 16px;
-  border-radius: 50%;
-  background: var(--wap-color-info);
-  border: 2px solid var(--wap-color-primary);
+  border-radius: var(--wap-radius-full);
+  background: var(--wap-color-secondary);
+  border: var(--wap-border-width-base) solid var(--wap-color-primary);
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: all 0.2s ease-in-out;
+  box-shadow: var(--wap-shadow-md);
+  transition: all var(--wap-transition-base);
 }
 
 /* Firefox - Thumb hover */
 .slider::-moz-range-thumb:hover {
-  background: var(--wap-color-info-light);
+  background: var(--wap-color-secondary-light);
   transform: scale(1.1);
 }
 
 /* Firefox - Thumb active */
 .slider::-moz-range-thumb:active {
-  background: var(--wap-color-info-dark);
+  background: var(--wap-color-secondary-dark);
   transform: scale(0.95);
 }
 
@@ -129,23 +136,22 @@
 /* Internet Explorer/Edge Legacy - Fill (left side) */
 .slider::-ms-fill-lower {
   background: var(--wap-color-primary-dark);
-  border-radius: 3px;
+  border-radius: var(--wap-radius-sm);
 }
 
 /* Internet Explorer/Edge Legacy - Fill (right side) */
 .slider::-ms-fill-upper {
   background: var(--wap-color-primary-dark);
-  border-radius: 3px;
+  border-radius: var(--wap-radius-sm);
 }
 
 /* Internet Explorer/Edge Legacy - Thumb */
 .slider::-ms-thumb {
   height: 20px;
   width: 20px;
-  border-radius: 50%;
-  background: var(--wap-color-info);
-  border: 2px solid var(--wap-color-primary);
+  border-radius: var(--wap-radius-full);
+  background: var(--wap-color-secondary);
+  border: var(--wap-border-width-base) solid var(--wap-color-primary);
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: var(--wap-shadow-md);
 }
-

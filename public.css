@@ -1,13 +1,15 @@
 /* Base colors and variables */
 :root {
-  --color-background: #0f172a;
-  --color-foreground: #f1f5f9;
-  --color-primary: #60a5fa;
-  --color-primary-foreground: #0f172a;
-  --color-secondary: #1e293b;
-  --color-muted: #94a3b8;
-  --color-border: #334155;
-  --color-card: #1e293b;
+  /* Color Palette - WCAG AAA Compliant */
+   --color-background: #0a0e1a;
+  --color-foreground: #ffffff;
+  --color-primary: #3399ff;
+  --color-primary-foreground: #0a0e1a;
+  --color-secondary: #141824;
+  --color-muted: #d0d0d0;
+  --color-border: #2a2f3f;
+  --color-card: #0f1320;
+  --color-hover: #5cb3ff;
 }
 
 /* Reset and base styles */
@@ -15,6 +17,23 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+.skip-to-main {
+  position: absolute;
+  left: -9999px;
+  z-index: 999;
+  padding: 1rem 1.5rem;
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 0.25rem;
+}
+
+.skip-to-main:focus {
+  left: 1rem;
+  top: 1rem;
 }
 
 body {
@@ -77,6 +96,7 @@ header {
   top: 0;
   background-color: var(--color-background);
   z-index: 50;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .header-container {
@@ -112,6 +132,15 @@ header {
   color: var(--color-foreground);
   text-decoration: none;
   padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a:focus {
+  background-color: var(--color-secondary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .github-button {
@@ -119,9 +148,20 @@ header {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 0.75rem;
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-primary);
   border-radius: 0.375rem;
   text-decoration: none;
+  color: var(--color-primary);
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.github-button:hover,
+.github-button:focus {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
 }
 
 /* Mobile Menu (CSS-only) */
@@ -194,6 +234,15 @@ header {
   text-decoration: none;
   width: 100%;
   text-align: center;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s;
+}
+
+.mobile-menu a:hover,
+.mobile-menu a:focus {
+  background-color: var(--color-secondary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
 }
 
 /* CSS-only mobile menu toggle */
@@ -226,17 +275,35 @@ header {
   text-decoration: none;
   border: 2px solid transparent;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .button.primary {
   background-color: var(--color-primary);
   color: var(--color-primary-foreground);
+  border-color: var(--color-primary);
+}
+
+.button.primary:hover,
+.button.primary:focus {
+  background-color: var(--color-hover);
+  border-color: var(--color-hover);
+  outline: 2px solid var(--color-foreground);
+  outline-offset: 2px;
 }
 
 .button.secondary {
-  background-color: var(--color-secondary);
+  background-color: transparent;
   color: var(--color-foreground);
-  border-color: var(--color-border);
+  border-color: var(--color-foreground);
+}
+
+.button.secondary:hover,
+.button.secondary:focus {
+  background-color: var(--color-foreground);
+  color: var(--color-background);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 .button-group {
@@ -273,6 +340,8 @@ header {
 .features {
   padding: 4rem 0;
   background-color: var(--color-secondary);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .features-grid {
@@ -294,16 +363,23 @@ header {
 }
 
 .feature-card {
-  background-color: var(--color-card);
+  background-color: var(--color-background);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
+  transition: all 0.2s;
+}
+
+.feature-card:hover,
+.feature-card:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.1);
 }
 
 .feature-icon {
   width: 3rem;
   height: 3rem;
-  background-color: var(--color-secondary);
+  background-color: var(--color-primary);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
@@ -313,7 +389,7 @@ header {
 
 .feature-icon i {
   font-size: 1.25rem;
-  color: var(--color-primary);
+  color: var(--color-primary-foreground);
 }
 
 .feature-card p {
@@ -337,25 +413,40 @@ header {
   background-color: var(--color-card);
   padding: 1.5rem;
   border-radius: 0.5rem;
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
 }
 
 .installation-card h3 {
   margin-top: 1rem;
   margin-bottom: 1rem;
+  color: var(--color-primary);
 }
 
 .installation-card h3:first-child {
   margin-top: 0;
 }
 
+.installation-card h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin: 1.5rem 0 0.75rem;
+  color: var(--color-foreground);
+}
+
+.code-description {
+  margin: 0.75rem 0;
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 .code-block {
-  background-color: var(--color-background);
+  background-color: var(--color-secondary);
   padding: 1rem;
   border-radius: 0.375rem;
   margin-bottom: 1.5rem;
   overflow-x: auto;
-  border: 1px solid var(--color-border);
+  border: 2px solid var(--color-border);
 }
 
 .code-block code {
@@ -385,12 +476,22 @@ footer p {
 }
 
 .social-links a {
-  color: var(--color-muted);
+  color: var(--color-foreground);
   padding: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
+  border-radius: 0.25rem;
+  transition: all 0.2s;
+}
+
+.social-links a:hover,
+.social-links a:focus {
+  color: var(--color-primary);
+  background-color: var(--color-secondary);
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
 }
 
 /* Responsive adjustments */

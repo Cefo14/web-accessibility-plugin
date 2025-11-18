@@ -32,7 +32,63 @@ Include the plugin via CDN and initialize it in your HTML:
   window.addEventListener('load', function () {
     if (typeof window.WebAccessibilityPlugin === 'undefined') return;
     var container = document.getElementById('accessibility-root');
+
     var webAccessibilityPlugin = new window.WebAccessibilityPlugin(container);
+    webAccessibilityPlugin.render();
+  });
+</script>
+```
+
+### Custom Colors Configuration
+
+Customize the plugin's appearance to match your brand:
+
+```html
+<script>
+  window.addEventListener('load', function () {
+    if (typeof window.WebAccessibilityPlugin === 'undefined') return;
+    var container = document.getElementById('accessibility-root');
+
+    var config = {
+colors: {
+        // Required: Main background and surface colors
+        primary: {
+          light: '#ffffff',
+          base: '#f5f5f5',
+          dark: '#cccccc',
+          text: '#000000'
+        },
+        // Required: Brand/accent colors
+        secondary: {
+          light: '#4a9eff',
+          base: '#0066cc',
+          dark: '#004d99',
+          text: '#ffffff'
+        },
+        // Optional: Customize state colors
+        info: {
+          light: '#60a5fa',
+          base: '#3b82f6',
+          dark: '#2563eb',
+          text: '#ffffff'
+        },
+        warning: {
+          light: '#fcd34d',
+          base: '#f59e0b',
+          dark: '#d97706',
+          text: '#000000'
+        },
+        danger: {
+          light: '#f87171',
+          base: '#ef4444',
+          dark: '#dc2626',
+          text: '#ffffff'
+        }
+      }
+    };
+    
+    var webAccessibilityPlugin = new window.WebAccessibilityPlugin(container, config);
+    
     webAccessibilityPlugin.render();
   });
 </script>
@@ -75,7 +131,7 @@ Include the plugin via CDN and initialize it in your HTML:
 
 ### Prerequisites
 
-- Node.js 18+
+- Node.js 22+
 - pnpm (recommended) or npm
 
 ### Setup
